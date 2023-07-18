@@ -166,7 +166,7 @@
 	function callEventCallbacks(eventType, func) {
 		var curEventHandlers = eventHandlers[eventType];
 		if (curEventHandlers === undefined ||
-				!curEventHandlers.length) {
+			!curEventHandlers.length) {
 			return;
 		}
 		for (var i = 0; i < curEventHandlers.length; i++) {
@@ -297,7 +297,7 @@
 			var val = webAppInitDataUnsafe[key];
 			try {
 				if (val.substr(0, 1) == '{' && val.substr(-1) == '}' ||
-						val.substr(0, 1) == '[' && val.substr(-1) == ']') {
+					val.substr(0, 1) == '[' && val.substr(-1) == ']') {
 					webAppInitDataUnsafe[key] = JSON.parse(val);
 				}
 			} catch (e) {
@@ -359,9 +359,9 @@
 			el = el.parentNode;
 		}
 		if (el.tagName == 'A' &&
-				el.target != '_blank' &&
-				(el.protocol == 'http:' || el.protocol == 'https:') &&
-				el.hostname == 't.me') {
+			el.target != '_blank' &&
+			(el.protocol == 'http:' || el.protocol == 'https:') &&
+			el.hostname == 't.me') {
 			WebApp.openTgLink(el.href);
 			e.preventDefault();
 		}
@@ -397,7 +397,7 @@
 	function setThemeParams(theme_params) {
 		// temp iOS fix
 		if (theme_params.bg_color == '#1c1c1d' &&
-				theme_params.bg_color == theme_params.secondary_bg_color) {
+			theme_params.bg_color == theme_params.secondary_bg_color) {
 			theme_params.secondary_bg_color = '#2c2c2e';
 		}
 		var color;
@@ -413,6 +413,14 @@
 			}
 		}
 		Utils.sessionStorageSet('themeParams', themeParams);
+	}
+
+	function generateId(len) {
+		var id = '', chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', chars_len = chars.length;
+		for (var i = 0; i < len; i++) {
+			id += chars[Math.floor(Math.random() * chars_len)];
+		}
+		return id;
 	}
 
 	var viewportHeight = false, viewportStableHeight = false, isExpanded = true;
@@ -471,17 +479,17 @@
 		} else {
 			color_key = parseColorToHex(color);
 			if (themeParams.bg_color &&
-					themeParams.bg_color == color_key) {
+				themeParams.bg_color == color_key) {
 				color_key = 'bg_color';
 			} else if (themeParams.secondary_bg_color &&
-					themeParams.secondary_bg_color == color_key) {
+				themeParams.secondary_bg_color == color_key) {
 				color_key = 'secondary_bg_color';
 			} else {
 				color_key = false;
 			}
 		}
 		if (color_key != 'bg_color' &&
-				color_key != 'secondary_bg_color') {
+			color_key != 'secondary_bg_color') {
 			console.error('[Telegram.WebApp] Header color key should be one of Telegram.WebApp.themeParams.bg_color, Telegram.WebApp.themeParams.secondary_bg_color, \'bg_color\', \'secondary_bg_color\'', color);
 			throw Error('WebAppHeaderColorKeyInvalid');
 		}
@@ -852,7 +860,7 @@
 			}
 			if (typeof params.color !== 'undefined') {
 				if (params.color === false ||
-						params.color === null) {
+					params.color === null) {
 					buttonColor = false;
 				} else {
 					var color = parseColorToHex(params.color);
@@ -865,7 +873,7 @@
 			}
 			if (typeof params.text_color !== 'undefined') {
 				if (params.text_color === false ||
-						params.text_color === null) {
+					params.text_color === null) {
 					buttonTextColor = false;
 				} else {
 					var text_color = parseColorToHex(params.text_color);
@@ -878,7 +886,7 @@
 			}
 			if (typeof params.is_visible !== 'undefined') {
 				if (params.is_visible &&
-						!mainButton.text.length) {
+					!mainButton.text.length) {
 					console.error('[Telegram.WebApp] Main button text is required');
 					throw Error('WebAppMainButtonParamInvalid');
 				}
@@ -948,17 +956,17 @@
 			}
 			if (params.type == 'impact') {
 				if (params.impact_style != 'light' &&
-						params.impact_style != 'medium' &&
-						params.impact_style != 'heavy' &&
-						params.impact_style != 'rigid' &&
-						params.impact_style != 'soft') {
+					params.impact_style != 'medium' &&
+					params.impact_style != 'heavy' &&
+					params.impact_style != 'rigid' &&
+					params.impact_style != 'soft') {
 					console.error('[Telegram.WebApp] Haptic impact style is invalid', params.impact_style);
 					throw Error('WebAppHapticImpactStyleInvalid');
 				}
 			} else if (params.type == 'notification') {
 				if (params.notification_type != 'error' &&
-						params.notification_type != 'success' &&
-						params.notification_type != 'warning') {
+					params.notification_type != 'success' &&
+					params.notification_type != 'warning') {
 					console.error('[Telegram.WebApp] Haptic notification type is invalid', params.notification_type);
 					throw Error('WebAppHapticNotificationTypeInvalid');
 				}
@@ -1015,6 +1023,50 @@
 			}
 			receiveWebViewEvent('popupClosed', {
 				button_id: button_id
+			});
+		}
+	}
+
+	var webAppScanQrPopupOpened = false;
+
+	function onQrTextReceived(eventType, eventData) {
+		if (webAppScanQrPopupOpened) {
+			var popupData = webAppScanQrPopupOpened;
+			var data = null;
+			if (typeof eventData.data !== 'undefined') {
+				data = eventData.data;
+			}
+			if (popupData.callback) {
+				if (popupData.callback(data)) {
+					webAppScanQrPopupOpened = false;
+					WebView.postEvent('web_app_close_scan_qr_popup', false);
+				}
+			}
+			receiveWebViewEvent('qrTextReceived', {
+				data: data
+			});
+		}
+	}
+
+	function onScanQrPopupClosed(eventType, eventData) {
+		webAppScanQrPopupOpened = false;
+	}
+
+	var webAppClipboardRequests = {};
+
+	function onClipboardTextReceived(eventType, eventData) {
+		if (eventData.req_id && webAppClipboardRequests[eventData.req_id]) {
+			var requestData = webAppClipboardRequests[eventData.req_id];
+			delete webAppClipboardRequests[eventData.req_id];
+			var data = null;
+			if (typeof eventData.data !== 'undefined') {
+				data = eventData.data;
+			}
+			if (requestData.callback) {
+				requestData.callback(data);
+			}
+			receiveWebViewEvent('clipboardTextReceived', {
+				data: data
 			});
 		}
 	}
@@ -1148,17 +1200,56 @@
 		}
 		WebView.postEvent('web_app_data_send', false, {data: data});
 	};
-	WebApp.openLink = function (url) {
+	WebApp.switchInlineQuery = function (query, choose_chat_types) {
+		if (!versionAtLeast('6.6')) {
+			console.error('[Telegram.WebApp] Method switchInlineQuery is not supported in version ' + webAppVersion);
+			throw Error('WebAppMethodUnsupported');
+		}
+		if (!initParams.tgWebAppBotInline) {
+			console.error('[Telegram.WebApp] Inline mode is disabled for this bot. Read more about inline mode: https://core.telegram.org/bots/inline');
+			throw Error('WebAppInlineModeDisabled');
+		}
+		query = query || '';
+		if (query.length > 256) {
+			console.error('[Telegram.WebApp] Inline query is too long', query);
+			throw Error('WebAppInlineQueryInvalid');
+		}
+		var chat_types = [];
+		if (choose_chat_types) {
+			if (!Array.isArray(choose_chat_types)) {
+				console.error('[Telegram.WebApp] Choose chat types should be an array', choose_chat_types);
+				throw Error('WebAppInlineChooseChatTypesInvalid');
+			}
+			var good_types = {users: 1, bots: 1, groups: 1, channels: 1};
+			for (var i = 0; i < choose_chat_types.length; i++) {
+				var chat_type = choose_chat_types[i];
+				if (!good_types[chat_type]) {
+					console.error('[Telegram.WebApp] Choose chat type is invalid', chat_type);
+					throw Error('WebAppInlineChooseChatTypeInvalid');
+				}
+				if (good_types[chat_type] != 2) {
+					good_types[chat_type] = 2;
+					chat_types.push(chat_type);
+				}
+			}
+		}
+		WebView.postEvent('web_app_switch_inline_query', false, {query: query, chat_types: chat_types});
+	};
+	WebApp.openLink = function (url, options) {
 		var a = document.createElement('A');
 		a.href = url;
 		if (a.protocol != 'http:' &&
-				a.protocol != 'https:') {
+			a.protocol != 'https:') {
 			console.error('[Telegram.WebApp] Url protocol is not supported', url);
 			throw Error('WebAppTgUrlInvalid');
 		}
 		var url = a.href;
+		options = options || {};
 		if (versionAtLeast('6.1')) {
-			WebView.postEvent('web_app_open_link', false, {url: url});
+			WebView.postEvent('web_app_open_link', false, {
+				url: url,
+				try_instant_view: versionAtLeast('6.4') && !!options.try_instant_view
+			});
 		} else {
 			window.open(url, '_blank');
 		}
@@ -1167,7 +1258,7 @@
 		var a = document.createElement('A');
 		a.href = url;
 		if (a.protocol != 'http:' &&
-				a.protocol != 'https:') {
+			a.protocol != 'https:') {
 			console.error('[Telegram.WebApp] Url protocol is not supported', url);
 			throw Error('WebAppTgUrlInvalid');
 		}
@@ -1186,10 +1277,10 @@
 		var a = document.createElement('A'), match, slug;
 		a.href = url;
 		if (a.protocol != 'http:' &&
-				a.protocol != 'https:' ||
-				a.hostname != 't.me' ||
-				!(match = a.pathname.match(/^\/(\$|invoice\/)([A-Za-z0-9\-_=]+)$/)) ||
-				!(slug = match[2])) {
+			a.protocol != 'https:' ||
+			a.hostname != 't.me' ||
+			!(match = a.pathname.match(/^\/(\$|invoice\/)([A-Za-z0-9\-_=]+)$/)) ||
+			!(slug = match[2])) {
 			console.error('[Telegram.WebApp] Invoice url is invalid', url);
 			throw Error('WebAppInvoiceUrlInvalid');
 		}
@@ -1266,11 +1357,11 @@
 				}
 				btn.type = button_type;
 				if (button_type == 'ok' ||
-						button_type == 'close' ||
-						button_type == 'cancel') {
+					button_type == 'close' ||
+					button_type == 'cancel') {
 					// no params needed
 				} else if (button_type == 'default' ||
-						button_type == 'destructive') {
+					button_type == 'destructive') {
 					var text = '';
 					if (typeof button.text !== 'undefined') {
 						text = strTrim(button.text);
@@ -1326,6 +1417,54 @@
 			callback(button_id == 'ok');
 		} : null);
 	};
+	WebApp.showScanQrPopup = function (params, callback) {
+		if (!versionAtLeast('6.4')) {
+			console.error('[Telegram.WebApp] Method showScanQrPopup is not supported in version ' + webAppVersion);
+			throw Error('WebAppMethodUnsupported');
+		}
+		if (webAppScanQrPopupOpened) {
+			console.error('[Telegram.WebApp] Popup is already opened');
+			throw Error('WebAppScanQrPopupOpened');
+		}
+		var text = '';
+		var popup_params = {};
+		if (typeof params.text !== 'undefined') {
+			text = strTrim(params.text);
+			if (text.length > 64) {
+				console.error('[Telegram.WebApp] Scan QR popup text is too long', text);
+				throw Error('WebAppScanQrPopupParamInvalid');
+			}
+			if (text.length > 0) {
+				popup_params.text = text;
+			}
+		}
+
+		webAppScanQrPopupOpened = {
+			callback: callback
+		};
+		WebView.postEvent('web_app_open_scan_qr_popup', false, popup_params);
+	};
+	WebApp.closeScanQrPopup = function () {
+		if (!versionAtLeast('6.4')) {
+			console.error('[Telegram.WebApp] Method closeScanQrPopup is not supported in version ' + webAppVersion);
+			throw Error('WebAppMethodUnsupported');
+		}
+
+		webAppScanQrPopupOpened = false;
+		WebView.postEvent('web_app_close_scan_qr_popup', false);
+	};
+	WebApp.readTextFromClipboard = function (callback) {
+		if (!versionAtLeast('6.4')) {
+			console.error('[Telegram.WebApp] Method readTextFromClipboard is not supported in version ' + webAppVersion);
+			throw Error('WebAppMethodUnsupported');
+		}
+		var req_id = generateId(16);
+		var req_params = {req_id: req_id};
+		webAppClipboardRequests[req_id] = {
+			callback: callback
+		};
+		WebView.postEvent('web_app_read_text_from_clipboard', false, req_params);
+	};
 	WebApp.ready = function () {
 		WebView.postEvent('web_app_ready');
 	};
@@ -1350,6 +1489,9 @@
 	WebView.onEvent('viewport_changed', onViewportChanged);
 	WebView.onEvent('invoice_closed', onInvoiceClosed);
 	WebView.onEvent('popup_closed', onPopupClosed);
+	WebView.onEvent('qr_text_received', onQrTextReceived);
+	WebView.onEvent('scan_qr_popup_closed', onScanQrPopupClosed);
+	WebView.onEvent('clipboard_text_received', onClipboardTextReceived);
 	WebView.postEvent('web_app_request_theme');
 	WebView.postEvent('web_app_request_viewport');
 
