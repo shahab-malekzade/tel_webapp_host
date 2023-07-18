@@ -14,18 +14,64 @@
   <script src="asset/js/tg_web_app.js"></script>
   <script>
   </script>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
 
+    body {
+      background-color: #8e44ad;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background-color: #fff;
+      min-width: 100%;
+      min-height: 200px;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .card--content {
+      background-color: #e74c3c;
+      min-width: 200px;
+      margin: 5px;
+    }
+
+    .card::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<section>
-  <h1 id="first_page">first_page</h1>
-  <h1 id="second_page">second_page</h1>
-  <h1 id="third_page">third_page</h1>
-  <h1 id="forth_page">forth_page</h1>
-
+<section id="first_page">
+  <h1>
+    یک اشتراک انتخاب کنید
+  </h1>
+  <h5>
+    بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
+  </h5>
+  <section class="card">
+    <div class="card--content"></div>
+    <div class="card--content"></div>
+    <div class="card--content"></div>
+  </section>
 </section>
+
+<section id="second_page">second_page</section>
+
+<section id="third_page">third_page</section>
+
+<section id="forth_page">forth_page</section>
+
 
 <script type="application/javascript">
 	Telegram.WebApp.ready();
