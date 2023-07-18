@@ -1,9 +1,3 @@
-# Ignore everything
-*
-
-# But not these files...
-!.gitignore
-!*.html
-!*.css
-!*.js
-
+.idea
+venv
+*.py
