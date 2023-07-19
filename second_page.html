@@ -1,10 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="MobileOptimized" content="176"/>
+  <meta name="HandheldFriendly" content="True"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title></title>
+  <link rel="stylesheet" href="asset/css/main.css">
+  <script src="asset/js/tg_web_app.js"></script>
+  <script>
+  </script>
+
 </head>
+
 <body>
-<h1>This is second page!</h1>
+
+<section>
+  <h1 id="greeting"></h1>
+
+  <div id="buttons">
+    <button onclick="webviewExpand();">Expand Webview</button>
+    <small>(The window goes fullscreen)</small>
+    <button onclick="toggleMainButton(this);">Hide Main Button</button>
+    <small>(It hides/shows main button)</small>
+    <button id="btnTime" onclick="sendData();">Send time</button>
+    <small>(The bot will recieve a message with filled <code>web_app_data</code> field)</small>
+  </div>
+
+  <h3>Test links</h3>
+  <ul>
+    <li><a href="https://shahab-malekzade.github.io/tel_webapp_host/second_page">Regular link #1</a>
+      (opens inside webview)
+    </li>
+    <li>
+      <a
+        href="javascript:Telegram.WebApp.openLink('https://shahab-malekzade.github.io/tel_webapp_host/second_page',{try_instant_view:true});">
+        web_app_open_tg_link()
+      </a>
+      (opens inside Telegram app)
+    </li>
+    <li><a href="https://google.com/" target="_blank">target="_blank" link</a> (opens outside webview)</li>
+    <li><a href="javascript:window.open('https://telegram.org/');">window.open() link</a> (opens outside
+      webview)
+    </li>
+    <li><a href="https://t.me/like">LikeBot t.me link</a> (opens inside Telegram app)</li>
+  </ul>
+
+  <h3>Init Data: </h3>
+  <pre id="initData"></pre>
+  <h3>Init Data (unsafe): </h3>
+  <pre id="initDataUnsafe"></pre>
+
+</section>
+
+<script type="application/javascript">
+	Telegram.WebApp.ready();
+
+	const initData = Telegram.WebApp.initData || '';
+	const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+
+	document.querySelector('#greeting').innerHTML = `Hi, ${initDataUnsafe.user.username}!`;
+	document.querySelector('#initData').innerHTML = JSON.stringify(initData, null, 2);
+	document.querySelector('#initDataUnsafe').innerHTML = JSON.stringify(initDataUnsafe, null, 2);
+
+	document.getElementById('regular_link').setAttribute(
+		'href',
+		document.getElementById('regular_link').getAttribute('href') + location.hash
+	);
+
+	Telegram.WebApp.MainButton
+		.setText('CLOSE WEBVIEW')
+		.show()
+		.onClick(function () {
+			webviewClose();
+		});
+
+	function toggleMainButton(el) {
+		const mainButton = Telegram.WebApp.MainButton;
+		if (mainButton.isVisible) {
+			mainButton.hide();
+			el.innerHTML = 'Show Main Button';
+		} else {
+			mainButton.show();
+			el.innerHTML = 'Hide Main Button';
+		}
+	}
+
+	function webviewExpand() {
+		Telegram.WebApp.expand();
+	}
+
+	function webviewClose() {
+		Telegram.WebApp.close();
+	}
+
+	function sendData() {
+		Telegram.WebApp.sendData('hi shahab');
+	}
+
+</script>
 </body>
 </html>

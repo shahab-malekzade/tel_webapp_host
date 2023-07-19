@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
@@ -14,44 +14,11 @@
   <script src="asset/js/tg_web_app.js"></script>
   <script>
   </script>
-  <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      background-color: #8e44ad;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      background-color: #fff;
-      min-width: 100%;
-      min-height: 200px;
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-    }
-
-    .card--content {
-      background-color: #e74c3c;
-      min-width: 200px;
-      margin: 5px;
-    }
-
-    .card::-webkit-scrollbar {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
 
+<!--
 <section id="first_page">
   <h1>
     یک اشتراک انتخاب کنید
@@ -59,52 +26,178 @@
   <h5>
     بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
   </h5>
-  <section class="card">
-    <div class="card--content"></div>
-    <div class="card--content"></div>
-    <div class="card--content"></div>
-  </section>
+  <div class="holster">
+    <div class="container x mandatory-scroll-snapping" dir="ltr">
+      <span class="spacer" style="width: 5%;"></span>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="item1">
+              اشتراک پایه
+              <br>
+              رایگان
+            </div>
+            <div class="item2">emoji</div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="item1">
+              25 لایک در روز
+            </div>
+            <div class="item2">emoji</div>
+          </div>
+          <div class="row">
+            <div class="item1">
+              چت با ناشناس به صورت شانسی
+            </div>
+            <div class="item2">emoji</div>
+          </div>
+          <div class="row">
+            <div class="item1">
+              پروفایل کاربری
+            </div>
+            <div class="item2">emoji</div>
+          </div>
+          <a href="#" class="button">
+            اشتراک فعلی
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <h2>Title</h2>
+          <p>Description of the card.</p>
+          <a href="#" class="button">Read More</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <h2>Title</h2>
+          <p>Description of the card.</p>
+          <a href="#" class="button">Read More</a>
+        </div>
+      </div>
+      <span class="spacer" style="width: 5%;"></span>
+    </div>
+  </div>
+</section>
+-->
+
+<section id="first_page">first_page</section>
+
+<section id="second_page">
+  <h1>
+    اشتراک پریمیوم
+  </h1>
+  <h5>
+    قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
+  </h5>
+  <div class="holster-2">
+    <div class="container-2" dir="ltr">
+
+      <div class="radio-inputs">
+        <label>
+          <input class="radio-input" type="radio" name="engine">
+          <div class="radio-tile">
+            <div class="card-2">
+              <div class="card-content">
+                <div class="row">
+                  <div class="item0">
+                    تومان/ماه
+                  </div>
+                  <div class="item1">
+                    سالیانه
+                  </div>
+                  <div style="width: 20px;"></div>
+                </div>
+                <div>
+                  برای یک سال کامل پرداخت کنید
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="item1">
+                    با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
+                  </div>
+                  <div class="item2">emoji</div>
+                </div>
+                <div class="row">
+                  <div class="item1">
+                    امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
+                  </div>
+                  <div class="item2">emoji</div>
+                </div>
+                <div class="row" style="margin-bottom: 20px;">
+                  <div class="item1">
+                    سالی را بدون افزایش قیمت غیر منتظر تجربه کنید
+                  </div>
+                  <div class="item2">emoji</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </label>
+        <label>
+          <input class="radio-input" type="radio" name="engine">
+          <div class="radio-tile">
+            <div class="card-2">
+              <div class="card-content">
+                <div class="row">
+                  <div class="item0">
+                    تومان/ماه
+                  </div>
+                  <div class="item1">
+                    ماهیانه
+                  </div>
+                  <div style="width: 20px;"></div>
+                </div>
+                <div class="row">
+                  <div class="item1">
+                    به صورت ماهانه پرداخت کنید
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
-<section id="second_page">second_page</section>
-
-<section id="third_page">third_page</section>
-
-<section id="forth_page">forth_page</section>
-
-
 <script type="application/javascript">
-	Telegram.WebApp.ready();
+    Telegram.WebApp.ready();
 
-	let first_page = document.getElementById("first_page");
-	let second_page = document.getElementById("second_page");
-	let third_page = document.getElementById("third_page");
-	let forth_page = document.getElementById("forth_page");
+    let first_page = document.getElementById("first_page");
+    let second_page = document.getElementById("second_page");
 
-	let pages = [first_page, second_page, third_page, forth_page];
+    let pages = [first_page, second_page];
 
-	first_page.style.display = "block";
-	second_page.style.display = "none";
-	third_page.style.display = "none";
-	forth_page.style.display = "none";
+    first_page.style.display = "none";
+    second_page.style.display = "block";
 
-	let click_count = 0;
+    let click_count = 0;
 
-	Telegram.WebApp.MainButton
-		.setText('Next page')
-		.show()
-		.onClick(function () {
-			if (click_count === pages.length - 1)
-				Telegram.WebApp.close();
+    Telegram.WebApp.MainButton
+        .setText('Next page')
+        .show()
+        .onClick(function () {
+            if (click_count === pages.length - 1)
+                Telegram.WebApp.close();
 
-			pages[click_count].style.display = "none";
-			click_count++;
-			pages[click_count].style.display = "block";
-		});
+            pages[click_count].style.display = "none";
+            click_count++;
+            pages[click_count].style.display = "block";
+        });
 
-	function sendData() {
-		Telegram.WebApp.sendData('hi shahab');
-	}
+    function sendData() {
+        Telegram.WebApp.sendData('hi shahab');
+    }
 
 </script>
 </body>
