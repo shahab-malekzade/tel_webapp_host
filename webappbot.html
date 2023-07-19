@@ -10,10 +10,16 @@
   <meta name="HandheldFriendly" content="True"/>
   <meta name="robots" content="noindex,nofollow"/>
   <title></title>
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
   <link rel="stylesheet" href="asset/css/main.css">
   <script src="asset/js/tg_web_app.js"></script>
-  <script>
-  </script>
+  <style>
+    body {
+      font-family: 'Abel', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+    }
+  </style>
 </head>
 
 <body>
@@ -89,12 +95,14 @@
 <section id="first_page">first_page</section>
 
 <section id="second_page">
-  <h1>
-    اشتراک پریمیوم
-  </h1>
-  <h5>
-    قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
-  </h5>
+  <div class="mx-width-90">
+    <p class="font-36 mb-3">
+      اشتراک پریمیوم 🎙️
+    </p>
+    <h5 class="font-11">
+      قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
+    </h5>
+  </div>
   <div class="holster-2">
     <div class="container-2" dir="ltr">
 
@@ -106,34 +114,34 @@
               <div class="card-content">
                 <div class="row">
                   <div class="item0">
-                    تومان/ماه
+                     تومان۹۶/ماه
                   </div>
-                  <div class="item1">
+                  <div class="item1 font-15">
                     سالیانه
                   </div>
-                  <div style="width: 20px;"></div>
+                  <div style="width: 40px;"></div>
                 </div>
-                <div>
+                <div class="font-10 description">
                   برای یک سال کامل پرداخت کنید
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="item1">
+                  <div class="item1 font-11">
                     با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
                   </div>
-                  <div class="item2">emoji</div>
+                  <div class="item2">💰</div>
                 </div>
                 <div class="row">
-                  <div class="item1">
+                  <div class="item1 font-11">
                     امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
                   </div>
-                  <div class="item2">emoji</div>
+                  <div class="item2">🌟</div>
                 </div>
-                <div class="row" style="margin-bottom: 20px;">
-                  <div class="item1">
+                <div class="row">
+                  <div class="item1 font-11">
                     سالی را بدون افزایش قیمت غیر منتظر تجربه کنید
                   </div>
-                  <div class="item2">emoji</div>
+                  <div class="item2">🛡️</div>
                 </div>
               </div>
             </div>
@@ -146,17 +154,15 @@
               <div class="card-content">
                 <div class="row">
                   <div class="item0">
-                    تومان/ماه
+                    تومان۱۲۰/ماه
                   </div>
                   <div class="item1">
                     ماهیانه
                   </div>
-                  <div style="width: 20px;"></div>
+                  <div style="width: 40px;"></div>
                 </div>
-                <div class="row">
-                  <div class="item1">
-                    به صورت ماهانه پرداخت کنید
-                  </div>
+                <div class="font-10 description">
+                  به صورت ماهانه پرداخت کنید
                 </div>
 
               </div>
@@ -171,33 +177,32 @@
 </section>
 
 <script type="application/javascript">
-    Telegram.WebApp.ready();
+	Telegram.WebApp.ready();
 
-    let first_page = document.getElementById("first_page");
-    let second_page = document.getElementById("second_page");
+	let first_page = document.getElementById("first_page");
+	let second_page = document.getElementById("second_page");
 
-    let pages = [first_page, second_page];
+	let pages = [first_page, second_page];
 
-    first_page.style.display = "none";
-    second_page.style.display = "block";
+	first_page.style.display = "none";
+	second_page.style.display = "block";
 
-    let click_count = 0;
+	function secondPage() {
+		Telegram.WebApp.MainButton
+			.setText(
+				'خرید اشتراک'
+			)
+			.show()
+			.onClick(function () {
+				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
+				);
+			});
+	}
 
-    Telegram.WebApp.MainButton
-        .setText('Next page')
-        .show()
-        .onClick(function () {
-            if (click_count === pages.length - 1)
-                Telegram.WebApp.close();
 
-            pages[click_count].style.display = "none";
-            click_count++;
-            pages[click_count].style.display = "block";
-        });
-
-    function sendData() {
-        Telegram.WebApp.sendData('hi shahab');
-    }
+	function sendData() {
+		Telegram.WebApp.sendData('hi shahab');
+	}
 
 </script>
 </body>
