@@ -1,5 +1,7 @@
 html,
 body {
+  background-color: #292929;
+  color: #EFFFFF;
 }
 
 .font-10 {
@@ -95,7 +97,6 @@ body {
 .container {
   display: flex;
   overflow: auto;
-  outline: 1px dashed lightgray;
   flex: none;
 }
 
@@ -118,13 +119,14 @@ body {
 }
 
 .card {
+  background-color: #212121;
+  color: #EFFFFF;
   position: relative;
   scroll-snap-align: center;
   flex: none;
   width: 70%;
   height: 300px;
   margin: 0 10px;
-  border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -153,7 +155,7 @@ body {
   text-align: center;
   margin: 20px 0 10px 0;
   padding: 10px 20px;
-  background-color: #555;
+  background-color: #1A1A1A;
   color: #fff;
   text-decoration: none;
   border-radius: 10px;
@@ -197,9 +199,12 @@ body {
 }
 
 .card-2 {
+  background-color: #212121;
+  color: #EFFFFF;
   width: 100%;
   scroll-snap-align: center;
   flex: none;
+  border-radius: 1rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -270,9 +275,8 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  border: 2px solid #b5bfd9;
+  border: 2px solid #212121;
   background-color: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: 0.15s ease;
   cursor: pointer;
   position: relative;
