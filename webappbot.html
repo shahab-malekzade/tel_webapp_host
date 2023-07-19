@@ -24,12 +24,11 @@
 
 <body>
 
-<!--
 <section id="first_page">
-  <h1>
+  <h1 class="font-36 mx-width-90 mb-0">
     یک اشتراک انتخاب کنید
   </h1>
-  <h5>
+  <h5 class="font-15 mx-width-90 mb-3 mt-2 mb-5">
     بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
   </h5>
   <div class="holster">
@@ -38,61 +37,131 @@
 
       <div class="card">
         <div class="card-content">
-          <div class="row">
-            <div class="item1">
+          <div class="row mb-3">
+            <div class="item1 align-right">
               اشتراک پایه
               <br>
               رایگان
             </div>
-            <div class="item2">emoji</div>
+            <div class="item2" style="font-size: 30px;">🥉</div>
           </div>
           <hr>
           <div class="row">
-            <div class="item1">
-              25 لایک در روز
+            <div class="item1 mr-2">
+              ۲۵ لایک در روز
             </div>
-            <div class="item2">emoji</div>
+            <div class="item2">👍</div>
           </div>
           <div class="row">
-            <div class="item1">
+            <div class="item1 mr-2">
               چت با ناشناس به صورت شانسی
             </div>
-            <div class="item2">emoji</div>
+            <div class="item2">💬</div>
           </div>
           <div class="row">
-            <div class="item1">
+            <div class="item1 mr-2">
               پروفایل کاربری
             </div>
-            <div class="item2">emoji</div>
+            <div class="item2">👤</div>
           </div>
-          <a href="#" class="button">
-            اشتراک فعلی
-          </a>
+          <div class="mt-8">
+            <a href="#" class="button w-100 disabled">
+              اشتراک فعلی
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-content">
-          <h2>Title</h2>
-          <p>Description of the card.</p>
-          <a href="#" class="button">Read More</a>
+          <div class="row mb-3">
+            <div class="item1 align-right">
+              اشتراک حرفه ای
+              <br>
+              ۱۰ تومان/ماه
+            </div>
+            <div class="item2" style="font-size: 30px;">🥈</div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="item1 mr-2">
+              لایک نامحدود
+            </div>
+            <div class="item2">👍</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ۱۰۰ چت جدید/ماه
+            </div>
+            <div class="item2">💬</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ۱۰۰ پیام خصوصی جدید/ماه
+            </div>
+            <div class="item2">👤</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ببینید چه کسانی شما را لایک میکنند
+            </div>
+            <div class="item2">👀</div>
+          </div>
+          <div class="mt-5">
+            <a onclick="secondPage();" class="button w-100">
+              انتخاب
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-content">
-          <h2>Title</h2>
-          <p>Description of the card.</p>
-          <a href="#" class="button">Read More</a>
+          <div class="row mb-3">
+            <div class="item1 align-right">
+              اشتراک پریمیوم
+              <br>
+              ۱۰ تومان/ماه
+            </div>
+            <div class="item2" style="font-size: 30px;">🥇</div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="item1 mr-2">
+              لایک نامحدود
+            </div>
+            <div class="item2">👍</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ۱۰۰ چت جدید/ماه
+            </div>
+            <div class="item2">💬</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ۱۰۰ پیام خصوصی جدید/ماه
+            </div>
+            <div class="item2">👤</div>
+          </div>
+          <div class="row">
+            <div class="item1 mr-2">
+              ببینید چه کسانی شما را لایک میکنند
+            </div>
+            <div class="item2">👀</div>
+          </div>
+          <div class="mt-5">
+            <a href="#" class="button w-100">
+              انتخاب
+            </a>
+          </div>
         </div>
       </div>
+
       <span class="spacer" style="width: 5%;"></span>
     </div>
   </div>
 </section>
--->
-
-<section id="first_page">first_page</section>
 
 <section id="second_page">
   <div class="mx-width-90">
@@ -114,7 +183,7 @@
               <div class="card-content">
                 <div class="row">
                   <div class="item0">
-                     تومان۹۶/ماه
+                    تومان۹۶/ماه
                   </div>
                   <div class="item1 font-15">
                     سالیانه
@@ -184,10 +253,18 @@
 
 	let pages = [first_page, second_page];
 
-	first_page.style.display = "none";
-	second_page.style.display = "block";
+	first_page.style.display = "block";
+	second_page.style.display = "none";
 
 	function secondPage() {
+		first_page.style.display = "none";
+		second_page.style.display = "block";
+	  Telegram.WebApp.BackButton
+      .show()
+      .onClick(function () {
+        first_page.style.display = "block";
+        second_page.style.display = "none";
+      });
 		Telegram.WebApp.MainButton
 			.setText(
 				'خرید اشتراک'
