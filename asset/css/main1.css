@@ -3,6 +3,10 @@
   src: url(../../dist/fonts/Vazir-Regular.woff) format('woff');
 }
 
+h5 {
+  font-family: vazir, sans-serif;
+}
+
 body {
   --bg-color: var(--tg-theme-bg-color, #fff);
   font-family: 'vazir', sans-serif;

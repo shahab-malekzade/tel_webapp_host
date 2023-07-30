@@ -11,18 +11,20 @@
   <meta name="robots" content="noindex,nofollow"/>
   <title>Hello, world!</title>
 
-  <script src="asset/js/tg_web_app.js"></script>
+  <script src="dist/js/tg_web_app.js"></script>
 
   <link rel="stylesheet" href="dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="asset/css/main1.css">
 
   <script>
-    function setThemeClass() {
-      document.documentElement.className = Telegram.WebApp.colorScheme;
-    }
-    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-    setThemeClass();
+		function setThemeClass() {
+			document.documentElement.className = Telegram.WebApp.colorScheme;
+		}
+
+		Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+		setThemeClass();
   </script>
+
 </head>
 
 <body>
@@ -31,15 +33,13 @@
   <a onclick="showSecondPage();">
     صفحه ۲
   </a>
-  <h1>
+  <p class="pe-3 mt-4 mb-0" style="font-size: 36px;">
     یک اشتراک انتخاب کنید
-  </h1>
-  <h1>
-    تعریف فونت در ویکی پدیا چنین آمده
-  </h1>
-  <h1>
-    ۱۲۳۴۵۶۷۸۹۰
-  </h1>
+  </p>
+  <h5 class="pe-3 mt-2 mb-5" style="font-size: 16px;">
+    بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
+  </h5>
+
 </section>
 
 <section id="second_page">
@@ -54,41 +54,41 @@
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="dist/js/bootstrap.bundle.min.js"></script>
 <script type="application/javascript">
-  Telegram.WebApp.ready();
+	Telegram.WebApp.ready();
 
-  let first_page = document.getElementById("first_page");
-  let second_page = document.getElementById("second_page");
+	let first_page = document.getElementById("first_page");
+	let second_page = document.getElementById("second_page");
 
-  second_page.style.display = "none";
-  first_page.style.display = "block";
-  Telegram.WebApp.bg_color = 'FF0000';
+	second_page.style.display = "none";
+	first_page.style.display = "block";
+	Telegram.WebApp.bg_color = 'FF0000';
 
-  function showSecondPage() {
-    first_page.style.display = "none";
-    second_page.style.display = "block";
-    Telegram.WebApp.BackButton
-        .show()
-        .onClick(function () {
-          second_page.style.display = "none";
-          first_page.style.display = "block";
-        });
-    Telegram.WebApp.MainButton
-        .setText(
-            'خرید اشتراک'
-        )
-        .show()
-        .onClick(function () {
-          Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
-          );
-        });
-  }
+	function showSecondPage() {
+		first_page.style.display = "none";
+		second_page.style.display = "block";
+		Telegram.WebApp.BackButton
+			.show()
+			.onClick(function () {
+				second_page.style.display = "none";
+				first_page.style.display = "block";
+			});
+		Telegram.WebApp.MainButton
+			.setText(
+				'خرید اشتراک'
+			)
+			.show()
+			.onClick(function () {
+				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
+				);
+			});
+	}
 
-  function showFirstPage() {
-    second_page.style.display = "none";
-    first_page.style.display = "block";
-    Telegram.WebApp.BackButton.hide();
-    Telegram.WebApp.MainButton.hide();
-  }
+	function showFirstPage() {
+		second_page.style.display = "none";
+		first_page.style.display = "block";
+		Telegram.WebApp.BackButton.hide();
+		Telegram.WebApp.MainButton.hide();
+	}
 </script>
 </body>
 </html>
