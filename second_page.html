@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
@@ -39,6 +39,152 @@
   <h5 class="pe-3 mt-2 mb-5" style="font-size: 16px;">
     بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
   </h5>
+
+  <div class="container" id="scrollContainer">
+    <div class="spacer"></div>
+    <div class="item">
+      <div class="card" data-index="0">
+        <div class="grid">
+          <div class="item-1">
+            اشتراک پایه
+          </div>
+          <div class="item-2">
+            !رایگان
+          </div>
+          <div class="item-3">👶</div>
+        </div>
+        <hr>
+        <p class="features">
+          <span class="sticker-features">👍</span>
+          <span class="plan-features">
+          ۲۵ لایک در روز
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">💬</span>
+          <span class="plan-features">
+          چت با ناشناس به صورت شانسی
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">👤</span>
+          <span class="plan-features">
+          پروفایل کاربری
+          </span>
+        </p>
+        <div class="stick-bottom">
+          <div class="card-button current-sub">
+            <a class="purchase-link" disabled>
+              اشتراک فعلی
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="card" data-index="1">
+        <div class="grid">
+          <div class="item-1">
+            اشتراک حرفه ای
+          </div>
+          <div class="item-2">
+            <p style="margin: 0;">
+              <span>۱۰</span>
+              تومان / ماه
+            </p>
+          </div>
+          <div class="item-3">🥈</div>
+        </div>
+        <hr>
+        <p class="features">
+          <span class="sticker-features">👍</span>
+          <span class="plan-features">
+          لایک نامحدود
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">💬</span>
+          <span class="plan-features">
+          ۱۰۰ چت جدید/ماه
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">👤</span>
+          <span class="plan-features">
+          ۱۰۰ پیام خصوصی جدید/ماه
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">👀</span>
+          <span class="plan-features">
+          ببینید چه کسانی شما را لایک میکنند
+          </span>
+        </p>
+        <div class="stick-bottom">
+          <div class="card-button">
+            <a class="purchase-link" onclick="showSecondPage();">
+              انتخاب
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="card" data-index="2">
+        <div class="grid">
+          <div class="item-1">
+            اشتراک پریمیوم
+          </div>
+          <div class="item-2">
+            <p style="margin: 0;">
+              <span>۱۰</span>
+              تومان / ماه
+            </p>
+          </div>
+          <div class="item-3">🥇</div>
+        </div>
+        <hr>
+        <p class="features">
+          <span class="sticker-features">👍</span>
+          <span class="plan-features">
+          لایک نامحدود
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">💬</span>
+          <span class="plan-features">
+          ۱۰۰ چت جدید/ماه
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">👤</span>
+          <span class="plan-features">
+          ۱۰۰ پیام خصوصی جدید/ماه
+          </span>
+        </p>
+        <p class="features">
+          <span class="sticker-features">👀</span>
+          <span class="plan-features">
+          ببینید چه کسانی شما را لایک میکنند
+          </span>
+        </p>
+        <div class="stick-bottom">
+          <div class="card-button">
+            <a class="purchase-link" onclick="showSecondPage();">
+              انتخاب
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="dot-container" id="dotContainer">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+  </div>
 
 </section>
 
@@ -89,6 +235,50 @@
 		Telegram.WebApp.BackButton.hide();
 		Telegram.WebApp.MainButton.hide();
 	}
+</script>
+<script>
+	var container = document.getElementById('scrollContainer');
+	var dots = document.querySelectorAll('.dot');
+	var cards = document.querySelectorAll('.card');
+
+	function scrollToIndex(index) {
+		var width = cards.item(0).clientWidth;
+		var scrollPosition = index * width;
+
+		container.scrollTo({
+			left: scrollPosition,
+			behavior: 'smooth'
+		});
+	}
+
+	container.addEventListener('scroll', function () {
+		var scrollLeft = container.scrollLeft;
+		var width = cards.item(0).clientWidth;
+		var index = Math.floor(scrollLeft / width);
+
+		dots.forEach(function (dot, i) {
+			if (i === index) {
+				dot.classList.add('active');
+			} else {
+				dot.classList.remove('active');
+			}
+		});
+	});
+
+	dots.forEach(function (dot, i) {
+		dot.addEventListener('click', function () {
+			var index = dot.getAttribute('data-index');
+			scrollToIndex(index);
+		});
+	});
+
+	cards.forEach(function (card, i) {
+		card.addEventListener('click', function () {
+			var index = card.getAttribute('data-index');
+			scrollToIndex(index);
+		});
+	});
+
 </script>
 </body>
 </html>
