@@ -196,7 +196,7 @@
 
 <section id="third_page">
   <h2 class="landscape-msg">
-    لطفا صفحه گوشی خود را به حالت عمودی برگردانید.
+    لطفا صفحه گوشی خود را به حالت عمودی برگردانید
   </h2>
 </section>
 
@@ -209,8 +209,10 @@
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
 
-	window.addEventListener('orientationchange', function () {
-		if (window.matchMedia("(orientation: landscape)").matches) {
+  let landscape = window.matchMedia("(orientation: landscape)");
+
+	landscape.addEventListener("change", function(e) {
+		if (e.matches) {
 			landscapeMode();
 		} else {
 			portraitMode();
@@ -220,7 +222,7 @@
 	if (window.matchMedia("(orientation: landscape)").matches) {
 		landscapeMode();
 	} else {
-		portraitMode();
+		portraitMode('portrait');
 	}
 
 	function showSecondPage() {
