@@ -30,13 +30,10 @@
 <body>
 
 <section id="first_page">
-  <a onclick="showSecondPage();">
-    صفحه ۲
-  </a>
-  <p class="pe-3 mt-4 mb-0" style="font-size: 36px;">
+  <p class="pe-3 mt-2 mb-0" style="font-size: 24px;">
     یک اشتراک انتخاب کنید
   </p>
-  <h5 class="pe-3 mt-2 mb-5" style="font-size: 16px;">
+  <h5 class="pe-3 mt-2" style="font-size: 16px;">
     بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
   </h5>
 
@@ -217,6 +214,8 @@
 			.onClick(function () {
 				second_page.style.display = "none";
 				first_page.style.display = "block";
+				Telegram.WebApp.BackButton.hide();
+				Telegram.WebApp.MainButton.hide();
 			});
 		Telegram.WebApp.MainButton
 			.setText(

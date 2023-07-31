@@ -46,12 +46,13 @@ a:active {
 
 hr {
   opacity: 0.08;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .container {
   display: flex;
   overflow-x: auto;
-  height: 450px;
   scroll-snap-type: x mandatory;
 }
 
@@ -62,23 +63,23 @@ hr {
 
 .item {
   flex: 0 0 auto;
-  width: 75%;
+  width: 80%;
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 450px;
+  height: 350px;
 }
 
 .card {
-  --darken: 20%;
+  /*--darken: 20%;*/
   position: relative;
-  background-color: var(--tg-theme-bg-color, #EBEBEB);
-  filter: hue-rotate(0deg) saturate(calc(100% - var(--darken, 0%)));
+  background-color: hsl(0, 0%, 90%);
+  /*filter: hue-rotate(0deg) saturate(calc(100% - var(--darken, 0%)));*/
   padding: 16px 16px 0 16px;
   border-radius: 25px;
   width: 95%;
-  height: 85%;
+  height: 100%;
 }
 
 .spacer {
@@ -88,7 +89,6 @@ hr {
 
 .dot-container {
   text-align: center;
-  padding: 0 20px 20px 20px;
 }
 
 .dot {
@@ -171,7 +171,7 @@ hr {
 }
 
 .card-button {
-  background-color: #80808055;
+  background-color: hsl(0, 0%, 80%);
   width: 100%;
   text-align: center;
   text-decoration: none;
