@@ -189,9 +189,82 @@
   <a onclick="showFirstPage();">
     صفحه ۱
   </a>
-  <h1>
-    صفحه دوم ۱۲۳۴۵۶۷۸۹۰
-  </h1>
+  <p class="second-p-title">
+    اشتراک پریمیوم
+    <span class="sticker-title">🎙️</span>
+  </p>
+
+  <h5 class="second-p-desc">
+    قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
+  </h5>
+
+  <div id="box-1" class="card card-second-page">
+
+    <div class="grid-2">
+      <div class="price">
+        <p style="font-size: 10px;">
+          <span style="font-size: 16px;">۹۶</span>
+          تومان / ماه
+        </p>
+      </div>
+      <div class="interval-txt">
+        سالیانه
+        <p class="card-desc">
+          برای یک سال کامل پرداخت کنید
+        </p>
+      </div>
+      <div class="radio-btn">
+        <div class="circle"></div>
+      </div>
+    </div>
+
+    <hr style="margin-bottom: 10px;">
+
+    <p class="features">
+      <span class="sticker-features">💰</span>
+      <span class="plan-features-2">
+        با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
+      </span>
+    </p>
+    <p class="features">
+      <span class="sticker-features">🌟</span>
+      <span class="plan-features-2">
+        امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
+      </span>
+    </p>
+    <p class="features">
+      <span class="sticker-features">🛡️</span>
+      <span class="plan-features-2">
+        سالی را بدون افزایش قیمت غیر منتظره تجربه کنید
+      </span>
+    </p>
+  </div>
+
+  <div style="height: 20px;"></div>
+
+  <div id="box-2" class="card card-second-page">
+
+    <div class="grid-2">
+      <div class="price">
+        <p style="font-size: 10px;">
+          <span style="font-size: 16px;">۹۶</span>
+          تومان / ماه
+        </p>
+      </div>
+      <div class="interval-txt">
+        سالیانه
+        <p class="card-desc">
+          برای یک سال کامل پرداخت کنید
+        </p>
+      </div>
+      <div class="radio-btn">
+        <div class="circle"></div>
+      </div>
+    </div>
+
+  </div>
+
+
 </section>
 
 <section id="third_page">
@@ -209,9 +282,9 @@
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
 
-  let landscape = window.matchMedia("(orientation: landscape)");
+	let landscape = window.matchMedia("(orientation: landscape)");
 
-	landscape.addEventListener("change", function(e) {
+	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
 			landscapeMode();
 		} else {
@@ -246,6 +319,29 @@
 				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
 				);
 			});
+
+		console.log('hey there!!!!');
+		const box1 = document.getElementById('box-1');
+		const box2 = document.getElementById('box-2');
+		box1.addEventListener('click', () => {
+			// Remove selected from all boxes
+			box1.classList.remove('selected');
+			box2.classList.remove('selected');
+
+			// Add selected to clicked box
+			this.classList.add('selected');
+		});
+		box2.addEventListener('click', () => {
+			// Remove selected from all boxes
+			box1.classList.remove('selected');
+			box2.classList.remove('selected');
+
+			// Add selected to clicked box
+			this.classList.add('selected');
+		});
+
+		function selectBox() {
+		}
 	}
 
 	function showFirstPage() {
@@ -257,8 +353,8 @@
 	}
 
 	function portraitMode() {
-		first_page.style.display = "block";
-		second_page.style.display = "none";
+		first_page.style.display = "none";
+		second_page.style.display = "block";
 		third_page.style.display = "none";
 		Telegram.WebApp.bg_color = 'FF0000';
 
