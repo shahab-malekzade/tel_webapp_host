@@ -73,7 +73,7 @@ hr {
 
 .card {
   position: relative;
-  background-color: #00000011;
+  background-color: #00000007;
   padding: 16px 16px 0 16px;
   border-radius: 25px;
   width: 95%;
@@ -87,6 +87,7 @@ hr {
 
 .dot-container {
   text-align: center;
+  margin-top: 10px;
 }
 
 .dot {
@@ -169,7 +170,7 @@ hr {
 }
 
 .card-button {
-  background-color: #00000011;
+  background-color: #00000007;
   width: 100%;
   text-align: center;
   text-decoration: none;
