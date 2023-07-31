@@ -72,10 +72,8 @@ hr {
 }
 
 .card {
-  /*--darken: 20%;*/
   position: relative;
-  background-color: #81818122;
-  /*filter: hue-rotate(0deg) saturate(calc(100% - var(--darken, 0%)));*/
+  background-color: #00000011;
   padding: 16px 16px 0 16px;
   border-radius: 25px;
   width: 95%;
@@ -171,7 +169,7 @@ hr {
 }
 
 .card-button {
-  background-color: #81818122;
+  background-color: #00000011;
   width: 100%;
   text-align: center;
   text-decoration: none;
