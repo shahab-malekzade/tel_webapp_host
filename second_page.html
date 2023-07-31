@@ -209,11 +209,52 @@
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
 
+	window.addEventListener('orientationchange', function () {
+		if (window.matchMedia("(orientation: landscape)").matches) {
+			landscapeMode();
+		} else {
+			portraitMode();
+		}
+	});
+
 	if (window.matchMedia("(orientation: landscape)").matches) {
-		first_page.style.display = "none";
-		second_page.style.display = "none";
-		third_page.style.display = "block";
+		landscapeMode();
 	} else {
+		portraitMode();
+	}
+
+	function showSecondPage() {
+		first_page.style.display = "none";
+		second_page.style.display = "block";
+		third_page.style.display = "none";
+		Telegram.WebApp.BackButton
+			.show()
+			.onClick(function () {
+				second_page.style.display = "none";
+				first_page.style.display = "block";
+				Telegram.WebApp.BackButton.hide();
+				Telegram.WebApp.MainButton.hide();
+			});
+		Telegram.WebApp.MainButton
+			.setText(
+				'خرید اشتراک'
+			)
+			.show()
+			.onClick(function () {
+				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
+				);
+			});
+	}
+
+	function showFirstPage() {
+		second_page.style.display = "none";
+		first_page.style.display = "block";
+		third_page.style.display = "none";
+		Telegram.WebApp.BackButton.hide();
+		Telegram.WebApp.MainButton.hide();
+	}
+
+	function portraitMode() {
 		first_page.style.display = "block";
 		second_page.style.display = "none";
 		third_page.style.display = "none";
@@ -260,40 +301,13 @@
 				scrollToIndex(index);
 			});
 		});
-
 	}
 
-	function showSecondPage() {
+	function landscapeMode() {
 		first_page.style.display = "none";
-		second_page.style.display = "block";
-		third_page.style.display = "none";
-		Telegram.WebApp.BackButton
-			.show()
-			.onClick(function () {
-				second_page.style.display = "none";
-				first_page.style.display = "block";
-				Telegram.WebApp.BackButton.hide();
-				Telegram.WebApp.MainButton.hide();
-			});
-		Telegram.WebApp.MainButton
-			.setText(
-				'خرید اشتراک'
-			)
-			.show()
-			.onClick(function () {
-				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
-				);
-			});
-	}
-
-	function showFirstPage() {
 		second_page.style.display = "none";
-		first_page.style.display = "block";
-		third_page.style.display = "none";
-		Telegram.WebApp.BackButton.hide();
-		Telegram.WebApp.MainButton.hide();
+		third_page.style.display = "block";
 	}
-
 
 </script>
 </body>
