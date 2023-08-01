@@ -247,10 +247,6 @@
 
   <div id="box-2" class="card card-second-page">
 
-    <div id="triangle-2" class="triangle">
-      <div style="padding: 5px;"><span>⭐</span></div>
-    </div>
-
     <div class="grid-2">
       <div class="price">
         <p style="font-size: 10px;">
@@ -294,7 +290,6 @@
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
 	let triangle_1 = document.getElementById("triangle-1");
-	let triangle_2 = document.getElementById("triangle-2");
 
 	let landscape = window.matchMedia("(orientation: landscape)");
 
@@ -351,7 +346,6 @@
 			circle2.classList.remove('selected');
 			interval = 'yearly';
 			triangle_1.style.display = "block";
-			triangle_2.style.display = "none";
 			showMainButton();
 		});
 
@@ -362,7 +356,6 @@
 			circle1.classList.remove('selected');
 			interval = 'monthly';
 			triangle_1.style.display = "none";
-			triangle_2.style.display = "block";
 			showMainButton();
 		});
 
@@ -378,7 +371,6 @@
 				circle1.classList.remove('selected');
 				circle2.classList.remove('selected');
 				triangle_1.style.display = "none";
-				triangle_2.style.display = "none";
 				subscription = null;
 				interval = null;
 			});
@@ -411,7 +403,6 @@
 		// second_page.style.display = "block";
 		third_page.style.display = "none";
 		triangle_1.style.display = "none";
-		triangle_2.style.display = "none";
 		Telegram.WebApp.bg_color = 'FF0000';
 
 		let container = document.getElementById('scrollContainer');
@@ -428,10 +419,13 @@
 			});
 		}
 
+		let width = cards.item(0).clientWidth;
+		let scrollLeft = container.scrollLeft;
+		let index = Math.floor((scrollLeft) / width);
+
 		container.addEventListener('scroll', function () {
-			let scrollLeft = container.scrollLeft;
-			let width = cards.item(0).clientWidth;
-			let index = Math.floor(scrollLeft / width);
+			scrollLeft = container.scrollLeft;
+			index = Math.floor((scrollLeft) / width);
 
 			dots.forEach(function (dot, i) {
 				if (i === index) {

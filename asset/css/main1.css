@@ -17,6 +17,10 @@ body {
   padding: 0;
   color-scheme: var(--tg-color-scheme);
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
 
 
@@ -77,8 +81,9 @@ hr {
 }
 
 .container::-webkit-scrollbar {
+  -webkit-appearance: none;
   width: 0;
-  background: transparent;
+  height: 0;
 }
 
 .item {
@@ -124,7 +129,7 @@ hr {
 .dot {
   height: 10px;
   width: 10px;
-  background-color: #bbb;
+  background-color: #00000066;
   border-radius: 50%;
   display: inline-block;
   margin: 0 2px;
@@ -132,7 +137,7 @@ hr {
 }
 
 .dot.active {
-  background-color: #000;
+  background-color: #000000ff;
 }
 
 .grid {
