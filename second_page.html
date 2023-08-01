@@ -186,9 +186,6 @@
 </section>
 
 <section id="second_page">
-  <a onclick="showFirstPage();">
-    صفحه ۱
-  </a>
   <p class="second-p-title">
     <span id="second-p-title">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -199,6 +196,10 @@
   </h5>
 
   <div id="box-1" class="card card-second-page">
+
+    <div id="triangle-1" class="triangle">
+      <div style="padding: 5px;"><span>⭐</span></div>
+    </div>
 
     <div class="grid-2">
       <div class="price">
@@ -242,21 +243,25 @@
     </p>
   </div>
 
-  <div style="height: 20px;"></div>
+  <div style="height: 15px;"></div>
 
   <div id="box-2" class="card card-second-page">
+
+    <div id="triangle-2" class="triangle">
+      <div style="padding: 5px;"><span>⭐</span></div>
+    </div>
 
     <div class="grid-2">
       <div class="price">
         <p style="font-size: 10px;">
-          <span style="font-size: 16px;">۹۶</span>
+          <span style="font-size: 16px;">۱۲۰</span>
           تومان / ماه
         </p>
       </div>
       <div class="interval-txt">
-        سالیانه
+        ماهیانه
         <p class="card-desc">
-          برای یک سال کامل پرداخت کنید
+          به صورت ماهانه پرداخت کنید
         </p>
       </div>
       <div class="radio-btn">
@@ -288,6 +293,8 @@
 	let first_page = document.getElementById("first_page");
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
+	let triangle_1 = document.getElementById("triangle-1");
+	let triangle_2 = document.getElementById("triangle-2");
 
 	let landscape = window.matchMedia("(orientation: landscape)");
 
@@ -303,6 +310,19 @@
 		landscapeMode();
 	} else {
 		portraitMode('portrait');
+	}
+
+	function showMainButton() {
+		Telegram.WebApp.MainButton
+			.setText(
+				'خرید اشتراک'
+			)
+			.show()
+			.onClick(function () {
+				console.log(`subscription/interval : ${subscription} - ${interval}`);
+				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
+				);
+			});
 	}
 
 	function showSecondPage(plan) {
@@ -330,6 +350,9 @@
 			circle1.classList.add('selected');
 			circle2.classList.remove('selected');
 			interval = 'yearly';
+			triangle_1.style.display = "block";
+			triangle_2.style.display = "none";
+			showMainButton();
 		});
 
 		box2.addEventListener('click', () => {
@@ -338,6 +361,9 @@
 			circle2.classList.add('selected');
 			circle1.classList.remove('selected');
 			interval = 'monthly';
+			triangle_1.style.display = "none";
+			triangle_2.style.display = "block";
+			showMainButton();
 		});
 
 		Telegram.WebApp.BackButton
@@ -351,18 +377,10 @@
 				box2.classList.remove('selected');
 				circle1.classList.remove('selected');
 				circle2.classList.remove('selected');
+				triangle_1.style.display = "none";
+				triangle_2.style.display = "none";
 				subscription = null;
 				interval = null;
-			});
-		Telegram.WebApp.MainButton
-			.setText(
-				'خرید اشتراک'
-			)
-			.show()
-			.onClick(function () {
-				console.log(`subscription/interval : ${subscription} - ${interval}`);
-				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
-				);
 			});
 	}
 
@@ -387,9 +405,13 @@
 	}
 
 	function portraitMode() {
-		first_page.style.display = "none";
-		second_page.style.display = "block";
+		first_page.style.display = "block";
+		second_page.style.display = "none";
+		// first_page.style.display = "none";
+		// second_page.style.display = "block";
 		third_page.style.display = "none";
+		triangle_1.style.display = "none";
+		triangle_2.style.display = "none";
 		Telegram.WebApp.bg_color = 'FF0000';
 
 		let container = document.getElementById('scrollContainer');
