@@ -98,6 +98,7 @@ hr {
   border-radius: 25px;
   width: 95%;
   height: 100%;
+  border: 2px solid rgba(0, 0, 0, .125);
 }
 
 .card-second-page {
@@ -107,7 +108,7 @@ hr {
 }
 
 .card-second-page.selected {
-  border: 1px solid blue;
+  border: 2px solid #82AAFF;
 }
 
 .spacer {
@@ -266,6 +267,28 @@ hr {
   width: 22px;
   height: 22px;
   border-radius: 50%;
+}
+
+.outer-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #00000020;
+  position: relative;
+}
+
+.inner-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-circle.selected {
+  background-color: grey;
 }
 
 .card-desc {
