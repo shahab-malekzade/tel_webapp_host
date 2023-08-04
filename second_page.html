@@ -307,17 +307,28 @@
 		portraitMode('portrait');
 	}
 
+	// =========================================
+	var targetObj = {};
+	var targetProxy = new Proxy(targetObj, {
+		set: function (target, key, value) {
+			console.log(`${key} set to ${value} --- ${target}`);
+			target[key] = value;
+			return true;
+		}
+	});
+	targetProxy.hello_world = "test"; // console: 'hello_world set to test'
+
 	function showMainButton() {
 		Telegram.WebApp.MainButton
-			.setText(
-				'خرید اشتراک'
-			)
-			.show()
-			.onClick(function () {
-				console.log(`subscription/interval : ${subscription} - ${interval}`);
-				Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
-				);
-			});
+				.setText(
+						'خرید اشتراک'
+				)
+				.show()
+				.onClick(function () {
+					console.log(`subscription/interval : ${subscription} - ${interval}`);
+					Telegram.WebApp.openLink('https://google.com', {try_instant_view: true}
+					);
+				});
 	}
 
 	function showSecondPage(plan) {
@@ -339,14 +350,10 @@
 			subscription = 'premium';
 		}
 
+		selectDefaultInterval();
+
 		box1.addEventListener('click', () => {
-			box1.classList.add('selected');
-			box2.classList.remove('selected');
-			circle1.classList.add('selected');
-			circle2.classList.remove('selected');
-			interval = 'yearly';
-			triangle_1.style.display = "block";
-			showMainButton();
+			selectDefaultInterval();
 		});
 
 		box2.addEventListener('click', () => {
@@ -360,20 +367,30 @@
 		});
 
 		Telegram.WebApp.BackButton
-			.show()
-			.onClick(function () {
-				second_page.style.display = "none";
-				first_page.style.display = "block";
-				Telegram.WebApp.BackButton.hide();
-				Telegram.WebApp.MainButton.hide();
-				box1.classList.remove('selected');
-				box2.classList.remove('selected');
-				circle1.classList.remove('selected');
-				circle2.classList.remove('selected');
-				triangle_1.style.display = "none";
-				subscription = null;
-				interval = null;
-			});
+				.show()
+				.onClick(function () {
+					second_page.style.display = "none";
+					first_page.style.display = "block";
+					Telegram.WebApp.BackButton.hide();
+					Telegram.WebApp.MainButton.hide();
+					box1.classList.remove('selected');
+					box2.classList.remove('selected');
+					circle1.classList.remove('selected');
+					circle2.classList.remove('selected');
+					triangle_1.style.display = "none";
+					subscription = null;
+					interval = null;
+				});
+
+		function selectDefaultInterval() {
+			box1.classList.add('selected');
+			box2.classList.remove('selected');
+			circle1.classList.add('selected');
+			circle2.classList.remove('selected');
+			interval = 'yearly';
+			triangle_1.style.display = "block";
+			showMainButton();
+		}
 	}
 
 	function showFirstPage() {
