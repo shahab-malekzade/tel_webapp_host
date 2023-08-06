@@ -455,25 +455,34 @@
 		// 	container.scrollLeft += scrollDir * cards.item(0).clientWidth
 		// });
 
-		function expandMode(func) {
-			var timer;
-			return function (event) {
-				if (timer) clearTimeout(timer);
-				timer = setTimeout(func, 100, event);
-			};
-		}
+		// function expandMode(func) {
+		// 	var timer;
+		// 	return function (event) {
+		// 		if (timer) clearTimeout(timer);
+		// 		timer = setTimeout(func, 100, event);
+		// 	};
+		// }
+		//
+		// // Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
+		// window.addEventListener("resize", expandMode(function (e) {
+		// 	// Make the content place in the center of screen when Telegram.WebApp.isExpanded
+		// 	console.log(`resizeEnd: ${Telegram.WebApp.isExpanded}`);
+		// 	const newHeight = window.innerHeight;
+		// 	if (newHeight > 600) {
+		// 		document.body.style.height = `${newHeight - 50}px`;
+		// 	} else {
+		// 		document.body.style.height = null;
+		// 	}
+		// }));
 
-		Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
-		window.addEventListener("resize", expandMode(function (e) {
-			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
-			console.log(`resizeEnd: ${Telegram.WebApp.isExpanded}`);
-			const newHeight = window.innerHeight;
-			if (newHeight > 600) {
+		window.Telegram.WebView.onEvent('viewport_changed', (event) => {
+			if (event.isExpanded) {
+				const newHeight = window.innerHeight;
 				document.body.style.height = `${newHeight - 50}px`;
 			} else {
 				document.body.style.height = null;
 			}
-		}));
+		});
 
 		// container.addEventListener('scroll', function () {
 		// 	scrollLeft = container.scrollLeft;
