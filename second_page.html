@@ -463,7 +463,7 @@
 			};
 		}
 
-		window.addEventListener("resize", expandMode(function (e) {
+		window.addEventListener("touchend", expandMode(function (e) {
 			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
 			const newHeight = window.innerHeight;
 			if (newHeight > 600) {
