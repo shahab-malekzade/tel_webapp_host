@@ -475,14 +475,30 @@
 		// 	}
 		// }));
 
-		window.Telegram.WebView.onEvent('viewport_changed', (event) => {
-			if (event.isExpanded) {
-				const newHeight = window.innerHeight;
-				document.body.style.height = `${newHeight - 50}px`;
-			} else {
-				document.body.style.height = null;
-			}
-		});
+		// window.Telegram.WebView.onEvent('viewport_changed', (event) => {
+		// 	if (event.isExpanded) {
+		// 		const newHeight = window.innerHeight;
+		// 		document.body.style.height = `${newHeight - 50}px`;
+		// 	} else {
+		// 		document.body.style.height = null;
+		// 	}
+		// });
+
+		function addStylesOnExpand() {
+			const newHeight = window.innerHeight;
+			document.body.style.height = `${newHeight - 50}px`;
+			Telegram.WebApp.showConfirm(`onExpand : ${newHeight}px`);
+		}
+
+		function removeStylesOnClose() {
+			const newHeight = window.innerHeight;
+			Telegram.WebApp.showConfirm(`onClose: ${newHeight}px`);
+			document.body.style.height = null;
+		}
+
+		Telegram.WebView.onEvent('web_app_expand', addStylesOnExpand);
+
+		Telegram.WebView.onEvent('web_app_close', removeStylesOnClose);
 
 		// container.addEventListener('scroll', function () {
 		// 	scrollLeft = container.scrollLeft;
