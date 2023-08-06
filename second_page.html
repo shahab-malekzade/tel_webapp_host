@@ -293,6 +293,28 @@
 
 	let landscape = window.matchMedia("(orientation: landscape)");
 
+	function expandMode(func) {
+		var timer;
+		return function (event) {
+			if (timer) clearTimeout(timer);
+			timer = setTimeout(func, 100, event);
+		};
+	}
+
+	// Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
+	window.addEventListener("resize", expandMode(function (e) {
+		// Make the content place in the center of screen when Telegram.WebApp.isExpanded
+		const newHeight = window.innerHeight ||
+				document.documentElement.clientHeight ||
+				document.body.clientHeight;
+		Telegram.WebApp.showConfirm(`onExpand : ${newHeight}px --- ${Telegram.WebApp.isExpanded}`);
+		if (newHeight > 600) {
+			document.body.style.height = `${newHeight - 50}px`;
+		} else {
+			document.body.style.height = null;
+		}
+	}));
+
 	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
 			landscapeMode();
@@ -306,17 +328,6 @@
 	} else {
 		portraitMode();
 	}
-
-	// =========================================
-	// var targetObj = {};
-	// var targetProxy = new Proxy(targetObj, {
-	// 	set: function (target, key, value) {
-	// 		target[key] = value;
-	// 		console.log(`${key} set to ${value} --- ${JSON.stringify(target)}`);
-	// 		return true;
-	// 	}
-	// });
-	// targetProxy.hello_world = "test"; // console: 'hello_world set to test'
 
 	function showMainButton() {
 		Telegram.WebApp.MainButton
@@ -454,28 +465,6 @@
 		// container.addEventListener('touchend', e => {
 		// 	container.scrollLeft += scrollDir * cards.item(0).clientWidth
 		// });
-
-		function expandMode(func) {
-			var timer;
-			return function (event) {
-				if (timer) clearTimeout(timer);
-				timer = setTimeout(func, 100, event);
-			};
-		}
-
-		// Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
-		window.addEventListener("scroll", expandMode(function (e) {
-			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
-			const newHeight = window.innerHeight ||
-					document.documentElement.clientHeight ||
-					document.body.clientHeight;
-			Telegram.WebApp.showConfirm(`onExpand : ${newHeight}px --- ${Telegram.WebApp.isExpanded}`);
-			if (newHeight > 600) {
-				document.body.style.height = `${newHeight - 50}px`;
-			} else {
-				document.body.style.height = null;
-			}
-		}));
 
 		// container.addEventListener('scroll', function () {
 		// 	scrollLeft = container.scrollLeft;
