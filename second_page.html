@@ -466,7 +466,7 @@
 		window.addEventListener("resize", expandMode(function (e) {
 			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
 			const newHeight = window.innerHeight;
-			if (Telegram.WebApp.isExpanded) {
+			if (newHeight > 600) {
 				document.body.style.height = `${newHeight - 50}px`;
 			} else {
 				document.body.style.height = null;
