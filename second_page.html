@@ -308,15 +308,15 @@
 	}
 
 	// =========================================
-	var targetObj = {};
-	var targetProxy = new Proxy(targetObj, {
-		set: function (target, key, value) {
-			console.log(`${key} set to ${value} --- ${target}`);
-			target[key] = value;
-			return true;
-		}
-	});
-	targetProxy.hello_world = "test"; // console: 'hello_world set to test'
+	// var targetObj = {};
+	// var targetProxy = new Proxy(targetObj, {
+	// 	set: function (target, key, value) {
+	// 		target[key] = value;
+	// 		console.log(`${key} set to ${value} --- ${JSON.stringify(target)}`);
+	// 		return true;
+	// 	}
+	// });
+	// targetProxy.hello_world = "test"; // console: 'hello_world set to test'
 
 	function showMainButton() {
 		Telegram.WebApp.MainButton
@@ -426,46 +426,79 @@
 		let dots = document.querySelectorAll('.dot');
 		let cards = document.querySelectorAll('.card');
 
-		function scrollToIndex(index) {
-			let width = cards.item(0).clientWidth;
-			let scrollPosition = index * width;
+		// function scrollToIndex(index) {
+		// 	let width = cards.item(0).clientWidth;
+		// 	let scrollPosition = index * width;
+		//
+		// 	container.scrollTo({
+		// 		left: scrollPosition,
+		// 		behavior: 'smooth'
+		// 	});
+		// }
 
-			container.scrollTo({
-				left: scrollPosition,
-				behavior: 'smooth'
-			});
+		// let scrollAmount = cards.item(0).clientWidth;
+		// let scrollLeft = container.scrollLeft;
+		// let index = Math.floor((scrollLeft) / scrollAmount);
+
+		// let scrollDir = 0;
+		// let startX;
+		//
+		// container.addEventListener('touchstart', e => {
+		// 	startX = e.touches[0].clientX;
+		// });
+		//
+		// container.addEventListener('touchmove', e => {
+		// 	e.preventDefault();
+		// 	scrollDir = e.touches[0].clientX > startX ? -1 : 1;
+		// });
+		// container.addEventListener('touchend', e => {
+		// 	container.scrollLeft += scrollDir * cards.item(0).clientWidth
+		// });
+
+		function expandMode(func) {
+			var timer;
+			return function (event) {
+				if (timer) clearTimeout(timer);
+				timer = setTimeout(func, 100, event);
+			};
 		}
 
-		let width = cards.item(0).clientWidth;
-		let scrollLeft = container.scrollLeft;
-		let index = Math.floor((scrollLeft) / width);
+		window.addEventListener("resize", expandMode(function (e) {
+			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
+			const newHeight = window.innerHeight;
+			if (Telegram.WebApp.isExpanded) {
+				document.body.style.height = `${newHeight - 50}px`;
+			} else {
+				document.body.style.height = null;
+			}
+		}));
 
-		container.addEventListener('scroll', function () {
-			scrollLeft = container.scrollLeft;
-			index = Math.floor((scrollLeft) / width);
+		// container.addEventListener('scroll', function () {
+		// 	scrollLeft = container.scrollLeft;
+		// 	index = Math.floor((scrollLeft) / width);
+		//
+		// 	dots.forEach(function (dot, i) {
+		// 		if (i === index) {
+		// 			dot.classList.add('active');
+		// 		} else {
+		// 			dot.classList.remove('active');
+		// 		}
+		// 	});
+		// });
 
-			dots.forEach(function (dot, i) {
-				if (i === index) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
-		});
-
-		dots.forEach(function (dot, i) {
-			dot.addEventListener('click', function () {
-				let index = dot.getAttribute('data-index');
-				scrollToIndex(index);
-			});
-		});
-
-		cards.forEach(function (card, i) {
-			card.addEventListener('click', function () {
-				let index = card.getAttribute('data-index');
-				scrollToIndex(index);
-			});
-		});
+		// dots.forEach(function (dot, i) {
+		// 	dot.addEventListener('click', function () {
+		// 		let index = dot.getAttribute('data-index');
+		// 		scrollToIndex(index);
+		// 	});
+		// });
+		//
+		// cards.forEach(function (card, i) {
+		// 	card.addEventListener('click', function () {
+		// 		let index = card.getAttribute('data-index');
+		// 		scrollToIndex(index);
+		// 	});
+		// });
 	}
 
 	function landscapeMode() {
