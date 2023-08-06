@@ -304,7 +304,7 @@
 	if (window.matchMedia("(orientation: landscape)").matches) {
 		landscapeMode();
 	} else {
-		portraitMode('portrait');
+		portraitMode();
 	}
 
 	// =========================================
@@ -463,10 +463,10 @@
 			};
 		}
 
+		Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
 		window.addEventListener("resize", expandMode(function (e) {
 			// Make the content place in the center of screen when Telegram.WebApp.isExpanded
-      console.log(`resizeEnd: ${Telegram.WebApp.isExpanded}`);
-			Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
+			console.log(`resizeEnd: ${Telegram.WebApp.isExpanded}`);
 			const newHeight = window.innerHeight;
 			if (newHeight > 600) {
 				document.body.style.height = `${newHeight - 50}px`;
