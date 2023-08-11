@@ -430,10 +430,12 @@
 		let index = Math.floor((scrollLeft) / scrollAmount);
 
 		if (window.Telegram && window.Telegram.WebApp) {
+			document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
 			first_page.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
 			second_page.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
 			window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
 				if (data && data.isStateStable) {
+					document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
 					first_page.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
 					second_page.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
 					Telegram.WebApp.showConfirm(`${window.Telegram.WebApp.viewportHeight}px --- ${data.viewportHeight}px`);
