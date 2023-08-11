@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Web App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--tg-bg-color, #FFFFFF);
+      color: var(--tg-text-color, #000000);
+      transition: background-color 0.3s, color 0.3s; /* Add transitions for smooth changes */
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly; /* Change to space-evenly */
+      height: calc(var(--tg-viewport-height, 100vh) - 2em);
+      padding: 1em;
+      align-items: center;
+      transition: height 0.3s, padding 0.3s; /* Add transitions for smooth changes */
+    }
+
+    #tableContainer {
+      width: 90%;
+      overflow: auto;
+      border: 1px solid #ccc;
+      padding: 8px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      transition: width 0.3s, padding 0.3s; /* Add transitions for smooth changes */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      transition: width 0.3s; /* Add transitions for smooth changes */
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      transition: padding 0.3s; /* Add transitions for smooth changes */
+    }
+
+    #dotIndicators {
+      display: flex;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s; /* Add transitions for smooth changes */
+    }
+
+    .dot.active {
+      background-color: #717171;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <div id="title">Telegram Web App Documentation</div>
+
+  <div>
+    <div id="tableContainer">
+      <table id="docTable"></table>
+    </div>
+
+    <div id="dotIndicators">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const tableData = [
+			["Field", "Type", "Description"],
+			["initData", "String", "A string with raw data..."],
+			["initDataUnsafe", "WebAppInitData", "An object with input data..."],
+			["version", "String", "The version of the Bot API..."],
+		];
+
+		const table = document.getElementById("docTable");
+		tableData.forEach((row, rowIndex) => {
+			const tr = document.createElement('tr');
+			row.forEach((cell, cellIndex) => {
+				const td = document.createElement(rowIndex === 0 ? 'th' : 'td');
+				td.textContent = cell;
+				tr.appendChild(td);
+			});
+			table.appendChild(tr);
+		});
+
+		if (window.Telegram && window.Telegram.WebApp) {
+			document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
+			window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
+				if (data && data.isStateStable) {
+					document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
+				}
+			});
+		}
+	});
+
+</script>
+</body>
+
+</html>

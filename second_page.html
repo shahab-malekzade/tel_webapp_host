@@ -293,27 +293,27 @@
 
 	let landscape = window.matchMedia("(orientation: landscape)");
 
-	function expandMode(func) {
-		var timer;
-		return function (event) {
-			if (timer) clearTimeout(timer);
-			timer = setTimeout(func, 100, event);
-		};
-	}
+	// function expandMode(func) {
+	// 	var timer;
+	// 	return function (event) {
+	// 		if (timer) clearTimeout(timer);
+	// 		timer = setTimeout(func, 100, event);
+	// 	};
+	// }
 
-	// Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
-	window.addEventListener("resize", expandMode(function (e) {
-		// Make the content place in the center of screen when Telegram.WebApp.isExpanded
-		const newHeight = window.innerHeight ||
-				document.documentElement.clientHeight ||
-				document.body.clientHeight;
-		Telegram.WebApp.showConfirm(`onExpand : ${newHeight}px --- ${Telegram.WebApp.isExpanded}`);
-		if (newHeight > 600) {
-			document.body.style.height = `${newHeight - 50}px`;
-		} else {
-			document.body.style.height = null;
-		}
-	}));
+	// // Telegram.WebApp.sendData(`hi shahab ${Telegram.WebApp.isExpanded}`);
+	// window.addEventListener("resize", expandMode(function (e) {
+	// 	// Make the content place in the center of screen when Telegram.WebApp.isExpanded
+	// 	const newHeight = window.innerHeight ||
+	// 			document.documentElement.clientHeight ||
+	// 			document.body.clientHeight;
+	// 	if (newHeight > 600) {
+	// 		document.body.style.height = `${newHeight - 50}px`;
+	// 		document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
+	// 	} else {
+	// 		document.body.style.height = null;
+	// 	}
+	// }));
 
 	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
@@ -453,14 +453,9 @@
 
 		if (window.Telegram && window.Telegram.WebApp) {
 			document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
-			// first_page.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
-			// second_page.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
 			window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
 				if (data && data.isStateStable) {
 					document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
-					// first_page.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
-					// second_page.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
-					// Telegram.WebApp.showConfirm(`${window.Telegram.WebApp.viewportHeight}px --- ${data.viewportHeight}px`);
 				}
 			});
 		}
