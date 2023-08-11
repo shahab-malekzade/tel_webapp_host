@@ -55,15 +55,15 @@ hr {
   margin-bottom: 5px;
 }
 
-#first_page, #second_page {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: calc(var(--tg-viewport-height, 100vh) - 2em);
-  padding: 1em;
-  align-items: center;
-  transition: height 0.3s, padding 0.3s;
-}
+/*#first_page, #second_page {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: space-evenly;*/
+/*  height: calc(var(--tg-viewport-height, 100vh) - 2em);*/
+/*  padding: 1em;*/
+/*  align-items: center;*/
+/*  transition: height 0.3s, padding 0.3s;*/
+/*}*/
 
 .first-p-title {
   font-size: 24px;
