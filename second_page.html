@@ -39,7 +39,7 @@
 
   <div class="container" id="scrollContainer">
     <div class="snap-items" id="items">
-<!--      <div class="spacer"></div>-->
+      <div class="spacer"></div>
       <div class="item">
         <div class="card" data-index="0">
           <div class="grid">
@@ -465,6 +465,8 @@
 
 		const carousel = document.getElementById('scrollContainer');
     const items = document.getElementById('items');
+		const item = document.querySelector('.item');
+		let card_width = item.offsetWidth;
 
 		let isDragging = false;
 		let startPos = 0;
@@ -526,7 +528,14 @@
 		}
 
 		function setPositionByIndex() {
-			currentTranslate = currentIndex * -window.innerWidth;
+
+			if (currentIndex === 0) {
+        currentTranslate = 0;
+      } else if (currentIndex === 1) {
+        currentTranslate = currentIndex * -card_width;
+      } else {
+				currentTranslate = currentIndex * -card_width;
+      }
 			setTransform(currentTranslate);
 		}
 

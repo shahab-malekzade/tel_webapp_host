@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"
+        type="text/css"/>
+
+  <style>
+    body {
+      font-family: Vazirmatn, sans-serif;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+      --bg-color: var(--tg-theme-bg-color, #fff);
+      background-color: var(--tg-theme-secondary-bg-color);
+      color: var(--tg-theme-text-color, #222);
+      color-scheme: var(--tg-color-scheme);
+    }
+
+    .faq-section {
+      background: var(--tg-theme-secondary-bg-color, #fdfdfd);
+      min-height: 100vh;
+      padding: 10vh 0 3vh;
+    }
+
+    .faq-title h2 {
+      position: relative;
+      margin-bottom: 45px;
+      display: inline-block;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .faq-title h2::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 60px;
+      height: 2px;
+      background: #cc0000;
+      bottom: -25px;
+      margin-left: -30px;
+    }
+
+    .faq-title p {
+      padding: 0 190px;
+      margin-bottom: 10px;
+    }
+
+    .faq {
+      background-color: var(--tg-theme-bg-color, #fff);
+      box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
+      border-radius: 25px;
+    }
+
+    .faq .card {
+      border: none;
+      background: none;
+      border-bottom: 1px dashed var(--tg-theme-secondary-bg-color, #CEE1F8);
+    }
+
+    .faq .card:last-child {
+      border-bottom: none;
+    }
+
+    .faq .card .card-header {
+      padding: 0;
+      border: none;
+      background: var(--tg-theme-bg-color, #fff);
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+    }
+
+    .faq .card:first-child .card-header {
+      padding: 0;
+      border: none;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+    }
+
+    .faq .card:last-child .card-header {
+      padding: 0;
+      border: none;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+    }
+
+    .faq .card .card-header:hover {
+      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
+      filter: brightness(95%);
+      padding-right: 10px;
+    }
+
+    .faq .card:first-child .card-header:hover {
+      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
+      filter: brightness(95%);
+      border-top-left-radius: 25px; /* Add this line */
+      border-top-right-radius: 25px; /* Add this line */
+    }
+
+    .faq .card:last-child .card-header:hover {
+      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
+      filter: brightness(95%);
+      border-bottom-left-radius: 25px; /* Add this line */
+      border-bottom-right-radius: 25px; /* Add this line */
+    }
+
+    .faq .card .faq-title {
+      width: 100%;
+      text-align: right;
+      font-weight: 400;
+      font-size: 17px;
+      color: var(--tg-theme-hint-color, #3B566E);
+      text-decoration: none !important;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      padding: 20px 30px;
+    }
+
+    .faq .card .card-header .faq-title .badge {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 14px;
+      float: right;
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      border-radius: 100px;
+      text-align: center;
+      background: #cc0000;
+      color: #fff;
+      font-size: 12px;
+      margin-left: 20px;
+    }
+
+    .card-body {
+      background: var(--tg-theme-secondary-bg-color, #F3F8FF);
+    }
+
+    .faq .card .card-body {
+      padding: 30px 30px 16px 35px;
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--tg-theme-text-color, #3B566E);
+      filter: opacity(80%);
+      line-height: 28px;
+      border-top: 1px solid var(--tg-theme-bg-color, #F3F8FF);
+    }
+
+    .faq .card .card-body p {
+      margin-bottom: 14px;
+      direction: rtl;
+      text-align: start;
+    }
+
+    /*@media (max-width: 991px) {*/
+    /*    .faq {*/
+    /*        margin-bottom: 30px;*/
+    /*    }*/
+    /*    .faq .card .card-header .faq-title {*/
+    /*        line-height: 10px;*/
+    /*        margin-top: 10px;*/
+    /*    }*/
+    /*}*/
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section class="faq-section">
+  <div class="container">
+    <div class="row">
+      <!-- ***** FAQ Start ***** -->
+      <div class="col-md-6 offset-md-3">
+
+        <div class="faq-title text-center pb-3">
+          <h2>راهنما استفاده از ربات</h2>
+        </div>
+      </div>
+      <div class="col-md-6 offset-md-3 text-center pb-3">
+        روز گزینه مورد نظر کلیک کنید
+      </div>
+      <div class="col-md-6 offset-md-3">
+        <div class="faq" id="accordion">
+          <div class="card">
+            <div class="card-header" id="faqHeading-1">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-1" data-aria-expanded="true"
+                    data-aria-controls="faqCollapse-1">
+                  <span class="badge">۱</span>ربات گپ ناشناس چیست؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-1" class="collapse" aria-labelledby="faqHeading-1" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  ربات گپ ناشناس یک پلتفرم چت است که کاربران را بر اساس علایق و ترجیحاتشان به یکدیگر متصل می‌کند. از
+                  طریق این ربات، می‌توانید افراد مناسب برای چت پیدا کنید، کاربران آنلاین را کاوش کنید و حتی با شرکت در
+                  چالش‌ها امتیاز کسب کرده و در صدر جدول رتبه‌بندی قرار بگیرید.
+                  <br><br>
+                  گپ ناشناس فقط یک پلتفرم چت دیگر نیست.
+                  <br>
+                  آن را به عنوان یک دنیای اجتماعی پویا در نظر بگیرید که با هدف ایجاد ارتباطات معنادار ساخته شده است. با
+                  ترکیب الگوریتم‌های هوشمند و تنظیمات انتخابی کاربران، ما تجربه‌های چتی را که ویژه شما طراحی شده‌اند،
+                  ایجاد می‌کنیم.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-2">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-2" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-2">
+                  <span class="badge">۲</span> چگونه به دیگران متصل شوم؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-2" class="collapse" aria-labelledby="faqHeading-2" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  برای اتصال به یک کاربر جدید، روی دکمه "👨‍👩‍👦‍👦 شروع چت" در منوی اصلی کلیک کنید.
+                  <br><br>
+                  چند گزینه برای پالایش جستجو مثل مکان یا علایق به شما نشان داده می‌شود. وقتی انتخاب خود را انجام دادید،
+                  سیستم ما به طور خودکار فرد مناسبی را برای چت با شما پیدا می‌کند.
+                  <br><br>
+                  به یاد داشته باشید هرچه فعال‌تر باشید و بیشتر با دیگران تعامل کنید، الگوریتم اتصال بهتر قادر خواهد بود
+                  کاربر سازگار با شما را پیدا کند.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-3">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-3" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-3">
+                  <span class="badge">۳</span>آیا می توانم ببینم چه کسانی در حال حاضر آنلاین هستند؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-3" class="collapse" aria-labelledby="faqHeading-3" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  با کلیک روی دکمه "کاربران آنلاین"، لیستی از افرادی که در حال حاضر فعال هستند به شما نشان داده می‌شود.
+                  <br>
+                  این امکان برقراری ارتباط و تعامل با کاربرانی را که در همان لحظه‌ای که شما آنلاین هستید فعالند، به
+                  راحتی برایتان فراهم می‌کند.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-4">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-4" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-4">
+                  <span class="badge">۴</span>سکه چیست و چگونه از آنها استفاده کنم؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-4" class="collapse" aria-labelledby="faqHeading-4" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  سکه ارز مجازی ربات گپ ناشناس است.
+                  <br><br>
+                  شما می‌توانید با معرفی دوستانتان به ربات چتیفای، شرکت در چالش‌ها و یا خرید اشتراک، آن‌ را به دست
+                  آورید.
+                  برای هر دوستی که معرفی کنید، مقدار مشخصی سکه دریافت می‌کنید!
+                  <br><br>
+                  از این سکه‌ها برای دسترسی به قابلیت‌های ارسال پیام دایرکت، درخواست چت یا برقراری تعاملات پریمیوم
+                  استفاده کنید.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-5">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-5" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-5">
+                  <span class="badge">۵</span> تفاوت بین سکه و اشتراک چیست؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-5" class="collapse" aria-labelledby="faqHeading-5" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  اشتراک‌ها امکان دسترسی مداوم به مجموعه‌ای از قابلیت‌های پریمیوم را برای مدت زمان مشخصی (مثلاً یک ماه
+                  یا یک سال) فراهم می‌کنند.
+                  <br><br>
+                  مشترکین ممکن است از مزایایی مثل استفاده از ربات بدون تبلیغات، اولویت در اتصال، دسترسی به تنظیمات
+                  پیشرفته در هنگام چت، فیلترهای جستجوی پیشرفته و مرور نامحدود لیست کارتی بهره‌مند شوند.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-6">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-6" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-6">
+                  <span class="badge">۶</span> آیا اطلاعات شخصی من امن هستند؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-6" class="collapse" aria-labelledby="faqHeading-6" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  کاملا!
+                  <br><br>
+                  حریم شخصی شما برای ما اولویت اول است.
+                  <br>
+                  ما فقط از داده‌های شما برای بهبود تجربه شما در این پلتفرم استفاده می‌کنیم و هرگز بدون رضایت صریح شما
+                  آن‌ها را در اختیار شخص ثالثی قرار نمی‌دهیم.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-7">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-7" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-7">
+                  <span class="badge">۷</span> من با حساب خود مشکل دارم، چگونه می توانم کمک بگیرم؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-7" class="collapse" aria-labelledby="faqHeading-7" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  متاسفیم که این را می‌شنویم!
+                  <br><br>
+                  می‌توانید برای پشتیبانی مستقیماً به t.me/ChatifyTeam پیام دهید.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-8">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-8" data-aria-expanded="false"
+                    data-aria-controls="faqCollapse-8">
+                  <span class="badge">۸</span>آیا می توانم ویژگی های جدید را پیشنهاد کنم یا اشکالات را گزارش کنم؟
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-8" class="collapse" aria-labelledby="faqHeading-8" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  البته! ما برای نظرات شما ارزش قائل هستیم و همیشه در تلاش برای بهبود هستیم.
+                  <br>
+                  با خیال راحت ایده های خود را به اشتراک بگذارید یا هر مشکلی را که با آن روبرو می شوید گزارش دهید.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- partial -->
+<script src='https://code.jquery.com/jquery-2.1.0.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+	Telegram.WebApp.setHeaderColor(Telegram.WebApp.themeParams.secondary_bg_color);
+	Telegram.WebApp.setBackgroundColor(Telegram.WebApp.themeParams.secondary_bg_color);
+</script>
+
+</body>
+</html>
