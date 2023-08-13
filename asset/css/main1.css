@@ -80,7 +80,7 @@ hr {
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scroll-snap-points: repeat(3, 100px);
+  /*scroll-snap-points: repeat(3, 100px);*/
 }
 
 .container::-webkit-scrollbar {
