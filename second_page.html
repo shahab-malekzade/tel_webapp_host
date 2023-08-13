@@ -39,7 +39,6 @@
 
   <div class="container" id="scrollContainer">
     <div class="snap-items" id="items">
-      <div class="spacer"></div>
       <div class="item">
         <div class="card" data-index="0">
           <div class="grid">
@@ -175,7 +174,6 @@
           </div>
         </div>
       </div>
-<!--      <div class="spacer"></div>-->
     </div>
   </div>
 
@@ -292,7 +290,6 @@
 	let second_page = document.getElementById("second_page");
 	let third_page = document.getElementById("third_page");
 	let triangle_1 = document.getElementById("triangle-1");
-	let scroll_container = document.getElementById("scrollContainer");
 
 	let landscape = window.matchMedia("(orientation: landscape)");
 
@@ -463,10 +460,11 @@
 			});
 		}
 
-		const carousel = document.getElementById('scrollContainer');
     const items = document.getElementById('items');
-		const item = document.querySelector('.item');
-		let card_width = item.offsetWidth;
+		const card = document.querySelector('.item');
+		let card_width = card.offsetWidth;
+		let container_width = container.offsetWidth;
+		items.style.transform = `translateX(${0.10 * container_width}px)`;
 
 		let isDragging = false;
 		let startPos = 0;
@@ -475,13 +473,13 @@
 		let animationId = 0;
 		let currentIndex = 0;
 
-		carousel.addEventListener('mousedown', start);
+		container.addEventListener('mousedown', start);
 		window.addEventListener('mouseup', end);
 		window.addEventListener('mousemove', move);
 
-		carousel.addEventListener('touchstart', start);
-		carousel.addEventListener('touchend', end);
-		carousel.addEventListener('touchmove', move);
+		container.addEventListener('touchstart', start);
+		container.addEventListener('touchend', end);
+		container.addEventListener('touchmove', move);
 
 		function start(event) {
 			isDragging = true;
@@ -530,11 +528,11 @@
 		function setPositionByIndex() {
 
 			if (currentIndex === 0) {
-        currentTranslate = 0;
+        currentTranslate = 0.09 * container_width;
       } else if (currentIndex === 1) {
-        currentTranslate = currentIndex * -card_width;
+        currentTranslate = (0.09 * container_width) + currentIndex * -card_width;
       } else {
-				currentTranslate = currentIndex * -card_width;
+				currentTranslate = (0.09 * container_width) + currentIndex * -card_width;
       }
 			setTransform(currentTranslate);
 		}
