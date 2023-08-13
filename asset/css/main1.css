@@ -55,16 +55,6 @@ hr {
   margin-bottom: 5px;
 }
 
-/*#first_page, #second_page {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  justify-content: space-evenly;*/
-/*  height: calc(var(--tg-viewport-height, 100vh) - 2em);*/
-/*  padding: 1em;*/
-/*  align-items: center;*/
-/*  transition: height 0.3s, padding 0.3s;*/
-/*}*/
-
 .first-p-title {
   font-size: 24px;
   margin: 10px 20px 5px 10px;
@@ -87,7 +77,7 @@ hr {
 
 .container {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scroll-snap-points: repeat(3, 100px);
@@ -99,6 +89,12 @@ hr {
   height: 0;
   display: none;
   background: transparent;
+}
+
+.snap-items {
+  display: flex;
+  transition: transform 0.3s; /* Animate the transform property */
+  will-change: transform; /* Suggests to the browser which properties are most likely to be changed */
 }
 
 .item {
