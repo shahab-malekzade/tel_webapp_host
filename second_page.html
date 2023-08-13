@@ -496,7 +496,7 @@
 		function move(event) {
 			if (isDragging) {
 				const currentPosition = getPositionX(event);
-				currentTranslate = previousTranslate + currentPosition - startPos;
+				currentTranslate = previousTranslate + (currentPosition - startPos) / 3;
 				setTransform(currentTranslate);
 			}
 		}
