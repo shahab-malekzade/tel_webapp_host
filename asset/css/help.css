@@ -138,6 +138,8 @@ body {
 
 .card-body {
   background: #80808044;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .faq .card .card-body {
