@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'vazir';
+  src: url(../../dist/fonts/Vazir-Regular.woff) format('woff');
+}
+
+body {
+  --bg-color: var(--tg-theme-bg-color, #fff);
+  font-family: 'vazir', sans-serif;
+  background-color: var(--tg-theme-secondary-bg-color);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  color: var(--tg-theme-text-color, #222);
+  color-scheme: var(--tg-color-scheme);
+}
+
+.faq-section {
+  background: var(--tg-theme-secondary-bg-color, #fdfdfd);
+  min-height: 100vh;
+  padding: 10vh 0 3vh;
+}
+
+.faq-title h2 {
+  position: relative;
+  margin-bottom: 45px;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.faq-title h2::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 60px;
+  height: 2px;
+  background: #cc0000;
+  bottom: -25px;
+  margin-left: -30px;
+}
+
+.faq-title p {
+  padding: 0 190px;
+  margin-bottom: 10px;
+}
+
+.faq {
+  background-color: var(--tg-theme-bg-color, #fff);
+  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+}
+
+.faq .card {
+  border: none;
+  background: none;
+  border-bottom: 1px dashed var(--tg-theme-secondary-bg-color, #CEE1F8);
+}
+
+.faq .card:last-child {
+  border-bottom: none;
+}
+
+.faq .card .card-header {
+  padding: 0;
+  border: none;
+  background: var(--tg-theme-bg-color, #fff);
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.faq .card:first-child .card-header {
+  padding: 0;
+  border: none;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.faq .card:last-child .card-header {
+  padding: 0;
+  border: none;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.faq .card .card-header.selected {
+  background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
+  filter: brightness(95%);
+  padding-right: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+.faq .card .faq-title {
+  width: 100%;
+  text-align: right;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--tg-theme-hint-color, #3B566E);
+  text-decoration: none !important;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  padding: 20px 30px;
+  margin: 0;
+}
+
+.faq .card .card-header .faq-title .badge {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 14px;
+  float: right;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  text-align: center;
+  background: #cc0000;
+  color: #fff;
+  font-size: 12px;
+}
+
+.badge {
+  padding: 0.25em 0.5em;
+}
+
+.card-body {
+  background: var(--tg-theme-secondary-bg-color, #F3F8FF);
+}
+
+.faq .card .card-body {
+  padding: 30px 30px 16px 35px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--tg-theme-text-color, #3B566E);
+  filter: opacity(80%);
+  line-height: 28px;
+  border-top: 1px solid var(--tg-theme-bg-color, #F3F8FF);
+}
+
+.faq .card .card-body p {
+  margin-bottom: 14px;
+  direction: rtl;
+  text-align: start;
+}

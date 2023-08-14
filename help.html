@@ -10,177 +10,7 @@
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"
         type="text/css"/>
 
-  <style>
-    body {
-      font-family: Vazirmatn, sans-serif;
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
-      --bg-color: var(--tg-theme-bg-color, #fff);
-      background-color: var(--tg-theme-secondary-bg-color);
-      color: var(--tg-theme-text-color, #222);
-      color-scheme: var(--tg-color-scheme);
-    }
-
-    .faq-section {
-      background: var(--tg-theme-secondary-bg-color, #fdfdfd);
-      min-height: 100vh;
-      padding: 10vh 0 3vh;
-    }
-
-    .faq-title h2 {
-      position: relative;
-      margin-bottom: 45px;
-      display: inline-block;
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    .faq-title h2::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      width: 60px;
-      height: 2px;
-      background: #cc0000;
-      bottom: -25px;
-      margin-left: -30px;
-    }
-
-    .faq-title p {
-      padding: 0 190px;
-      margin-bottom: 10px;
-    }
-
-    .faq {
-      background-color: var(--tg-theme-bg-color, #fff);
-      box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
-      border-radius: 25px;
-    }
-
-    .faq .card {
-      border: none;
-      background: none;
-      border-bottom: 1px dashed var(--tg-theme-secondary-bg-color, #CEE1F8);
-    }
-
-    .faq .card:last-child {
-      border-bottom: none;
-    }
-
-    .faq .card .card-header {
-      padding: 0;
-      border: none;
-      background: var(--tg-theme-bg-color, #fff);
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-    }
-
-    .faq .card:first-child .card-header {
-      padding: 0;
-      border: none;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-    }
-
-    .faq .card:last-child .card-header {
-      padding: 0;
-      border: none;
-      border-bottom-left-radius: 25px;
-      border-bottom-right-radius: 25px;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-    }
-
-    .faq .card .card-header:hover {
-      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
-      filter: brightness(95%);
-      padding-right: 10px;
-    }
-
-    .faq .card:first-child .card-header:hover {
-      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
-      filter: brightness(95%);
-      border-top-left-radius: 25px; /* Add this line */
-      border-top-right-radius: 25px; /* Add this line */
-    }
-
-    .faq .card:last-child .card-header:hover {
-      background-color: var(--tg-theme-bg-color, #f5f5f5); /* or choose your own color */
-      filter: brightness(95%);
-      border-bottom-left-radius: 25px; /* Add this line */
-      border-bottom-right-radius: 25px; /* Add this line */
-    }
-
-    .faq .card .faq-title {
-      width: 100%;
-      text-align: right;
-      font-weight: 400;
-      font-size: 17px;
-      color: var(--tg-theme-hint-color, #3B566E);
-      text-decoration: none !important;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-      padding: 20px 30px;
-    }
-
-    .faq .card .card-header .faq-title .badge {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      line-height: 14px;
-      float: right;
-      -webkit-border-radius: 100px;
-      -moz-border-radius: 100px;
-      border-radius: 100px;
-      text-align: center;
-      background: #cc0000;
-      color: #fff;
-      font-size: 12px;
-      margin-left: 20px;
-    }
-
-    .card-body {
-      background: var(--tg-theme-secondary-bg-color, #F3F8FF);
-    }
-
-    .faq .card .card-body {
-      padding: 30px 30px 16px 35px;
-      font-weight: 400;
-      font-size: 16px;
-      color: var(--tg-theme-text-color, #3B566E);
-      filter: opacity(80%);
-      line-height: 28px;
-      border-top: 1px solid var(--tg-theme-bg-color, #F3F8FF);
-    }
-
-    .faq .card .card-body p {
-      margin-bottom: 14px;
-      direction: rtl;
-      text-align: start;
-    }
-
-    /*@media (max-width: 991px) {*/
-    /*    .faq {*/
-    /*        margin-bottom: 30px;*/
-    /*    }*/
-    /*    .faq .card .card-header .faq-title {*/
-    /*        line-height: 10px;*/
-    /*        margin-top: 10px;*/
-    /*    }*/
-    /*}*/
-  </style>
+  <link rel="stylesheet" href="asset/css/help.css">
 
 </head>
 <body>
@@ -189,23 +19,28 @@
   <div class="container">
     <div class="row">
       <!-- ***** FAQ Start ***** -->
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-9 mx-auto">
 
         <div class="faq-title text-center pb-3">
-          <h2>راهنما استفاده از ربات</h2>
+          <h2>راهنمای استفاده از ربات</h2>
         </div>
       </div>
-      <div class="col-md-6 offset-md-3 text-center pb-3">
-        روز گزینه مورد نظر کلیک کنید
+      <div class="col-md-9 text-center mx-auto pb-3">
+        روی گزینه مورد نظر کلیک کنید
       </div>
-      <div class="col-md-6 offset-md-3">
+      <div class="col-md-9 mx-auto">
         <div class="faq" id="accordion">
           <div class="card">
             <div class="card-header" id="faqHeading-1">
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-1" data-aria-expanded="true"
                     data-aria-controls="faqCollapse-1">
-                  <span class="badge">۱</span>ربات گپ ناشناس چیست؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۱</span>
+                    <span>
+                      ربات گپ ناشناس چیست؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -230,7 +65,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-2" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-2">
-                  <span class="badge">۲</span> چگونه به دیگران متصل شوم؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۲</span>
+                    <span>
+                      چگونه به دیگران متصل شوم؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -253,7 +93,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-3" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-3">
-                  <span class="badge">۳</span>آیا می توانم ببینم چه کسانی در حال حاضر آنلاین هستند؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۳</span>
+                    <span>
+                      آیا می توانم ببینم چه کسانی در حال حاضر آنلاین هستند؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -273,7 +118,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-4" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-4">
-                  <span class="badge">۴</span>سکه چیست و چگونه از آنها استفاده کنم؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۴</span>
+                    <span>
+                      سکه چیست و چگونه از آنها استفاده کنم؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -297,7 +147,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-5" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-5">
-                  <span class="badge">۵</span> تفاوت بین سکه و اشتراک چیست؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۵</span>
+                    <span>
+                      تفاوت بین سکه و اشتراک چیست؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -318,7 +173,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-6" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-6">
-                  <span class="badge">۶</span> آیا اطلاعات شخصی من امن هستند؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۶</span>
+                    <span>
+                      آیا اطلاعات شخصی من امن هستند؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -340,7 +200,12 @@
               <div class="mb-0">
                 <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-7" data-aria-expanded="false"
                     data-aria-controls="faqCollapse-7">
-                  <span class="badge">۷</span> من با حساب خود مشکل دارم، چگونه می توانم کمک بگیرم؟
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۷</span>
+                    <span>
+                      من با حساب خود مشکل دارم، چگونه می توانم کمک بگیرم؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -356,9 +221,14 @@
           <div class="card">
             <div class="card-header" id="faqHeading-8">
               <div class="mb-0">
-                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-8" data-aria-expanded="false"
-                    data-aria-controls="faqCollapse-8">
-                  <span class="badge">۸</span>آیا می توانم ویژگی های جدید را پیشنهاد کنم یا اشکالات را گزارش کنم؟
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-8"
+                    data-aria-expanded="false" data-aria-controls="faqCollapse-8">
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۸</span>
+                    <span>
+                    آیا می توانم ویژگی های جدید را پیشنهاد کنم یا اشکالات را گزارش کنم؟
+                    </span>
+                  </div>
                 </h5>
               </div>
             </div>
@@ -383,6 +253,30 @@
 <script>
 	Telegram.WebApp.setHeaderColor(Telegram.WebApp.themeParams.secondary_bg_color);
 	Telegram.WebApp.setBackgroundColor(Telegram.WebApp.themeParams.secondary_bg_color);
+
+	const headers = document.querySelectorAll('.card-header');
+
+	headers.forEach(header => {
+		header.addEventListener('click', () => {
+
+
+			if (header.classList.contains('selected')) {
+
+			// Remove selected from all headers
+			headers.forEach(el => {
+				el.classList.remove('selected');
+			});
+      } else {
+			// Remove selected from all headers
+			headers.forEach(el => {
+				el.classList.remove('selected');
+			});
+        header.classList.add('selected');
+      }
+			// Add selected to clicked header
+
+		});
+	});
 </script>
 
 </body>
