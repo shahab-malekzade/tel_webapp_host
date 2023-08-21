@@ -55,14 +55,25 @@ hr {
   margin-bottom: 5px;
 }
 
+#first_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Change to space-evenly */
+  height: calc(var(--tg-viewport-height, 100vh) - 2em);
+  padding: 1em;
+  transition: height 0.3s, padding 0.3s; /* Add transitions for smooth changes */
+}
+
 .first-p-title {
   font-size: 24px;
   margin: 10px 20px 5px 10px;
+  transition: width 0.3s;
 }
 
 .first-p-desc {
   font-size: 16px;
   margin: 0 20px 20px 10px;
+  transition: width 0.3s;
 }
 
 .second-p-title {
@@ -80,6 +91,7 @@ hr {
   overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  transition: width 0.3s;
 }
 
 .container::-webkit-scrollbar {
@@ -134,6 +146,7 @@ hr {
 .dot-container {
   text-align: center;
   margin-top: 20px;
+  transition: width 0.3s;
 }
 
 .dot {
