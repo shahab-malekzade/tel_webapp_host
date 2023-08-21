@@ -55,13 +55,20 @@ hr {
   margin-bottom: 5px;
 }
 
-#first_page {
+#first_page, #second_page {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly; /* Change to space-evenly */
+  flex-wrap: wrap;
   height: calc(var(--tg-viewport-height, 100vh) - 2em);
   padding: 1em;
   transition: height 0.3s, padding 0.3s; /* Add transitions for smooth changes */
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
 }
 
 .first-p-title {

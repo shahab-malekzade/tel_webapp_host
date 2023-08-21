@@ -197,81 +197,82 @@
     قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
   </h5>
 
-  <div id="box-1" class="card card-second-page">
+  <div class="plans">
+    <div id="box-1" class="card card-second-page">
 
-    <div id="triangle-1" class="triangle">
-      <div style="padding: 5px;"><span>⭐</span></div>
-    </div>
+      <div id="triangle-1" class="triangle">
+        <div style="padding: 5px;"><span>⭐</span></div>
+      </div>
 
-    <div class="grid-2">
-      <div class="price">
-        <p style="font-size: 10px;">
-          <span style="font-size: 16px;">۹۶</span>
-          تومان / ماه
-        </p>
-      </div>
-      <div class="interval-txt">
-        سالیانه
-        <p class="card-desc">
-          برای یک سال کامل پرداخت کنید
-        </p>
-      </div>
-      <div class="radio-btn">
-        <div class="outer-circle">
-          <div id="inner-circle-1" class="inner-circle"></div>
+      <div class="grid-2">
+        <div class="price">
+          <p style="font-size: 10px;">
+            <span style="font-size: 16px;">۹۶</span>
+            تومان / ماه
+          </p>
+        </div>
+        <div class="interval-txt">
+          سالیانه
+          <p class="card-desc">
+            برای یک سال کامل پرداخت کنید
+          </p>
+        </div>
+        <div class="radio-btn">
+          <div class="outer-circle">
+            <div id="inner-circle-1" class="inner-circle"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <hr style="margin-bottom: 10px;">
+      <hr style="margin-bottom: 10px;">
 
-    <p class="features">
-      <span class="sticker-features">💰</span>
-      <span class="plan-features-2">
+      <p class="features">
+        <span class="sticker-features">💰</span>
+        <span class="plan-features-2">
         با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
       </span>
-    </p>
-    <p class="features">
-      <span class="sticker-features">🌟</span>
-      <span class="plan-features-2">
+      </p>
+      <p class="features">
+        <span class="sticker-features">🌟</span>
+        <span class="plan-features-2">
         امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
       </span>
-    </p>
-    <p class="features">
-      <span class="sticker-features">🛡️</span>
-      <span class="plan-features-2">
+      </p>
+      <p class="features">
+        <span class="sticker-features">🛡️</span>
+        <span class="plan-features-2">
         سالی را بدون افزایش قیمت غیر منتظره تجربه کنید
       </span>
-    </p>
-  </div>
-
-  <div style="height: 15px;"></div>
-
-  <div id="box-2" class="card card-second-page">
-
-    <div class="grid-2">
-      <div class="price">
-        <p style="font-size: 10px;">
-          <span style="font-size: 16px;">۱۲۰</span>
-          تومان / ماه
-        </p>
-      </div>
-      <div class="interval-txt">
-        ماهیانه
-        <p class="card-desc">
-          به صورت ماهانه پرداخت کنید
-        </p>
-      </div>
-      <div class="radio-btn">
-        <div class="outer-circle">
-          <div id="inner-circle-2" class="inner-circle"></div>
-        </div>
-      </div>
+      </p>
     </div>
 
+<!--    <div style="height: 15px;"></div>-->
+<!--  </div>-->
+<!--  <div>-->
+    <div id="box-2" class="card card-second-page">
+
+      <div class="grid-2">
+        <div class="price">
+          <p style="font-size: 10px;">
+            <span style="font-size: 16px;">۱۲۰</span>
+            تومان / ماه
+          </p>
+        </div>
+        <div class="interval-txt">
+          ماهیانه
+          <p class="card-desc">
+            به صورت ماهانه پرداخت کنید
+          </p>
+        </div>
+        <div class="radio-btn">
+          <div class="outer-circle">
+            <div id="inner-circle-2" class="inner-circle"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-
 </section>
 
 <section id="third_page">
@@ -346,7 +347,7 @@
 
 	function showSecondPage(plan) {
 		first_page.style.display = "none";
-		second_page.style.display = "block";
+		second_page.style.display = "flex";
 		third_page.style.display = "none";
 
 		const box1 = document.getElementById('box-1');
@@ -430,7 +431,7 @@
 		first_page.style.display = "flex";
 		second_page.style.display = "none";
 		// first_page.style.display = "none";
-		// second_page.style.display = "block";
+		// second_page.style.display = "flex";
 		third_page.style.display = "none";
 		triangle_1.style.display = "none";
 		Telegram.WebApp.bg_color = 'FF0000';
