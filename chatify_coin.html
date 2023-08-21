@@ -1,0 +1,115 @@
+<html lang="en" dir="rtl" style="--tg-color-scheme: dark; --tg-theme-bg-color: #17212b; --tg-theme-button-color: #5288c1; --tg-theme-button-text-color: #ffffff; --tg-theme-hint-color: #708499; --tg-theme-link-color: #6ab3f3; --tg-theme-secondary-bg-color: #232e3c; --tg-theme-text-color: #f5f5f5; --tg-viewport-height: 496px; --tg-viewport-stable-height: 496px;"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Get Credits</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style> ::-webkit-scrollbar { 	border-radius: 5px !important; 	border: 3px solid transparent !important; 	background-color: rgba(255, 255, 255, 0.101961) !important; 	background-clip: content-box !important; 	width: 10px !important; } ::-webkit-scrollbar:hover { 	background-color: rgba(255, 255, 255, 0.172549) !important; } ::-webkit-scrollbar-thumb { 	border-radius: 5px !important; 	border: 3px solid transparent !important; 	background-color: rgba(255, 255, 255, 0.32549) !important; 	background-clip: content-box !important; } ::-webkit-scrollbar-thumb:hover { 	background-color: rgba(255, 255, 255, 0.478431) !important; } </style><style> ::-webkit-scrollbar { 	border-radius: 5px !important; 	border: 3px solid transparent !important; 	background-color: rgba(255, 255, 255, 0.101961) !important; 	background-clip: content-box !important; 	width: 10px !important; } ::-webkit-scrollbar:hover { 	background-color: rgba(255, 255, 255, 0.172549) !important; } ::-webkit-scrollbar-thumb { 	border-radius: 5px !important; 	border: 3px solid transparent !important; 	background-color: rgba(255, 255, 255, 0.32549) !important; 	background-clip: content-box !important; } ::-webkit-scrollbar-thumb:hover { 	background-color: rgba(255, 255, 255, 0.478431) !important; } </style></head>
+<body>
+
+<section class="faq-section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-9 mx-auto">
+      </div>
+      <div class="col-md-9 mx-auto">
+
+        <div class="faq-title text-center pb-3">
+          <h2>سکه و اشتراک ویژه</h2>
+        </div>
+      </div>
+      <div class="faq-hint col-md-9 text-center mx-auto pb-3">
+        برای دریافت سکه می&zwnj;توانید از دو روش زیر استفاده کنید
+      </div>
+      <div class="col-md-9 mx-auto">
+        <div class="faq" id="accordion">
+          <div class="card">
+            <div class="card-header selected" id="faqHeading-1">
+              <div class="mb-0">
+                <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-1" data-aria-expanded="true" data-aria-controls="faqCollapse-1" aria-expanded="true">
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۱</span>
+                    <span>
+                      آموزش دریافت سکه رایگان
+                    </span>
+                  </div>
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-1" class="collapse show" aria-labelledby="faqHeading-1" data-parent="#accordion" style="">
+              <div class="card-body">
+                <p>
+                  👥 دعوت از دوستان:
+                  <br>
+                  لینک دعوت منحصر به فرد خود را با دوستان خود به اشتراک بگذارید.
+                  <br>
+                  وقتی از طریق لینک شما وارد ربات بشوند، هم شما و هم دوستتان اعتبار رایگان دریافت می کنید!
+                  <br><br>
+                  <button id="ref" type="button" class="btn btn-primary btn-lg btn-block">نمایش لینک دعوت من</button>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="faqHeading-2">
+              <div class="mb-0">
+                <h5 class="faq-title collapsed" data-toggle="collapse" data-target="#faqCollapse-2" data-aria-expanded="false" data-aria-controls="faqCollapse-2" aria-expanded="false">
+                  <div class="d-flex align-items-center h-100">
+                    <span class="badge ml-2">۲</span>
+                    <span>
+                      آموزش خرید اشتراک ویژه
+                    </span>
+                  </div>
+                </h5>
+              </div>
+            </div>
+            <div id="faqCollapse-2" class="collapse" aria-labelledby="faqHeading-2" data-parent="#accordion" style="">
+              <div class="card-body">
+                <p>
+                  برای خرید سکه می&zwnj;توانید در منو اصلی روی دکمه خرید اعتبار کلیک کنید.
+                  <br>
+                  لطفا توجه کنید که در این ورژن از ربات، در حال حاضر خرید اشتراک فعال نمی&zwnj;باشد.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  Telegram.WebApp.setHeaderColor(Telegram.WebApp.themeParams.secondary_bg_color);
+  Telegram.WebApp.setBackgroundColor(Telegram.WebApp.themeParams.secondary_bg_color);
+  document.getElementById('ref').addEventListener('click', function () {
+    console.log("referral")
+    Telegram.WebApp.sendData("referral");
+  });
+  const headers = document.querySelectorAll('.card-header');
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      if (!Telegram.WebApp.isExpanded) {
+        Telegram.WebApp.expand();
+      }
+      if (header.classList.contains('selected')) {
+
+        headers.forEach(el => {
+          el.classList.remove('selected');
+        });
+      } else {
+
+        headers.forEach(el => {
+          el.classList.remove('selected');
+        });
+        setTimeout(() => {
+          header.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+        header.classList.add('selected');
+      }
+    });
+  });
+</script>
+
+
+</body></html>
