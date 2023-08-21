@@ -151,9 +151,23 @@ hr {
 }
 
 .dot-container {
+  position: relative;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   transition: width 0.3s;
+}
+
+.pill-bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px 5px 10px;
+  border-radius: 50px;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dot {
@@ -162,7 +176,7 @@ hr {
   background-color: #00000066;
   border-radius: 50%;
   display: inline-block;
-  margin: 0 2px;
+  margin: 0 3px 0 3px;
   transition: background-color 0.3s ease;
 }
 

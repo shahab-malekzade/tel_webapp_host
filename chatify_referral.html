@@ -109,6 +109,27 @@
       }
     });
   });
+
+	const faqHeading1 = document.getElementById("faqHeading-1");
+	faqHeading1.addEventListener("click", () => {
+
+  // Check if expanded
+  const isExpanded = faqHeading1.getAttribute("aria-expanded") === "true";
+
+  if(isExpanded) {
+		Telegram.WebApp.MainButton
+			.setText(
+				'نمایش لینک دعوت من'
+			)
+			.show()
+			.onClick(function () {
+				Telegram.WebApp.sendData('referral');
+			});
+  } else {
+		Telegram.WebApp.MainButton.hide();
+  }
+
+});
 </script>
 
 
