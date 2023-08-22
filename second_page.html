@@ -473,10 +473,12 @@
 
 		let isDragging = false;
 		let startPos = 0;
+		let startY = 0;
 		let currentTranslate = 0;
 		let previousTranslate = 0;
 		let animationId = 0;
 		let currentIndex = 0;
+		let hasMoved = false;
 
 		container.addEventListener('mousedown', start);
 		container.addEventListener('mouseup', end);
@@ -489,6 +491,7 @@
 		function start(event) {
 			isDragging = true;
 			startPos = getPositionX(event);
+			startY = getPositionY(event);
 			previousTranslate = currentTranslate;
 
 			// Cancel ongoing animations while dragging
@@ -498,11 +501,38 @@
 			items.style.transition = 'none';
 		}
 
+		const threshold = 10;
+		let horizontalMove = 0;
+		const slopeThreshold = 0.5;
+
 		function move(event) {
+
+			if (!hasMoved) {
+				items.style.transition = 'none';
+				hasMoved = true;
+			}
 			if (isDragging) {
 				// console.log({event})
-				const currentPosition = getPositionX(event);
-				currentTranslate = previousTranslate + (currentPosition - startPos);
+				const currentPosX = getPositionX(event);
+				const currentPosY = getPositionY(event);
+				horizontalMove += Math.abs(currentPosX - startPos);
+				if (horizontalMove < threshold) {
+					const xDiff = currentPosX - startPos;
+					const yDiff = currentPosY - startY; // you'll need startY
+					const slope = Math.abs(yDiff / xDiff);
+					if (slope < slopeThreshold) {
+						// mostly horizontal, prevent vertical
+						event.preventDefault();
+					}
+				}
+				const direction = currentPosX - startPos;
+				if (currentIndex === 0 && direction > 0) {
+					currentTranslate = previousTranslate + (currentPosX - startPos) / 3;
+				} else if (currentIndex === 2 && direction < 0) {
+					currentTranslate = previousTranslate + (currentPosX - startPos) / 3;
+				} else {
+					currentTranslate = previousTranslate + (currentPosX - startPos);
+				}
 				setTransform(currentTranslate);
 			}
 		}
@@ -529,6 +559,10 @@
 
 		function getPositionX(event) {
 			return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+		}
+
+		function getPositionY(event) {
+			return event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
 		}
 
 		function setPositionByIndex() {
