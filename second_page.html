@@ -349,7 +349,7 @@
 
 	function showSecondPage(plan) {
 		first_page.style.display = "none";
-		second_page.style.display = "flex";
+		second_page.style.display = "block";
 		third_page.style.display = "none";
 
 		const box1 = document.getElementById('box-1');
@@ -386,7 +386,7 @@
 			.show()
 			.onClick(function () {
 				second_page.style.display = "none";
-				first_page.style.display = "flex";
+				first_page.style.display = "block";
 				Telegram.WebApp.BackButton.hide();
 				Telegram.WebApp.MainButton.hide();
 				box1.classList.remove('selected');
@@ -416,7 +416,7 @@
 		const circle1 = document.getElementById('inner-circle-1');
 		const circle2 = document.getElementById('inner-circle-2');
 		second_page.style.display = "none";
-		first_page.style.display = "flex";
+		first_page.style.display = "block";
 		third_page.style.display = "none";
 		Telegram.WebApp.BackButton.hide();
 		Telegram.WebApp.MainButton.hide();
@@ -430,7 +430,7 @@
 	}
 
 	function portraitMode() {
-		first_page.style.display = "flex";
+		first_page.style.display = "block";
 		second_page.style.display = "none";
 		// first_page.style.display = "none";
 		// second_page.style.display = "flex";
