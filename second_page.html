@@ -349,7 +349,7 @@
 
 	function showSecondPage(plan) {
 		first_page.style.display = "none";
-		second_page.style.display = "block";
+		second_page.style.display = "flow";
 		third_page.style.display = "none";
 
 		const box1 = document.getElementById('box-1');
@@ -386,7 +386,7 @@
 			.show()
 			.onClick(function () {
 				second_page.style.display = "none";
-				first_page.style.display = "block";
+				first_page.style.display = "flow";
 				Telegram.WebApp.BackButton.hide();
 				Telegram.WebApp.MainButton.hide();
 				box1.classList.remove('selected');
@@ -416,7 +416,7 @@
 		const circle1 = document.getElementById('inner-circle-1');
 		const circle2 = document.getElementById('inner-circle-2');
 		second_page.style.display = "none";
-		first_page.style.display = "block";
+		first_page.style.display = "flow";
 		third_page.style.display = "none";
 		Telegram.WebApp.BackButton.hide();
 		Telegram.WebApp.MainButton.hide();
@@ -430,10 +430,10 @@
 	}
 
 	function portraitMode() {
-		first_page.style.display = "block";
+		first_page.style.display = "flow";
 		second_page.style.display = "none";
 		// first_page.style.display = "none";
-		// second_page.style.display = "flex";
+		// second_page.style.display = "flow";
 		third_page.style.display = "none";
 		triangle_1.style.display = "none";
 		Telegram.WebApp.bg_color = 'FF0000';
@@ -443,13 +443,21 @@
 		let cards = document.querySelectorAll('.card');
 
 		function scrollToIndex(index) {
-			let width = cards.item(0).clientWidth;
-			let scrollPosition = index * width;
+			setPositionByIndex(index);
 
-			container.scrollTo({
-				left: scrollPosition,
-				behavior: 'smooth'
+			dots.forEach(function (dot, i) {
+				if (i === index) {
+					dot.classList.add('active');
+				} else {
+					dot.classList.remove('active');
+				}
 			});
+			// let width = cards.item(0).clientWidth;
+			// let scrollPosition = index * width;
+			// container.scrollTo({
+			// 	left: scrollPosition,
+			// 	behavior: 'smooth'
+			// });
 		}
 
 		let scrollAmount = cards.item(0).clientWidth;
@@ -457,21 +465,23 @@
 		let index = Math.floor((scrollLeft) / scrollAmount);
 
 		if (window.Telegram && window.Telegram.WebApp) {
-			document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
+			// document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
+			document.documentElement.style.setProperty('--tg-viewport-height', `100vh`);
 			window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
 				if (data && data.isStateStable) {
-					document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
+					// document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
+					document.documentElement.style.setProperty('--tg-viewport-height', `100vh`);
 					if (Telegram.WebApp.isExpanded) {
-						if (first_page.style.display === 'block') {
+						if (first_page.style.display === 'flow') {
 							first_page.style.display = "flex";
-						} else if (second_page.style.display === 'block') {
+						} else if (second_page.style.display === 'flow') {
 							second_page.style.display = "flex";
 						}
 					} else {
 						if (first_page.style.display === 'flex') {
-							first_page.style.display = "block";
+							first_page.style.display = "flow";
 						} else if (second_page.style.display === 'flex') {
-							second_page.style.display = "block";
+							second_page.style.display = "flow";
 						}
 					}
 				}
@@ -565,9 +575,15 @@
 				currentIndex -= 1;
 			}
 
-			setPositionByIndex();
+			setPositionByIndex(currentIndex);
 
-			previousTranslate = currentTranslate;
+			dots.forEach(function (dot, i) {
+				if (i === currentIndex) {
+					dot.classList.add('active');
+				} else {
+					dot.classList.remove('active');
+				}
+			});
 		}
 
 		function getPositionX(event) {
@@ -578,14 +594,13 @@
 			return event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
 		}
 
-		function setPositionByIndex() {
-
-			if (currentIndex === 0) {
+		function setPositionByIndex(index) {
+			if (index === 0) {
 				currentTranslate = 0.09 * container_width;
-			} else if (currentIndex === 1) {
-				currentTranslate = (0.09 * container_width) + currentIndex * -card_width;
+			} else if (index === 1) {
+				currentTranslate = (0.09 * container_width) + index * -card_width;
 			} else {
-				currentTranslate = (0.09 * container_width) + currentIndex * -card_width;
+				currentTranslate = (0.09 * container_width) + index * -card_width;
 			}
 			setTransform(currentTranslate);
 		}
@@ -595,32 +610,34 @@
 		}
 
 
-		container.addEventListener('scroll', function () {
-			scrollLeft = container.scrollLeft;
-			index = Math.floor((scrollLeft) / scrollAmount);
-
-			dots.forEach(function (dot, i) {
-				if (i === index) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
-		});
+		// container.addEventListener('scroll', function () {
+		// 	scrollLeft = container.scrollLeft;
+		// 	index = Math.floor((scrollLeft) / scrollAmount);
+    //
+		// 	dots.forEach(function (dot, i) {
+		// 		if (i === index) {
+		// 			dot.classList.add('active');
+		// 		} else {
+		// 			dot.classList.remove('active');
+		// 		}
+		// 	});
+		// });
 
 		dots.forEach(function (dot, i) {
 			dot.addEventListener('click', function () {
 				let index = dot.getAttribute('data-index');
+				console.log(`index dot: ${index}`);
 				scrollToIndex(index);
 			});
 		});
 
-		cards.forEach(function (card, i) {
-			card.addEventListener('click', function () {
-				let index = card.getAttribute('data-index');
-				scrollToIndex(index);
-			});
-		});
+		// cards.forEach(function (card, i) {
+		// 	card.addEventListener('click', function () {
+		// 		let index = card.getAttribute('data-index');
+		// 		console.log(`index cards: ${index}`);
+		// 		scrollToIndex(index);
+		// 	});
+		// });
 	}
 
 	function landscapeMode() {

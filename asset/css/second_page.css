@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: calc(var(--tg-viewport-height, 100vh) - 2em);
+  height: var(--tg-viewport-height, 100vh);
   transition: height 0.3s, padding 0.3s;
 }
 
@@ -56,11 +56,11 @@ hr {
 }
 
 #first_page, #second_page {
-  display: flex;
+  display: flow;
   flex-direction: column;
   justify-content: space-evenly; /* Change to space-evenly */
   flex-wrap: wrap;
-  height: calc(var(--tg-viewport-height, 100vh) - 2em);
+  height: var(--tg-viewport-height, 100vh);
   padding: 1em;
   transition: height 0.3s, padding 0.3s; /* Add transitions for smooth changes */
 }
