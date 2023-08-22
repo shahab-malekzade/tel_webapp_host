@@ -461,6 +461,19 @@
 			window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
 				if (data && data.isStateStable) {
 					document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
+					if (Telegram.WebApp.isExpanded) {
+						if (first_page.style.display === 'block') {
+							first_page.style.display = "flex";
+						} else if (second_page.style.display === 'block') {
+							second_page.style.display = "flex";
+						}
+					} else {
+						if (first_page.style.display === 'flex') {
+							first_page.style.display = "block";
+						} else if (second_page.style.display === 'flex') {
+							second_page.style.display = "block";
+						}
+					}
 				}
 			});
 		}
