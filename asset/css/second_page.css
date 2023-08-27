@@ -53,29 +53,42 @@ hr {
   margin-bottom: 5px
 }
 
+.plan-cards {
+  flex: 20 0 0;
+}
+
 .plans {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
 }
 
-.first-p-desc, .first-p-title {
+.first-p-title {
+  flex: 1 0 auto;
   font-size: 24px;
   margin: 10px 20px 5px 10px;
   transition: width 0.3s;
 }
 
 .first-p-desc {
+  flex: 4 0 0;
   font-size: 16px;
-  margin: 0 20px 20px 10px
+  margin: 10px 20px 5px 10px;
+  transition: width 0.3s;
+}
+
+.first-p-cards {
+  flex: 20 0 0;
 }
 
 .second-p-title {
+  flex: 1 0 auto;
   font-size: 28px;
   margin: 10px 20px 5px 5px
 }
 
 .second-p-desc {
+  flex: 4 0 0;
   font-size: 11px;
   margin: 0 20px 20px 5px
 }

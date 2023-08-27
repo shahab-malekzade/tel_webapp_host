@@ -37,7 +37,7 @@
     بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
   </h5>
 
-  <div>
+  <div class="first-p-cards">
     <div class="container" id="scrollContainer">
       <div class="snap-items" id="items">
         <div class="item">
@@ -199,7 +199,8 @@
     قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
   </h5>
 
-  <div class="plans">
+  <div class="plan-cards">
+    <div class="plans">
     <div id="interval-1" class="card card-second-page">
 
       <div id="triangle-1" class="triangle">
@@ -272,6 +273,8 @@
 
     </div>
   </div>
+  </div>
+
 </section>
 
 <section id="third_page">
@@ -332,7 +335,7 @@
 
 	function showFirstPage() {
 		last_page = first_page;
-		first_page.style.display = "flow";
+		first_page.style.display = "flex";
 		second_page.style.display = "none";
 		third_page.style.display = "none";
 		Telegram.WebApp.MainButton.hide();
@@ -507,7 +510,7 @@
 		last_page = second_page;
 		last_plan = plan;
 		first_page.style.display = "none";
-		second_page.style.display = "flow";
+		second_page.style.display = "flex";
 		third_page.style.display = "none";
 
 		if (plan === 'professional') {
