@@ -201,78 +201,78 @@
 
   <div class="plan-cards">
     <div class="plans">
-    <div id="interval-1" class="card card-second-page">
+      <div id="interval-1" class="card card-second-page">
 
-      <div id="triangle-1" class="triangle">
-        <div style="padding: 5px;"><span>⭐</span></div>
-      </div>
+        <div id="triangle-1" class="triangle">
+          <div style="padding: 5px;"><span>⭐</span></div>
+        </div>
 
-      <div class="grid-2">
-        <div class="price">
-          <p style="font-size: 10px;">
-            <span style="font-size: 16px;">۹۶</span>
-            تومان / ماه
-          </p>
-        </div>
-        <div class="interval-txt">
-          سالیانه
-          <p class="card-desc">
-            برای یک سال کامل پرداخت کنید
-          </p>
-        </div>
-        <div class="radio-btn">
-          <div class="outer-circle">
-            <div id="inner-circle-1" class="inner-circle"></div>
+        <div class="grid-2">
+          <div class="price">
+            <p style="font-size: 10px;">
+              <span style="font-size: 16px;">۹۶</span>
+              تومان / ماه
+            </p>
+          </div>
+          <div class="interval-txt">
+            سالیانه
+            <p class="card-desc">
+              برای یک سال کامل پرداخت کنید
+            </p>
+          </div>
+          <div class="radio-btn">
+            <div class="outer-circle">
+              <div id="inner-circle-1" class="inner-circle"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <hr style="margin-bottom: 10px;">
+        <hr style="margin-bottom: 10px;">
 
-      <p class="features">
-        <span class="sticker-features">💰</span>
-        <span class="plan-features-2">
+        <p class="features">
+          <span class="sticker-features">💰</span>
+          <span class="plan-features-2">
         با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
       </span>
-      </p>
-      <p class="features">
-        <span class="sticker-features">🌟</span>
-        <span class="plan-features-2">
+        </p>
+        <p class="features">
+          <span class="sticker-features">🌟</span>
+          <span class="plan-features-2">
         امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
       </span>
-      </p>
-      <p class="features">
-        <span class="sticker-features">🛡️</span>
-        <span class="plan-features-2">
+        </p>
+        <p class="features">
+          <span class="sticker-features">🛡️</span>
+          <span class="plan-features-2">
         سالی را بدون افزایش قیمت غیر منتظره تجربه کنید
       </span>
-      </p>
-    </div>
-
-    <div id="interval-2" class="card card-second-page">
-
-      <div class="grid-2">
-        <div class="price">
-          <p style="font-size: 10px;">
-            <span style="font-size: 16px;">۱۲۰</span>
-            تومان / ماه
-          </p>
-        </div>
-        <div class="interval-txt">
-          ماهیانه
-          <p class="card-desc">
-            به صورت ماهانه پرداخت کنید
-          </p>
-        </div>
-        <div class="radio-btn">
-          <div class="outer-circle">
-            <div id="inner-circle-2" class="inner-circle"></div>
-          </div>
-        </div>
+        </p>
       </div>
 
+      <div id="interval-2" class="card card-second-page">
+
+        <div class="grid-2">
+          <div class="price">
+            <p style="font-size: 10px;">
+              <span style="font-size: 16px;">۱۲۰</span>
+              تومان / ماه
+            </p>
+          </div>
+          <div class="interval-txt">
+            ماهیانه
+            <p class="card-desc">
+              به صورت ماهانه پرداخت کنید
+            </p>
+          </div>
+          <div class="radio-btn">
+            <div class="outer-circle">
+              <div id="inner-circle-2" class="inner-circle"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
   </div>
 
 </section>
@@ -377,6 +377,7 @@
 		let animationId = 0;
 		let currentIndex = 0;
 		let hasMoved = false;
+		let directionChecked = false;
 
 		let moveAmount = 0;
 		const threshold = 10;
@@ -391,7 +392,8 @@
 		container.addEventListener('touchmove', move);
 
 		function start(event) {
-			isDragging = true;
+			isDragging = false;
+			hasMoved = false;
 			startX = getPositionX(event);
 			startY = getPositionY(event);
 			previousTranslate = currentTranslate;
@@ -400,24 +402,28 @@
 		}
 
 		function move(event) {
-
 			if (!hasMoved) {
-				items.style.transition = 'none';
-				hasMoved = true;
-			}
-			if (isDragging) {
 				const currentPosX = getPositionX(event);
 				const currentPosY = getPositionY(event);
-				moveAmount += Math.abs(currentPosX - startX);
-				if (moveAmount < threshold) {
+				moveAmount = Math.abs(currentPosX - startX);
+				if (moveAmount > threshold) {
+					hasMoved = true;
 					const xDiff = currentPosX - startX;
 					const yDiff = currentPosY - startY; // you'll need startY
 					const slope = Math.abs(yDiff / xDiff);
 					if (slope < slopeThreshold) {
 						event.stopPropagation();
 						event.preventDefault();
+						isDragging = true;
 					}
 				}
+			}
+			// if (!hasMoved) {
+			// 	items.style.transition = 'none';
+			// 	hasMoved = true;
+			// }
+			if (isDragging) {
+				const currentPosX = getPositionX(event);
 				const direction = currentPosX - startX;
 				if (currentIndex === 0 && direction > 0) {
 					currentTranslate = previousTranslate + (currentPosX - startX) / 3;
@@ -433,6 +439,7 @@
 		function end() {
 			isDragging = false;
 			hasMoved = false;
+			directionChecked = false;
 
 			const movedBy = currentTranslate - previousTranslate;
 			items.style.transition = 'transform 0.3s';
