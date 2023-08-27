@@ -414,6 +414,7 @@
 					const yDiff = currentPosY - startY; // you'll need startY
 					const slope = Math.abs(yDiff / xDiff);
 					if (slope < slopeThreshold) {
+						event.stopPropagation();
 						event.preventDefault();
 					}
 				}
