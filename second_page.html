@@ -190,6 +190,7 @@
 </section>
 
 <section id="second_page">
+  <a onclick="showFirstPage();">back</a>
   <p class="second-p-title">
     <span id="second-p-title">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -295,10 +296,6 @@
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
 
-	let container = document.getElementById('scrollContainer');
-	let dots = document.querySelectorAll('.dot');
-	let cards = document.querySelectorAll('.card');
-
 	let last_page = first_page;
 	let last_plan = null;
 
@@ -352,8 +349,13 @@
 	}
 
 	function first_page_function() {
+		let container = document.getElementById('scrollContainer');
+		let dots = document.querySelectorAll('.dot');
+		let cards = document.querySelectorAll('.card');
+
 		const items = document.getElementById('items');
 		const card = document.querySelector('.item');
+
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
 		items.style.transform = `translateX(${0.10 * container_width}px)`;
@@ -382,6 +384,8 @@
 		let moveAmount = 0;
 		const threshold = 10;
 		const slopeThreshold = 0.5;
+
+		setPositionByIndex(currentIndex);
 
 		container.addEventListener('mousedown', start);
 		container.addEventListener('mouseup', end);
@@ -453,13 +457,6 @@
 
 			setPositionByIndex(currentIndex);
 
-			dots.forEach(function (dot, i) {
-				if (i === currentIndex) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
 		}
 
 		function getPositionX(event) {
@@ -471,6 +468,13 @@
 		}
 
 		function setPositionByIndex(index) {
+			dots.forEach(function (dot, i) {
+				if (i === currentIndex) {
+					dot.classList.add('active');
+				} else {
+					dot.classList.remove('active');
+				}
+			});
 			if (index === 0) {
 				currentTranslate = 0.09 * container_width;
 			} else if (index === 1) {
@@ -486,14 +490,7 @@
 		}
 
 		function scrollToIndex(index) {
-			setPositionByIndex(currentIndex);
-			dots.forEach(function (dot, i) {
-				if (i === index) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
+			setPositionByIndex(index);
 		}
 
 		dots.forEach(function (dot, i) {
@@ -546,7 +543,10 @@
 			radio_btn_2.classList.add('selected');
 			interval = 'monthly';
 			triangle_1.style.display = "none";
-			showMainButton();
+			showMainButton(
+				'خرید اشتراک ماهانه',
+				'https://google.com'
+			);
 		});
 
 		Telegram.WebApp.BackButton
@@ -560,7 +560,6 @@
 				.setText(text)
 				.show()
 				.onClick(function () {
-					console.log(`subscription/interval : ${subscription} - ${interval}`);
 					Telegram.WebApp.openLink(url, {try_instant_view: true}
 					);
 				});
@@ -573,6 +572,10 @@
 			radio_btn_2.classList.remove('selected');
 			interval = 'yearly';
 			triangle_1.style.display = "block";
+			showMainButton(
+				'خرید اشتراک سالانه',
+				'https://google.com'
+			);
 		}
 	}
 
