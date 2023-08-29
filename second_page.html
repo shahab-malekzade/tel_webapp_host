@@ -190,7 +190,8 @@
 </section>
 
 <section id="second_page">
-  <a onclick="showFirstPage();">back</a>
+<!--  <a onclick="showFirstPage();">back</a>-->
+<!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
   <p class="second-p-title">
     <span id="second-p-title">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -332,7 +333,7 @@
 
 	function showFirstPage() {
 		last_page = first_page;
-		first_page.style.display = "flex";
+		first_page.style.display = "flow";
 		second_page.style.display = "none";
 		third_page.style.display = "none";
 		Telegram.WebApp.MainButton.hide();
@@ -385,6 +386,8 @@
 		const threshold = 10;
 		const slopeThreshold = 0.5;
 
+		let isMouseDown = false;
+
 		setPositionByIndex(currentIndex);
 
 		container.addEventListener('mousedown', start);
@@ -398,6 +401,7 @@
 		function start(event) {
 			isDragging = false;
 			hasMoved = false;
+			isMouseDown = true;
 			startX = getPositionX(event);
 			startY = getPositionY(event);
 			previousTranslate = currentTranslate;
@@ -406,6 +410,8 @@
 		}
 
 		function move(event) {
+			if (!isMouseDown) return;
+
 			if (!hasMoved) {
 				const currentPosX = getPositionX(event);
 				const currentPosY = getPositionY(event);
@@ -416,16 +422,11 @@
 					const yDiff = currentPosY - startY; // you'll need startY
 					const slope = Math.abs(yDiff / xDiff);
 					if (slope < slopeThreshold) {
-						event.stopPropagation();
 						event.preventDefault();
 						isDragging = true;
 					}
 				}
 			}
-			// if (!hasMoved) {
-			// 	items.style.transition = 'none';
-			// 	hasMoved = true;
-			// }
 			if (isDragging) {
 				const currentPosX = getPositionX(event);
 				const direction = currentPosX - startX;
@@ -442,7 +443,7 @@
 
 		function end() {
 			isDragging = false;
-			hasMoved = false;
+			isMouseDown = false;
 			directionChecked = false;
 
 			const movedBy = currentTranslate - previousTranslate;
@@ -454,7 +455,6 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
-
 			setPositionByIndex(currentIndex);
 
 		}
@@ -503,6 +503,7 @@
 
 		cards.forEach(function (card, i) {
 			card.addEventListener('click', function () {
+				if (hasMoved) return;
 				let index = card.getAttribute('data-index');
 				currentIndex = parseInt(index);
 				scrollToIndex(currentIndex);
@@ -560,8 +561,7 @@
 				.setText(text)
 				.show()
 				.onClick(function () {
-					Telegram.WebApp.openLink(url, {try_instant_view: true}
-					);
+					onClickMainButton(url);
 				});
 		}
 
@@ -577,6 +577,11 @@
 				'https://google.com'
 			);
 		}
+	}
+
+	function onClickMainButton(url) {
+		console.log(`The chosen plan is : ${subscription} and interval is : ${interval}`)
+		Telegram.WebApp.openLink(url, {try_instant_view: true});
 	}
 
 	function landscapeMode() {
