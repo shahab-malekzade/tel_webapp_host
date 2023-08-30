@@ -32,7 +32,6 @@ body {
   margin: 0;
   padding: 0;
   color-scheme: var(--tg-color-scheme);
-  overflow: hidden;
   overscroll-behavior: none;
   display: flex; /* Change this to flex */
   flex-direction: column; /* Enable vertical stacking */
@@ -135,13 +134,12 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 350px;
 }
 
 .card {
   position: relative;
   background-color: #00000016;
-  padding: 16px 16px 0 16px;
+  padding: 16px 16px 100px 16px;
   border-radius: 25px;
   width: 95%;
   height: 100%;
