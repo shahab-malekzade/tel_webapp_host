@@ -16,12 +16,12 @@ h5 {
   transition: height 0.3s, padding 0.3s;
 }
 
-@media (max-height: 768px) {
-  html, body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-}
+/*@media (max-height: 768px) {*/
+/*  html, body {*/
+/*    overflow-y: scroll;*/
+/*    overflow-x: hidden;*/
+/*  }*/
+/*}*/
 
 body {
   --bg-color: var(--tg-theme-bg-color, #fff);
