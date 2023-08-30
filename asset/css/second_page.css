@@ -83,7 +83,8 @@ hr {
 
 .first-p-cards {
   flex: 20 0 0;
-  padding-bottom: 20px;
+  /* todo: 20px */
+  padding-bottom: 50px;
 }
 
 .second-p-title {
@@ -101,7 +102,8 @@ hr {
 
 .plan-cards {
   flex: 20 0 0;
-  padding-bottom: 10px;
+  /* todo: 10px */
+  padding-bottom: 40px;
 }
 
 .container {
