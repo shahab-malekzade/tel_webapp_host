@@ -314,12 +314,13 @@
 	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
 	const first_p_cards_height = document.getElementById('first-p-cards').offsetHeight;
 	const first_p_content_height = first_p_title_height + first_p_desc_height + first_p_cards_height
-	console.log('=====> ', viewportHeight, first_p_title_height, first_p_desc_height, first_p_cards_height);
+	console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
 
 	const second_p_title_height = document.getElementById('second-p-title').offsetHeight;
 	const second_p_desc_height = document.getElementById('second-p-desc').offsetHeight;
 	const second_p_cards_height = document.getElementById('second-p-cards').offsetHeight;
 	const second_p_content_height = second_p_title_height + second_p_desc_height + second_p_cards_height
+	console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
 
 
 	landscape.addEventListener("change", function (e) {
@@ -371,6 +372,7 @@
 		const card = document.querySelector('.item');
 
 		if (first_p_content_height > viewportHeight) {
+			console.log('expand first!!!!');
 			Telegram.WebApp.expand();
 		}
 
@@ -537,6 +539,7 @@
 		third_page.style.display = "none";
 
 		if (second_p_content_height > viewportHeight) {
+			console.log('expand Second!!!!');
 			Telegram.WebApp.expand();
 		}
 
