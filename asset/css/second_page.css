@@ -139,7 +139,7 @@ hr {
 .card {
   position: relative;
   background-color: #00000016;
-  padding: 16px 16px 100px 16px;
+  padding: 16px 12px 100px 12px;
   border-radius: 25px;
   width: 95%;
   height: 100%;
@@ -249,11 +249,11 @@ hr {
 }
 
 .plan-features-2 {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .sticker-features {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .sticker-title {
