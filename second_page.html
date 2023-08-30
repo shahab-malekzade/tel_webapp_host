@@ -290,6 +290,28 @@
 <script type="application/javascript">
 	Telegram.WebApp.ready();
 
+	setTimeout(() => {
+
+		const viewportHeight = document.documentElement.clientHeight;
+		const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
+		const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
+		const first_p_cards_height = document.getElementById('first-p-cards').offsetHeight;
+		const first_p_content_height = first_p_title_height + first_p_desc_height + first_p_cards_height
+		console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
+
+		const second_p_title_height = document.getElementById('second-p-title').offsetHeight;
+		const second_p_desc_height = document.getElementById('second-p-desc').offsetHeight;
+		const second_p_cards_height = document.getElementById('second-p-cards').offsetHeight;
+		const second_p_content_height = second_p_title_height + second_p_desc_height + second_p_cards_height
+		console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
+
+
+		if (first_p_content_height > viewportHeight) {
+			Telegram.WebApp.expand();
+		}
+
+	}, 100);
+
 	let subscription = null;
 	let interval = null;
 
@@ -308,20 +330,6 @@
 	const radio_btn_2 = document.getElementById('inner-circle-2');
 
 	const landscape = window.matchMedia("(orientation: landscape)");
-
-	const viewportHeight = document.documentElement.clientHeight;
-	const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
-	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
-	const first_p_cards_height = document.getElementById('first-p-cards').offsetHeight;
-	const first_p_content_height = first_p_title_height + first_p_desc_height + first_p_cards_height
-	console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
-
-	const second_p_title_height = document.getElementById('second-p-title').offsetHeight;
-	const second_p_desc_height = document.getElementById('second-p-desc').offsetHeight;
-	const second_p_cards_height = document.getElementById('second-p-cards').offsetHeight;
-	const second_p_content_height = second_p_title_height + second_p_desc_height + second_p_cards_height
-	console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
-
 
 	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
