@@ -293,6 +293,8 @@
 	let currentIndex = 0;
 	let currentActivePlan = 0;
 
+	const listeners = [];
+
 	const viewportHeight = document.documentElement.clientHeight;
 	const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
 	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
@@ -375,7 +377,6 @@
 		const purchase_links = document.querySelectorAll('.purchase-link');
 		const plans_list = ['basic', 'professional', 'premium'];
 
-		const listeners = [];
 		purchase_links.forEach(function (link, i) {
 			const callback = function () {
 				purchase_links.forEach(link => {
