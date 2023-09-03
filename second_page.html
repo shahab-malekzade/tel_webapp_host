@@ -120,7 +120,7 @@
             </p>
             <div class="stick-bottom">
               <div class="card-button">
-                <a class="purchase-link" onclick="showSecondPage('professional');">
+                <a class="purchase-link" onclick="showSecondPage({'index': 1, 'plan': 'professional'});">
                   انتخاب
                 </a>
               </div>
@@ -168,7 +168,7 @@
             </p>
             <div class="stick-bottom">
               <div class="card-button">
-                <a class="purchase-link" onclick="showSecondPage('premium');">
+                <a class="purchase-link" onclick="showSecondPage({'index': 2, 'plan': 'premium'});">
                   انتخاب
                 </a>
               </div>
@@ -190,8 +190,8 @@
 </section>
 
 <section id="second_page">
-  <!--  <a onclick="showFirstPage();">back</a>-->
-  <!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
+  <a onclick="showFirstPage(currentIndex);">back</a>
+  <a onclick="onClickMainButton('https://google.com');">ok</a>
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -211,7 +211,7 @@
 
         <div class="grid-2">
           <div class="price">
-            <p style="font-size: 10px;">
+            <p style="font-size: 12px;">
               <span style="font-size: 16px;">۹۶</span>
               تومان / ماه
             </p>
@@ -255,7 +255,7 @@
 
         <div class="grid-2">
           <div class="price">
-            <p style="font-size: 10px;">
+            <p style="font-size: 12px;">
               <span style="font-size: 16px;">۱۲۰</span>
               تومان / ماه
             </p>
@@ -290,26 +290,21 @@
 <script type="application/javascript">
 	Telegram.WebApp.ready();
 
+	let currentIndex = 0;
+	let currentActivePlan = 0;
 
 	const viewportHeight = document.documentElement.clientHeight;
 	const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
 	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
 	const first_p_cards_height = document.getElementById('first-p-cards').offsetHeight;
 	const first_p_content_height = first_p_title_height + first_p_desc_height + first_p_cards_height
-	console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
+	// console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
 
 	const second_p_title_height = document.getElementById('second-p-title').offsetHeight;
 	const second_p_desc_height = document.getElementById('second-p-desc').offsetHeight;
 	const second_p_cards_height = document.getElementById('second-p-cards').offsetHeight;
 	const second_p_content_height = second_p_title_height + second_p_desc_height + second_p_cards_height
-	console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
-
-
-	setTimeout(() => {
-		if (first_p_content_height > viewportHeight) {
-			Telegram.WebApp.expand();
-		}
-	}, 100);
+	// console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
 
 	let subscription = null;
 	let interval = null;
@@ -335,7 +330,7 @@
 			landscapeMode();
 		} else {
 			if (last_page === first_page) {
-				showFirstPage();
+				showFirstPage(currentIndex);
 			} else {
 				showSecondPage(last_plan);
 			}
@@ -346,13 +341,13 @@
 		landscapeMode();
 	} else {
 		if (last_page === first_page) {
-			showFirstPage();
+			showFirstPage(currentIndex);
 		} else {
 			showSecondPage(last_plan);
 		}
 	}
 
-	function showFirstPage() {
+	function showFirstPage(lastIndex = 0) {
 		last_page = first_page;
 		first_page.style.display = "flex";
 		second_page.style.display = "none";
@@ -367,22 +362,35 @@
 		subscription = null;
 		interval = null;
 
-		first_page_function();
+		first_page_function(lastIndex);
 	}
 
-	function first_page_function() {
+	function first_page_function(lastIndex) {
 		let container = document.getElementById('scrollContainer');
 		let dots = document.querySelectorAll('.dot');
 		let cards = document.querySelectorAll('.card');
 
 		const items = document.getElementById('items');
 		const card = document.querySelector('.item');
+		const purchase_links = document.querySelectorAll('.purchase-link');
+		const plans_list = ['basic', 'professional', 'premium'];
 
-		if (first_p_content_height > viewportHeight) {
-			console.log('expand first!!!!');
-			Telegram.WebApp.expand();
-			console.log('expand first!!!! it passed!');
-		}
+
+		purchase_links.forEach(function (link, i) {
+			if (i !== currentActivePlan) {
+				link.addEventListener('click', function (e) {
+					// First remove the event listeners
+					container.removeEventListener('mousedown', start);
+					container.removeEventListener('mouseup', end);
+					container.removeEventListener('mousemove', move);
+					container.removeEventListener('touchstart', start);
+					container.removeEventListener('touchend', end);
+					container.removeEventListener('touchmove', move);
+
+					showSecondPage({'index': i, 'plan': plans_list[i]});
+				});
+			}
+		});
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
@@ -405,7 +413,6 @@
 		let currentTranslate = 0;
 		let previousTranslate = 0;
 		let animationId = 0;
-		let currentIndex = 0;
 		let hasMoved = false;
 		let directionChecked = false;
 
@@ -415,6 +422,7 @@
 
 		let isMouseDown = false;
 
+		currentIndex = lastIndex;
 		setPositionByIndex(currentIndex);
 
 		container.addEventListener('mousedown', start);
@@ -542,22 +550,15 @@
 	function showSecondPage(plan) {
 		last_page = second_page;
 		last_plan = plan;
+		subscription = plan;
 		first_page.style.display = "none";
 		second_page.style.display = "flex";
 		third_page.style.display = "none";
 
-		if (second_p_content_height > viewportHeight) {
-			console.log('expand Second!!!!');
-			Telegram.WebApp.expand();
-			console.log('expand Second!!!! it passed!');
-		}
-
-		if (plan === 'professional') {
+		if (plan['plan'] === 'professional') {
 			document.getElementById('second-p-title-text').innerHTML = 'اشتراک حرفه ای';
-			subscription = 'professional';
-		} else if (plan === 'premium') {
+		} else if (plan['plan'] === 'premium') {
 			document.getElementById('second-p-title-text').innerHTML = 'اشتراک پریمیوم';
-			subscription = 'premium';
 		}
 
 		selectDefaultInterval();
@@ -566,7 +567,7 @@
 			selectDefaultInterval();
 			showMainButton(
 				'خرید اشتراک سالانه',
-				'https://google.com'
+				'https://google.com',
 			);
 		});
 
@@ -579,22 +580,22 @@
 			triangle_1.style.display = "none";
 			showMainButton(
 				'خرید اشتراک ماهانه',
-				'https://google.com'
+				'https://google.com',
 			);
 		});
 
 		Telegram.WebApp.BackButton
 			.show()
 			.onClick(function () {
-				showFirstPage();
+				showFirstPage(plan['index']);
 			});
 
-		function showMainButton(text, url) {
+		function showMainButton(text, url, selectedPlan) {
 			Telegram.WebApp.MainButton
 				.setText(text)
 				.show()
 				.onClick(function () {
-					onClickMainButton(url);
+					onClickMainButton(url, selectedPlan);
 				});
 		}
 
@@ -613,7 +614,8 @@
 	}
 
 	function onClickMainButton(url) {
-		console.log(`The chosen plan is : ${subscription} and interval is : ${interval}`)
+		currentActivePlan = subscription['index'];
+		console.log(`The chosen plan is : ${subscription['index']} - ${subscription['plan']} and interval is : ${interval}`);
 		Telegram.WebApp.openLink(url, {try_instant_view: true});
 	}
 
