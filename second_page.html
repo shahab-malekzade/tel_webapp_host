@@ -120,7 +120,7 @@
             </p>
             <div class="stick-bottom">
               <div class="card-button">
-                <a class="purchase-link" onclick="showSecondPage({'index': 1, 'plan': 'professional'});">
+                <a class="purchase-link">
                   انتخاب
                 </a>
               </div>
@@ -168,7 +168,7 @@
             </p>
             <div class="stick-bottom">
               <div class="card-button">
-                <a class="purchase-link" onclick="showSecondPage({'index': 2, 'plan': 'premium'});">
+                <a class="purchase-link">
                   انتخاب
                 </a>
               </div>
@@ -190,8 +190,8 @@
 </section>
 
 <section id="second_page">
-  <a onclick="showFirstPage(currentIndex);">back</a>
-  <a onclick="onClickMainButton('https://google.com');">ok</a>
+<!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
+<!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -375,43 +375,27 @@
 		const purchase_links = document.querySelectorAll('.purchase-link');
 		const plans_list = ['basic', 'professional', 'premium'];
 
+		const listeners = [];
 		purchase_links.forEach(function (link, i) {
-			if (i !== currentActivePlan) {
-				console.log(`purchase_links[i]: ${link}`)
-				link.addEventListener('click', function() {
-					// First remove the event listeners
-					container.removeEventListener('mousedown', start);
-					container.removeEventListener('mouseup', end);
-					container.removeEventListener('mousemove', move);
-					container.removeEventListener('touchstart', start);
-					container.removeEventListener('touchend', end);
-					container.removeEventListener('touchmove', move);
-					link.removeEventListener('click', arguments.callee);
-					console.log(`hey therererere!!!!!!!!!! ${i}`);
-
-					showSecondPage({'index': i, 'plan': plans_list[i]});
+			const callback = function () {
+				purchase_links.forEach(link => {
+					listeners.forEach(callback => {
+						link.removeEventListener('click', callback);
+					});
 				});
-			}
+				// First remove the event listeners
+				container.removeEventListener('mousedown', start);
+				container.removeEventListener('mouseup', end);
+				container.removeEventListener('mousemove', move);
+				container.removeEventListener('touchstart', start);
+				container.removeEventListener('touchend', end);
+				container.removeEventListener('touchmove', move);
+				showSecondPage({'index': i, 'plan': plans_list[i]});
+			};
+			listeners.push(callback);
+			link.addEventListener('click', callback);
 		});
 
-		// purchase_links.forEach(function (link, i) {
-		// 	(function (index) {
-		// 		if (index !== currentActivePlan) {
-		// 			link.addEventListener('click', function () {
-		// 			// First remove the event listeners
-		// 			container.removeEventListener('mousedown', start);
-		// 			container.removeEventListener('mouseup', end);
-		// 			container.removeEventListener('mousemove', move);
-		// 			container.removeEventListener('touchstart', start);
-		// 			container.removeEventListener('touchend', end);
-		// 			container.removeEventListener('touchmove', move);
-		// 			console.log(`hey therererere!!!!!!!!!! ${index}`);
-    //
-		// 			showSecondPage({'index': index, 'plan': plans_list[index]});
-		// 			});
-		// 		}
-		// 	})(i);
-		// });
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
