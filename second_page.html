@@ -375,20 +375,25 @@
 		const purchase_links = document.querySelectorAll('.purchase-link');
 		const plans_list = ['basic', 'professional', 'premium'];
 
+		function clickPurchaseLink(i) {
+			// First remove the event listeners
+			container.removeEventListener('mousedown', start);
+			container.removeEventListener('mouseup', end);
+			container.removeEventListener('mousemove', move);
+			container.removeEventListener('touchstart', start);
+			container.removeEventListener('touchend', end);
+			container.removeEventListener('touchmove', move);
+			purchase_links.forEach(function (link, j) {
+				link.removeEventListener('click', clickPurchaseLink);
+			});
+			console.log(`hey therererere!!!!!!!!!! ${i}`);
+			showSecondPage({'index': i, 'plan': plans_list[i]});
+		}
 
 		purchase_links.forEach(function (link, i) {
 			if (i !== currentActivePlan) {
 				link.addEventListener('click', function (e) {
-					// First remove the event listeners
-					container.removeEventListener('mousedown', start);
-					container.removeEventListener('mouseup', end);
-					container.removeEventListener('mousemove', move);
-					container.removeEventListener('touchstart', start);
-					container.removeEventListener('touchend', end);
-					container.removeEventListener('touchmove', move);
-					console.log('hey therererere!!!!!!!!!!');
-
-					showSecondPage({'index': i, 'plan': plans_list[i]});
+					clickPurchaseLink(i);
 				});
 			}
 		});
