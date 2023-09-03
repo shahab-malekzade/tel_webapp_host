@@ -190,8 +190,8 @@
 </section>
 
 <section id="second_page">
-  <a onclick="showFirstPage(currentIndex);">back</a>
-  <a onclick="onClickMainButton('https://google.com');">ok</a>
+  <!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
+  <!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -386,6 +386,7 @@
 					container.removeEventListener('touchstart', start);
 					container.removeEventListener('touchend', end);
 					container.removeEventListener('touchmove', move);
+					console.log('hey therererere!!!!!!!!!!');
 
 					showSecondPage({'index': i, 'plan': plans_list[i]});
 				});
