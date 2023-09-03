@@ -396,24 +396,20 @@
 
 		purchase_links.forEach(function (link, i) {
 			(function (index) {
-				link.addEventListener('click', function () {
-					if (index !== currentActivePlan) {
-						console.log(`purchase_links[i]: ${link}`)
-						link.addEventListener('click', function myCallback() {
-							// First remove the event listeners
-							container.removeEventListener('mousedown', start);
-							container.removeEventListener('mouseup', end);
-							container.removeEventListener('mousemove', move);
-							container.removeEventListener('touchstart', start);
-							container.removeEventListener('touchend', end);
-							container.removeEventListener('touchmove', move);
-							this.removeEventListener('click', myCallback);
-							console.log(`hey therererere!!!!!!!!!! ${index}`);
+				if (index !== currentActivePlan) {
+					link.addEventListener('click', function () {
+					// First remove the event listeners
+					container.removeEventListener('mousedown', start);
+					container.removeEventListener('mouseup', end);
+					container.removeEventListener('mousemove', move);
+					container.removeEventListener('touchstart', start);
+					container.removeEventListener('touchend', end);
+					container.removeEventListener('touchmove', move);
+					console.log(`hey therererere!!!!!!!!!! ${index}`);
 
-							showSecondPage({'index': index, 'plan': plans_list[index]});
-						});
-					}
-				});
+					showSecondPage({'index': index, 'plan': plans_list[index]});
+					});
+				}
 			})(i);
 		});
 
