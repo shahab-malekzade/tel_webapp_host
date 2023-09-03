@@ -384,7 +384,9 @@
 			container.removeEventListener('touchend', end);
 			container.removeEventListener('touchmove', move);
 			purchase_links.forEach(function (link, j) {
-				link.removeEventListener('click', clickPurchaseLink);
+				// Remove all listeners
+				let new_link_element = link.cloneNode(true);
+				link.parentNode.replaceChild(new_link_element, link);
 			});
 			console.log(`hey therererere!!!!!!!!!! ${i}`);
 			showSecondPage({'index': i, 'plan': plans_list[i]});
