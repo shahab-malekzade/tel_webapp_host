@@ -377,7 +377,7 @@
 
 		purchase_links.forEach(function (link, i) {
 			if (i !== currentActivePlan) {
-				link.addEventListener('click', function myCallback(e) {
+				link.addEventListener('click', function myCallback() {
 					// First remove the event listeners
 					container.removeEventListener('mousedown', start);
 					container.removeEventListener('mouseup', end);
@@ -385,10 +385,10 @@
 					container.removeEventListener('touchstart', start);
 					container.removeEventListener('touchend', end);
 					container.removeEventListener('touchmove', move);
+					this.removeEventListener('click', myCallback);
 					console.log(`hey therererere!!!!!!!!!! ${i}`);
 
 					showSecondPage({'index': i, 'plan': plans_list[i]});
-					this.removeEventListener('click', myCallback);
 				});
 			}
 		});
