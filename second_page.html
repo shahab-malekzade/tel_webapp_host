@@ -375,29 +375,10 @@
 		const purchase_links = document.querySelectorAll('.purchase-link');
 		const plans_list = ['basic', 'professional', 'premium'];
 
-		// purchase_links.forEach(function (link, i) {
-		// 	if (i !== currentActivePlan) {
-		// 		console.log(`purchase_links[i]: ${link}`)
-		// 		link.addEventListener('click', function myCallback() {
-		// 			// First remove the event listeners
-		// 			container.removeEventListener('mousedown', start);
-		// 			container.removeEventListener('mouseup', end);
-		// 			container.removeEventListener('mousemove', move);
-		// 			container.removeEventListener('touchstart', start);
-		// 			container.removeEventListener('touchend', end);
-		// 			container.removeEventListener('touchmove', move);
-		// 			this.removeEventListener('click', myCallback);
-		// 			console.log(`hey therererere!!!!!!!!!! ${i}`);
-    //
-		// 			showSecondPage({'index': i, 'plan': plans_list[i]});
-		// 		});
-		// 	}
-		// });
-
 		purchase_links.forEach(function (link, i) {
-			(function (index) {
-				if (index !== currentActivePlan) {
-					link.addEventListener('click', function () {
+			if (i !== currentActivePlan) {
+				console.log(`purchase_links[i]: ${link}`)
+				link.addEventListener('click', function() {
 					// First remove the event listeners
 					container.removeEventListener('mousedown', start);
 					container.removeEventListener('mouseup', end);
@@ -405,13 +386,32 @@
 					container.removeEventListener('touchstart', start);
 					container.removeEventListener('touchend', end);
 					container.removeEventListener('touchmove', move);
-					console.log(`hey therererere!!!!!!!!!! ${index}`);
+					link.removeEventListener('click', arguments.callee);
+					console.log(`hey therererere!!!!!!!!!! ${i}`);
 
-					showSecondPage({'index': index, 'plan': plans_list[index]});
-					});
-				}
-			})(i);
+					showSecondPage({'index': i, 'plan': plans_list[i]});
+				});
+			}
 		});
+
+		// purchase_links.forEach(function (link, i) {
+		// 	(function (index) {
+		// 		if (index !== currentActivePlan) {
+		// 			link.addEventListener('click', function () {
+		// 			// First remove the event listeners
+		// 			container.removeEventListener('mousedown', start);
+		// 			container.removeEventListener('mouseup', end);
+		// 			container.removeEventListener('mousemove', move);
+		// 			container.removeEventListener('touchstart', start);
+		// 			container.removeEventListener('touchend', end);
+		// 			container.removeEventListener('touchmove', move);
+		// 			console.log(`hey therererere!!!!!!!!!! ${index}`);
+    //
+		// 			showSecondPage({'index': index, 'plan': plans_list[index]});
+		// 			});
+		// 		}
+		// 	})(i);
+		// });
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
