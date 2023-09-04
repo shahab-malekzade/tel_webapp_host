@@ -293,8 +293,6 @@
 	let currentIndex = 0;
 	let currentActivePlan = 0;
 
-	const listeners = [];
-
 	const viewportHeight = document.documentElement.clientHeight;
 	const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
 	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
@@ -376,14 +374,10 @@
 		const card = document.querySelector('.item');
 		const purchase_links = document.querySelectorAll('.purchase-link');
 		const plans_list = ['basic', 'professional', 'premium'];
+		const listeners = [];
 
 		purchase_links.forEach(function (link, i) {
 			const callback = function () {
-				purchase_links.forEach(link => {
-					listeners.forEach(callback => {
-						link.removeEventListener('click', callback);
-					});
-				});
 				// First remove the event listeners
 				container.removeEventListener('mousedown', start);
 				container.removeEventListener('mouseup', end);
@@ -392,6 +386,11 @@
 				container.removeEventListener('touchend', end);
 				container.removeEventListener('touchmove', move);
 				console.log(`hey therererere!!!!!!!!!! ${i}`);
+				purchase_links.forEach(link => {
+					listeners.forEach(callback => {
+						link.removeEventListener('click', callback);
+					});
+				});
 				showSecondPage({'index': i, 'plan': plans_list[i]});
 			};
 			listeners.push(callback);
@@ -573,8 +572,8 @@
 		interval_1.addEventListener('click', () => {
 			selectDefaultInterval();
 			showMainButton(
-				'خرید اشتراک سالانه',
-				'https://google.com',
+					'خرید اشتراک سالانه',
+					'https://google.com',
 			);
 		});
 
@@ -586,24 +585,24 @@
 			interval = 'monthly';
 			triangle_1.style.display = "none";
 			showMainButton(
-				'خرید اشتراک ماهانه',
-				'https://google.com',
+					'خرید اشتراک ماهانه',
+					'https://google.com',
 			);
 		});
 
 		Telegram.WebApp.BackButton
-			.show()
-			.onClick(function () {
-				showFirstPage(plan['index']);
-			});
+				.show()
+				.onClick(function () {
+					showFirstPage(plan['index']);
+				});
 
 		function showMainButton(text, url, selectedPlan) {
 			Telegram.WebApp.MainButton
-				.setText(text)
-				.show()
-				.onClick(function () {
-					onClickMainButton(url, selectedPlan);
-				});
+					.setText(text)
+					.show()
+					.onClick(function () {
+						onClickMainButton(url, selectedPlan);
+					});
 		}
 
 		function selectDefaultInterval() {
@@ -614,8 +613,8 @@
 			interval = 'yearly';
 			triangle_1.style.display = "block";
 			showMainButton(
-				'خرید اشتراک سالانه',
-				'https://google.com'
+					'خرید اشتراک سالانه',
+					'https://google.com'
 			);
 		}
 	}
