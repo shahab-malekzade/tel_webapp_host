@@ -313,7 +313,6 @@
 	const first_page = document.getElementById("first_page");
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
-	let container = document.getElementById('scrollContainer');
 
 	let last_page = first_page;
 	let last_plan = null;
@@ -371,6 +370,7 @@
 	}
 
 	function first_page_function(lastIndex) {
+		let container = document.getElementById('scrollContainer');
 		let dots = document.querySelectorAll('.dot');
 		let cards = document.querySelectorAll('.card');
 
@@ -387,6 +387,7 @@
 			container.removeEventListener('touchmove', move);
 			professionalPlanBtn.removeEventListener('click', handlePlanClick);
 			premiumPlanBtn.removeEventListener('click', handlePlanClick);
+			console.log(`res: ${currentIndex} ${plans_list[currentIndex]}`);
 
 			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
 		}
@@ -493,8 +494,8 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
+			console.log(`currentIndex: ${currentIndex}`);
 			setPositionByIndex(currentIndex);
-
 		}
 
 		function getPositionX(event) {
