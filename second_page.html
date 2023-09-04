@@ -352,19 +352,6 @@
 		}
 	}
 
-	function handlePlanClick(e, index, start, move, end) {
-		// First remove the event listeners
-		container.removeEventListener('mousedown', start);
-		container.removeEventListener('mouseup', end);
-		container.removeEventListener('mousemove', move);
-		container.removeEventListener('touchstart', start);
-		container.removeEventListener('touchend', end);
-		container.removeEventListener('touchmove', move);
-		console.log(`hey there!!! ===> ${index}`);
-
-		showSecondPage({'index': index, 'plan': plans_list[index]});
-	}
-
 	function showFirstPage(lastIndex = 0) {
 		last_page = first_page;
 		first_page.style.display = "flex";
@@ -390,46 +377,23 @@
 		const items = document.getElementById('items');
 		const card = document.querySelector('.item');
 
-		// const purchase_links = document.querySelectorAll('.purchase-link');
-		// const listeners = [];
+		function handlePlanClick(e) {
+			// First remove the event listeners
+			container.removeEventListener('mousedown', start);
+			container.removeEventListener('mouseup', end);
+			container.removeEventListener('mousemove', move);
+			container.removeEventListener('touchstart', start);
+			container.removeEventListener('touchend', end);
+			container.removeEventListener('touchmove', move);
+			professionalPlanBtn.removeEventListener('click', handlePlanClick);
+			premiumPlanBtn.removeEventListener('click', handlePlanClick);
 
-		// purchase_links.forEach(function (link, i) {
-		// 	const callback = function () {
-		// 		// First remove the event listeners
-		// 		container.removeEventListener('mousedown', start);
-		// 		container.removeEventListener('mouseup', end);
-		// 		container.removeEventListener('mousemove', move);
-		// 		container.removeEventListener('touchstart', start);
-		// 		container.removeEventListener('touchend', end);
-		// 		container.removeEventListener('touchmove', move);
-		// 		console.log(`hey therererere!!!!!!!!!! ${i}`);
-		// 		purchase_links.forEach(link => {
-		// 			listeners.forEach(callback => {
-		// 				link.removeEventListener('click', callback);
-		// 			});
-		// 		});
-		// 		showSecondPage({'index': i, 'plan': plans_list[i]});
-		// 	};
-		// 	listeners.push(callback);
-		// 	link.addEventListener('click', callback);
-		// });
+			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
+		}
 
 		// Remove listeners on button click
-		professionalPlanBtn.addEventListener('click', (e) => {
-			professionalPlanBtn.removeEventListener('click', handlePlanClick);
-			premiumPlanBtn.removeEventListener('click', handlePlanClick);
-			console.log('canceled listeners 1');
-
-			handlePlanClick(e, 1, start, move, end);
-		});
-
-		premiumPlanBtn.addEventListener('click', (e) => {
-			professionalPlanBtn.removeEventListener('click', handlePlanClick);
-			premiumPlanBtn.removeEventListener('click', handlePlanClick);
-			console.log('canceled listeners 2');
-
-			handlePlanClick(e, 2, start, move, end);
-		});
+		professionalPlanBtn.addEventListener('click', handlePlanClick);
+		premiumPlanBtn.addEventListener('click', handlePlanClick);
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
