@@ -290,32 +290,9 @@
 <script type="application/javascript">
 	Telegram.WebApp.ready();
 
-	let currentIndex = 0;
-	let currentActivePlan = 0;
-	const plans_list = ['basic', 'professional', 'premium'];
-
-	const viewportHeight = document.documentElement.clientHeight;
-	const first_p_title_height = document.getElementById('first-p-title').offsetHeight;
-	const first_p_desc_height = document.getElementById('first-p-desc').offsetHeight;
-	const first_p_cards_height = document.getElementById('first-p-cards').offsetHeight;
-	const first_p_content_height = first_p_title_height + first_p_desc_height + first_p_cards_height
-	// console.log('=====> first ', viewportHeight, first_p_content_height, first_p_title_height, first_p_desc_height, first_p_cards_height);
-
-	const second_p_title_height = document.getElementById('second-p-title').offsetHeight;
-	const second_p_desc_height = document.getElementById('second-p-desc').offsetHeight;
-	const second_p_cards_height = document.getElementById('second-p-cards').offsetHeight;
-	const second_p_content_height = second_p_title_height + second_p_desc_height + second_p_cards_height
-	// console.log('=====> second ', viewportHeight, second_p_content_height, second_p_title_height, second_p_desc_height, second_p_cards_height);
-
-	let subscription = null;
-	let interval = null;
-
 	const first_page = document.getElementById("first_page");
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
-
-	let last_page = first_page;
-	let last_plan = null;
 
 	const professionalPlanBtn = document.getElementById('professional');
 	const premiumPlanBtn = document.getElementById('premium');
@@ -327,8 +304,15 @@
 	const radio_btn_1 = document.getElementById('inner-circle-1');
 	const radio_btn_2 = document.getElementById('inner-circle-2');
 
-	const landscape = window.matchMedia("(orientation: landscape)");
+	let currentIndex = 0;
+	let currentActivePlan = 0;
+	const plans_list = ['basic', 'professional', 'premium'];
+	let last_page = first_page;
+	let last_plan = null;
+	let subscription = null;
+	let interval = null;
 
+	const landscape = window.matchMedia("(orientation: landscape)");
 	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
 			landscapeMode();
@@ -392,7 +376,6 @@
 			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
 		}
 
-		// Remove listeners on button click
 		professionalPlanBtn.addEventListener('click', handlePlanClick);
 		premiumPlanBtn.addEventListener('click', handlePlanClick);
 
@@ -458,7 +441,7 @@
 				if (moveAmount > threshold) {
 					hasMoved = true;
 					const xDiff = currentPosX - startX;
-					const yDiff = currentPosY - startY; // you'll need startY
+					const yDiff = currentPosY - startY;
 					const slope = Math.abs(yDiff / xDiff);
 					if (slope < slopeThreshold) {
 						event.preventDefault();
@@ -552,6 +535,9 @@
 	}
 
 	function showSecondPage(plan) {
+		if (plan === null) {
+			plan = {'index': 0, 'plan': 'basic'};
+		}
 		last_page = second_page;
 		last_plan = plan;
 		subscription = plan;
@@ -570,8 +556,8 @@
 		interval_1.addEventListener('click', () => {
 			selectDefaultInterval();
 			showMainButton(
-					'خرید اشتراک سالانه',
-					'https://google.com',
+				'خرید اشتراک سالانه',
+				'https://google.com',
 			);
 		});
 
@@ -583,24 +569,24 @@
 			interval = 'monthly';
 			triangle_1.style.display = "none";
 			showMainButton(
-					'خرید اشتراک ماهانه',
-					'https://google.com',
+				'خرید اشتراک ماهانه',
+				'https://google.com',
 			);
 		});
 
 		Telegram.WebApp.BackButton
-				.show()
-				.onClick(function () {
-					showFirstPage(plan['index']);
-				});
+			.show()
+			.onClick(function () {
+				showFirstPage(plan['index']);
+			});
 
 		function showMainButton(text, url, selectedPlan) {
 			Telegram.WebApp.MainButton
-					.setText(text)
-					.show()
-					.onClick(function () {
-						onClickMainButton(url, selectedPlan);
-					});
+				.setText(text)
+				.show()
+				.onClick(function () {
+					onClickMainButton(url, selectedPlan);
+				});
 		}
 
 		function selectDefaultInterval() {
@@ -611,8 +597,8 @@
 			interval = 'yearly';
 			triangle_1.style.display = "block";
 			showMainButton(
-					'خرید اشتراک سالانه',
-					'https://google.com'
+				'خرید اشتراک سالانه',
+				'https://google.com'
 			);
 		}
 	}
