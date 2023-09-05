@@ -203,7 +203,7 @@
 
   <div id="second-p-cards" class="plan-cards">
     <div class="plans">
-      <div id="interval-1" class="card card-second-page">
+      <div id="interval-1" class="card-2 card-second-page">
 
         <div id="triangle-1" class="triangle">
           <div style="padding: 5px;"><span>⭐</span></div>
@@ -251,7 +251,7 @@
         </p>
       </div>
 
-      <div id="interval-2" class="card card-second-page">
+      <div id="interval-2" class="card-2 card-second-page">
 
         <div class="grid-2">
           <div class="price">
@@ -477,7 +477,7 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
-			console.log(`currentIndex: ${currentIndex}`);
+			console.log(`===>: ${currentIndex} ${currentTranslate} ${previousTranslate}`);
 			setPositionByIndex(currentIndex);
 		}
 
@@ -504,6 +504,7 @@
 			} else {
 				currentTranslate = (0.09 * container_width) + index * -card_width;
 			}
+			console.log(`setPositionByIndex: ${currentTranslate} ${currentIndex}`);
 			setTransform(currentTranslate);
 		}
 
@@ -512,6 +513,7 @@
 		}
 
 		function scrollToIndex(index) {
+			console.log('hey there!!');
 			setPositionByIndex(index);
 		}
 
@@ -519,6 +521,7 @@
 			dot.addEventListener('click', function () {
 				let index = dot.getAttribute('data-index');
 				currentIndex = parseInt(index);
+			console.log('dot!!');
 				scrollToIndex(currentIndex);
 			});
 		});
@@ -528,6 +531,7 @@
 				if (hasMoved) return;
 				let index = card.getAttribute('data-index');
 				currentIndex = parseInt(index);
+			console.log('card!!');
 				scrollToIndex(currentIndex);
 			});
 		});
@@ -556,8 +560,8 @@
 		interval_1.addEventListener('click', () => {
 			selectDefaultInterval();
 			showMainButton(
-				'خرید اشتراک سالانه',
-				'https://google.com',
+					'خرید اشتراک سالانه',
+					'https://google.com',
 			);
 		});
 
@@ -569,24 +573,24 @@
 			interval = 'monthly';
 			triangle_1.style.display = "none";
 			showMainButton(
-				'خرید اشتراک ماهانه',
-				'https://google.com',
+					'خرید اشتراک ماهانه',
+					'https://google.com',
 			);
 		});
 
 		Telegram.WebApp.BackButton
-			.show()
-			.onClick(function () {
-				showFirstPage(plan['index']);
-			});
+				.show()
+				.onClick(function () {
+					showFirstPage(plan['index']);
+				});
 
 		function showMainButton(text, url, selectedPlan) {
 			Telegram.WebApp.MainButton
-				.setText(text)
-				.show()
-				.onClick(function () {
-					onClickMainButton(url, selectedPlan);
-				});
+					.setText(text)
+					.show()
+					.onClick(function () {
+						onClickMainButton(url, selectedPlan);
+					});
 		}
 
 		function selectDefaultInterval() {
@@ -597,8 +601,8 @@
 			interval = 'yearly';
 			triangle_1.style.display = "block";
 			showMainButton(
-				'خرید اشتراک سالانه',
-				'https://google.com'
+					'خرید اشتراک سالانه',
+					'https://google.com'
 			);
 		}
 	}

@@ -141,6 +141,18 @@ hr {
   cursor: pointer;
 }
 
+.card-2 {
+  position: relative;
+  background-color: #00000016;
+  padding: 16px 12px 100px 12px;
+  border-radius: 25px;
+  width: 95%;
+  height: 100%;
+  border: 2px solid rgba(0, 0, 0, .125);
+  user-select: none;
+  cursor: pointer;
+}
+
 .card-second-page {
   width: 85%;
   margin: auto;
