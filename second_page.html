@@ -190,8 +190,8 @@
 </section>
 
 <section id="second_page">
-<!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
-<!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
+  <a onclick="showFirstPage(currentIndex);">back</a>
+  <a onclick="onClickMainButton('https://google.com');">ok</a>
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -475,6 +475,7 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
+			console.log(`end currentIndex: ${currentIndex} `);
 			setPositionByIndex(currentIndex);
 		}
 
@@ -501,6 +502,7 @@
 			} else {
 				currentTranslate = (0.09 * container_width) + index * -card_width;
 			}
+			console.log(`setPositionByIndex: ${index} ${currentTranslate}`);
 			setTransform(currentTranslate);
 		}
 
@@ -509,6 +511,7 @@
 		}
 
 		function scrollToIndex(index) {
+			console.log('hey there!!');
 			setPositionByIndex(index);
 		}
 
@@ -516,6 +519,7 @@
 			dot.addEventListener('click', function () {
 				let index = dot.getAttribute('data-index');
 				currentIndex = parseInt(index);
+				console.log('Dots!!');
 				scrollToIndex(currentIndex);
 			});
 		});
