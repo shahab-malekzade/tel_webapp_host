@@ -356,7 +356,6 @@
 	function first_page_function(lastIndex) {
 		let container = document.getElementById('scrollContainer');
 		let dots = document.querySelectorAll('.dot');
-		let cards = document.querySelectorAll('.card');
 
 		const items = document.getElementById('items');
 		const card = document.querySelector('.item');
@@ -371,7 +370,6 @@
 			container.removeEventListener('touchmove', move);
 			professionalPlanBtn.removeEventListener('click', handlePlanClick);
 			premiumPlanBtn.removeEventListener('click', handlePlanClick);
-			console.log(`res: ${currentIndex} ${plans_list[currentIndex]}`);
 
 			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
 		}
@@ -477,7 +475,6 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
-			console.log(`===>: ${currentIndex} ${currentTranslate} ${previousTranslate}`);
 			setPositionByIndex(currentIndex);
 		}
 
@@ -504,7 +501,6 @@
 			} else {
 				currentTranslate = (0.09 * container_width) + index * -card_width;
 			}
-			console.log(`setPositionByIndex: ${currentTranslate} ${currentIndex}`);
 			setTransform(currentTranslate);
 		}
 
@@ -513,7 +509,6 @@
 		}
 
 		function scrollToIndex(index) {
-			console.log('hey there!!');
 			setPositionByIndex(index);
 		}
 
@@ -521,21 +516,9 @@
 			dot.addEventListener('click', function () {
 				let index = dot.getAttribute('data-index');
 				currentIndex = parseInt(index);
-			console.log('dot!!');
 				scrollToIndex(currentIndex);
 			});
 		});
-
-		// cards.forEach(function (card, i) {
-		// 	card.addEventListener('click', function () {
-		// 		if (hasMoved) return;
-		// 		let index = card.getAttribute('data-index');
-		// 		currentIndex = parseInt(index);
-		// 	console.log('card!!');
-		// 		scrollToIndex(currentIndex);
-		// 	});
-		// });
-
 	}
 
 	function showSecondPage(plan) {
