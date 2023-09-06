@@ -294,6 +294,8 @@
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
 
+	let container = document.getElementById('scrollContainer');
+
 	const professionalPlanBtn = document.getElementById('professional');
 	const premiumPlanBtn = document.getElementById('premium');
 
@@ -354,7 +356,6 @@
 	}
 
 	function first_page_function(lastIndex) {
-		let container = document.getElementById('scrollContainer');
 		let dots = document.querySelectorAll('.dot');
 
 		const items = document.getElementById('items');
