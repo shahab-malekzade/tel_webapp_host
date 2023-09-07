@@ -312,6 +312,9 @@
 	let subscription = null;
 	let interval = null;
 
+	let mainBtnText = 'خرید اشتراک سالانه';
+	let purchaseURL = 'https://google.com';
+
 	const landscape = window.matchMedia("(orientation: landscape)");
 	landscape.addEventListener("change", function (e) {
 		if (e.matches) {
@@ -533,10 +536,6 @@
 
 		function interval_1_func(e) {
 			selectDefaultInterval();
-			showMainButton(
-					'خرید اشتراک سالانه',
-					'https://google.com',
-			);
 		}
 
 		interval_1.addEventListener('click', interval_1_func);
@@ -547,15 +546,14 @@
 			radio_btn_1.classList.remove('selected');
 			radio_btn_2.classList.add('selected');
 			interval = 'monthly';
+			mainBtnText = 'خرید اشتراک ماهانه';
+			purchaseURL = 'https://google.com';
 			triangle_1.style.display = "none";
-			showMainButton(
-					'خرید اشتراک ماهانه',
-					'https://google.com',
-			);
 		}
 
 		interval_2.addEventListener('click', interval_2_func);
 
+		Telegram.WebApp.MainButton.show();
 		Telegram.WebApp.BackButton.show();
 
 		function selectDefaultInterval() {
@@ -564,22 +562,10 @@
 			radio_btn_1.classList.add('selected');
 			radio_btn_2.classList.remove('selected');
 			interval = 'yearly';
+			mainBtnText = 'خرید اشتراک سالانه';
+			purchaseURL = 'https://google.com';
 			triangle_1.style.display = "block";
-			showMainButton(
-					'خرید اشتراک سالانه',
-					'https://google.com'
-			);
 		}
-	}
-
-	function showMainButton(text, url) {
-		Telegram.WebApp.MainButton
-				.setText(text)
-				.show()
-				.onClick(function () {
-					console.log('mainbutton Clicked!');
-					onClickMainButton(url);
-				});
 	}
 
 	function onClickMainButton(url) {
@@ -587,6 +573,13 @@
 		console.log(`The chosen plan is : ${subscription['index']} - ${subscription['plan']} and interval is : ${interval}`);
 		Telegram.WebApp.openLink(url, {try_instant_view: true});
 	}
+
+	Telegram.WebApp.MainButton
+			.setText(mainBtnText)
+			.onClick(function () {
+				console.log('mainbutton Clicked!');
+				onClickMainButton(purchaseURL);
+			});
 
 	Telegram.WebApp.BackButton
 			.onClick(function () {
