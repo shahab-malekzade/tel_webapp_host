@@ -314,12 +314,12 @@ hr {
 }
 
 .radio-btn {
-  grid-column: 9/10;
+  grid-column: 20/22;
 }
 
 .interval-txt {
   font-size: 18px;
-  grid-column: 3/9;
+  grid-column: 3/20;
 }
 
 .price {
@@ -352,7 +352,7 @@ hr {
 
 .card-desc {
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .triangle {

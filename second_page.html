@@ -294,8 +294,6 @@
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
 
-	let container = document.getElementById('scrollContainer');
-
 	const professionalPlanBtn = document.getElementById('professional');
 	const premiumPlanBtn = document.getElementById('premium');
 
@@ -356,6 +354,7 @@
 	}
 
 	function first_page_function(lastIndex) {
+		let container = document.getElementById('scrollContainer');
 		let dots = document.querySelectorAll('.dot');
 
 		const items = document.getElementById('items');
@@ -511,20 +510,6 @@
 		function setTransform(value) {
 			items.style.transform = `translateX(${value}px)`;
 		}
-
-		function scrollToIndex(index) {
-			console.log('hey there!!');
-			setPositionByIndex(index);
-		}
-
-		dots.forEach(function (dot, i) {
-			dot.addEventListener('click', function () {
-				let index = dot.getAttribute('data-index');
-				currentIndex = parseInt(index);
-				console.log('Dots!!');
-				scrollToIndex(currentIndex);
-			});
-		});
 	}
 
 	function showSecondPage(plan) {
@@ -547,7 +532,6 @@
 		selectDefaultInterval();
 
 		function interval_1_func(e) {
-			interval_1.removeEventListener('click', interval_1_func)
 			selectDefaultInterval();
 			showMainButton(
 					'خرید اشتراک سالانه',
@@ -558,7 +542,6 @@
 		interval_1.addEventListener('click', interval_1_func);
 
 		function interval_2_func(e) {
-			interval_2.removeEventListener('click', interval_2_func);
 			interval_1.classList.remove('selected');
 			interval_2.classList.add('selected');
 			radio_btn_1.classList.remove('selected');
