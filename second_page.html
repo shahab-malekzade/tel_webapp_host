@@ -409,6 +409,7 @@
 		let isMouseDown = false;
 
 		currentIndex = lastIndex;
+		console.log('calling first_page_function');
 		setPositionByIndex(currentIndex);
 
 		container.addEventListener('mousedown', start);
@@ -570,6 +571,7 @@
 				.show()
 				.onClick(function () {
 					// showFirstPage(plan['index']);
+          console.log('telegram backbutton!')
 					showFirstPage(currentIndex);
 				});
 
