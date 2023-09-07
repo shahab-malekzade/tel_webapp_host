@@ -546,15 +546,19 @@
 
 		selectDefaultInterval();
 
-		interval_1.addEventListener('click', () => {
+		function interval_1_func(e) {
+			interval_1.removeEventListener('click', interval_1_func)
 			selectDefaultInterval();
 			showMainButton(
 					'خرید اشتراک سالانه',
 					'https://google.com',
 			);
-		});
+		}
 
-		interval_2.addEventListener('click', () => {
+		interval_1.addEventListener('click', interval_1_func);
+
+		function interval_2_func(e) {
+			interval_2.removeEventListener('click', interval_2_func);
 			interval_1.classList.remove('selected');
 			interval_2.classList.add('selected');
 			radio_btn_1.classList.remove('selected');
@@ -565,24 +569,11 @@
 					'خرید اشتراک ماهانه',
 					'https://google.com',
 			);
-		});
-
-		Telegram.WebApp.BackButton
-				.show()
-				.onClick(function () {
-					// showFirstPage(plan['index']);
-          console.log('telegram backbutton!')
-					showFirstPage(currentIndex);
-				});
-
-		function showMainButton(text, url, selectedPlan) {
-			Telegram.WebApp.MainButton
-					.setText(text)
-					.show()
-					.onClick(function () {
-						onClickMainButton(url, selectedPlan);
-					});
 		}
+
+		interval_2.addEventListener('click', interval_2_func);
+
+		Telegram.WebApp.BackButton.show();
 
 		function selectDefaultInterval() {
 			interval_1.classList.add('selected');
@@ -598,11 +589,28 @@
 		}
 	}
 
+	function showMainButton(text, url) {
+		Telegram.WebApp.MainButton
+				.setText(text)
+				.show()
+				.onClick(function () {
+					console.log('mainbutton Clicked!');
+					onClickMainButton(url);
+				});
+	}
+
 	function onClickMainButton(url) {
 		currentActivePlan = subscription['index'];
 		console.log(`The chosen plan is : ${subscription['index']} - ${subscription['plan']} and interval is : ${interval}`);
 		Telegram.WebApp.openLink(url, {try_instant_view: true});
 	}
+
+	Telegram.WebApp.BackButton
+			.onClick(function () {
+				// showFirstPage(plan['index']);
+				console.log('telegram backbutton!');
+				showFirstPage(currentIndex);
+			});
 
 	function landscapeMode() {
 		first_page.style.display = "none";
