@@ -411,7 +411,6 @@
 		let isMouseDown = false;
 
 		currentIndex = lastIndex;
-		console.log('calling first_page_function');
 		setPositionByIndex(currentIndex);
 
 		container.addEventListener('mousedown', start);
@@ -479,7 +478,6 @@
 			} else if (movedBy > 5 && currentIndex > 0) {
 				currentIndex -= 1;
 			}
-			console.log(`end currentIndex: ${currentIndex} `);
 			setPositionByIndex(currentIndex);
 		}
 
@@ -506,7 +504,6 @@
 			} else {
 				currentTranslate = (0.09 * container_width) + index * -card_width;
 			}
-			console.log(`setPositionByIndex: ${index} ${currentTranslate}`);
 			setTransform(currentTranslate);
 		}
 
@@ -577,14 +574,11 @@
 	Telegram.WebApp.MainButton
 			.setText(mainBtnText)
 			.onClick(function () {
-				console.log('mainbutton Clicked!');
 				onClickMainButton(purchaseURL);
 			});
 
 	Telegram.WebApp.BackButton
 			.onClick(function () {
-				// showFirstPage(plan['index']);
-				console.log('telegram backbutton!');
 				showFirstPage(currentIndex);
 			});
 
