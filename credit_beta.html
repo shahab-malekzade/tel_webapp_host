@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="MobileOptimized" content="176"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <title>s_page</title>
+    <link href="/static/vazir.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <link rel="stylesheet" href="/static/bootstrap5.min.css">
+    <link rel="stylesheet" href="/static/credits.min.css">
+
+    <script>
+        function setThemeClass() {
+            document.documentElement.className = Telegram.WebApp.colorScheme;
+        }
+
+        Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+        setThemeClass();
+    </script>
+
+</head>
+
+<body>
+
+<section id="first_page">
+    <p id="first-p-title" class="first-p-title">
+        یک اشتراک انتخاب کنید
+    </p>
+    <h5 id="first-p-desc" class="first-p-desc">
+        بهترین پیشنهاد را متناسب با نیاز خود انتخاب کنید
+    </h5>
+
+    <div id="first-p-cards" class="first-p-cards">
+        <div class="container" id="scrollContainer">
+            <div class="snap-items" id="items">
+                {{ range .Plans }}
+                <div class="item">
+                    <div class="card" data-index="0">
+                        <div class="grid">
+                            <div class="item-1">
+                                <b>{{ .Text }}</b>
+                            </div>
+                            <div class="item-2">
+                                <p style="margin: 0;">
+                                    <span>{{ .Price }} </span>
+                                    تومان / ماه
+                                </p>
+                            </div>
+                            <div class="item-3">{{ .Logo }}</div>
+                        </div>
+                        <hr>
+                        {{ range .Features }}
+                        <p class="features">
+                            <span class="sticker-features">{{.Emoji}}</span>
+                            <span class="plan-features">
+          {{.Text}}
+          </span>
+                        </p>
+                        {{ end }}
+                        <div class="stick-bottom">
+                            <div class="card-button">
+                                <a id="btn_{{.ID}}" class="purchase-link">
+                                    انتخاب
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <div class="dot-container" id="dotContainer">
+            <div class="pill-bg">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="second_page">
+<!--    <a onclick="showFirstPage(currentIndex);">back</a>-->
+<!--    <a onclick="onClickMainButton('https://google.com');">ok</a>-->
+    <p id="second-p-title" class="second-p-title">
+        <span >اشتراک</span>
+        <span id="second-p-title-logo" class="sticker-title">🎙️</span>
+        <span id="second-p-title-text"></span>
+
+    </p>
+
+    <h5 id="second-p-desc" class="second-p-desc">
+        قفل دنیایی از چت های خارق العاده را باز کنید، داستان شما از اینجا شروع می شود.
+    </h5>
+
+    <div id="second-p-cards" class="plan-cards">
+        <div class="plans">
+            <div id="interval-1" class="card-2 card-second-page">
+
+                <div id="triangle-1" class="triangle">
+                    <div style="padding: 5px;"><span>⭐</span></div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="price">
+                        <p style="font-size: 12px;">
+                            <span id="second-p-price-yearly" style="font-size: 16px;">۹۶</span>
+                            تومان / ماه
+                        </p>
+                    </div>
+                    <div class="interval-txt">
+                        سالیانه • (۵۱٪ تخفیف)
+                        <p class="card-desc">
+                            برای یک سال کامل پرداخت کنید
+                        </p>
+                    </div>
+                    <div class="radio-btn">
+                        <div class="outer-circle">
+                            <div id="inner-circle-1" class="inner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="margin-bottom: 10px;">
+
+                <p class="features">
+                    <span class="sticker-features">💰</span>
+                    <span class="plan-features-2">
+        با خرید اشتراک سالانه از تخفیف ویژه برخوردار شوید
+      </span>
+                </p>
+                <p class="features">
+                    <span class="sticker-features">🌟</span>
+                    <span class="plan-features-2">
+        امتیازات منحصر به فرد مشترکین سالانه را آزاد کنید
+      </span>
+                </p>
+                <p class="features">
+                    <span class="sticker-features">🛡️</span>
+                    <span class="plan-features-2">
+        سالی را بدون افزایش قیمت غیر منتظره تجربه کنید
+      </span>
+                </p>
+            </div>
+
+            <div id="interval-2" class="card-2 card-second-page">
+
+                <div class="grid-2">
+                    <div class="price">
+                        <p style="font-size: 12px;">
+                            <span id="second-p-price-monthly" style="font-size: 16px;">۱۲۰</span>
+                            تومان / ماه
+                        </p>
+                    </div>
+                    <div class="interval-txt">
+                        ماهیانه
+                        <p class="card-desc">
+                            به صورت ماهانه پرداخت کنید
+                        </p>
+                    </div>
+                    <div class="radio-btn">
+                        <div class="outer-circle">
+                            <div id="inner-circle-2" class="inner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                <button id="buy" type="button" class="btn btn-primary btn-lg btn-block buy-btn">خرید اشتراک</button>
+        </div>
+    </div>
+
+</section>
+
+<section id="third_page">
+    <h2 class="landscape-msg">
+        لطفا صفحه گوشی خود را به حالت عمودی برگردانید
+    </h2>
+</section>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="dist/js/bootstrap.bundle.min.js"></script>
+<script type="application/javascript">
+    Telegram.WebApp.ready();
+
+    const first_page = document.getElementById("first_page");
+    const second_page = document.getElementById("second_page");
+    const third_page = document.getElementById("third_page");
+
+    // const professionalPlanBtn = document.getElementById('professional');
+    // const premiumPlanBtn = document.getElementById('premium');
+    const PlanBtns = document.getElementsByClassName('purchase-link');
+
+    const interval_1 = document.getElementById('interval-1');
+    const interval_2 = document.getElementById('interval-2');
+    const triangle_1 = document.getElementById("triangle-1");
+
+    const radio_btn_1 = document.getElementById('inner-circle-1');
+    const radio_btn_2 = document.getElementById('inner-circle-2');
+
+    let currentIndex = 0;
+    let currentActivePlan = 0;
+    const plans_list = {{.Plans}};
+    let last_page = first_page;
+    let last_plan = null;
+    let subscription = null;
+    let interval = null;
+
+    let mainBtnText = 'خرید اشتراک سالانه';
+    let purchaseURL = "/"
+    document.getElementById('buy').addEventListener('click', function () {
+        if (document.getElementById('buy').disabled === true){
+            return;
+        }
+        Telegram.WebApp.openLink(purchaseURL, {try_instant_view: true});
+        document.getElementById('buy').disabled = true;
+        setTimeout(function () {
+            document.getElementById('buy').disabled = false;
+        }, 1000);
+    });
+    const landscape = window.matchMedia("(orientation: landscape)");
+    landscape.addEventListener("change", function (e) {
+        if (e.matches) {
+            landscapeMode();
+        } else {
+            if (last_page === first_page) {
+                showFirstPage(currentIndex);
+            } else {
+                showSecondPage(last_plan);
+            }
+        }
+    });
+
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        landscapeMode();
+    } else {
+        if (last_page === first_page) {
+            showFirstPage(currentIndex);
+        } else {
+            showSecondPage(last_plan);
+        }
+    }
+
+    function showFirstPage(lastIndex = 0) {
+        last_page = first_page;
+        first_page.style.display = "flex";
+        second_page.style.display = "none";
+        third_page.style.display = "none";
+        Telegram.WebApp.MainButton.hide();
+        Telegram.WebApp.BackButton.hide();
+        interval_1.classList.remove('selected');
+        interval_2.classList.remove('selected');
+        radio_btn_1.classList.remove('selected');
+        radio_btn_2.classList.remove('selected');
+        triangle_1.style.display = "none";
+        subscription = null;
+        interval = null;
+
+        first_page_function(lastIndex);
+    }
+
+    function first_page_function(lastIndex) {
+        let container = document.getElementById('scrollContainer');
+        let dots = document.querySelectorAll('.dot');
+
+        const items = document.getElementById('items');
+        const card = document.querySelector('.item');
+
+        function handlePlanClick(e) {
+            // First remove the event listeners
+            container.removeEventListener('mousedown', start);
+            container.removeEventListener('mouseup', end);
+            container.removeEventListener('mousemove', move);
+            container.removeEventListener('touchstart', start);
+            container.removeEventListener('touchend', end);
+            container.removeEventListener('touchmove', move);
+            for (let i = 0; i < PlanBtns.length; i++) {
+                PlanBtns[i].removeEventListener('click', handlePlanClick);
+            }
+
+            showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
+        }
+
+
+        for (let i = 0; i < PlanBtns.length; i++) {
+            PlanBtns[i].addEventListener('click', handlePlanClick);
+        }
+        let card_width = card.offsetWidth;
+        let container_width = container.offsetWidth;
+        items.style.transform = `translateX(${0.10 * container_width}px)`;
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            document.documentElement.style.setProperty('--tg-viewport-height', `${window.Telegram.WebApp.viewportHeight}px`);
+            window.Telegram.WebApp.onEvent('viewportChanged', function (data) {
+                if (data && data.isStateStable) {
+                    document.documentElement.style.setProperty('--tg-viewport-height', `${data.viewportHeight}px`);
+                }
+            });
+        }
+
+        items.style.transform = `translateX(${0.10 * container_width}px)`;
+
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let currentTranslate = 0;
+        let previousTranslate = 0;
+        let animationId = 0;
+        let hasMoved = false;
+        let directionChecked = false;
+
+        let moveAmount = 0;
+        const threshold = 10;
+        const slopeThreshold = 0.5;
+
+        let isMouseDown = false;
+
+        currentIndex = lastIndex;
+        setPositionByIndex(currentIndex);
+
+        container.addEventListener('mousedown', start);
+        container.addEventListener('mouseup', end);
+        container.addEventListener('mousemove', move);
+
+        container.addEventListener('touchstart', start);
+        container.addEventListener('touchend', end);
+        container.addEventListener('touchmove', move);
+
+        function start(event) {
+            isDragging = false;
+            hasMoved = false;
+            isMouseDown = true;
+            startX = getPositionX(event);
+            startY = getPositionY(event);
+            previousTranslate = currentTranslate;
+            cancelAnimationFrame(animationId);
+            items.style.transition = 'none';
+        }
+
+        function move(event) {
+            if (!isMouseDown) return;
+
+            if (!hasMoved) {
+                const currentPosX = getPositionX(event);
+                const currentPosY = getPositionY(event);
+                moveAmount = Math.abs(currentPosX - startX);
+                if (moveAmount > threshold) {
+                    hasMoved = true;
+                    const xDiff = currentPosX - startX;
+                    const yDiff = currentPosY - startY;
+                    const slope = Math.abs(yDiff / xDiff);
+                    if (slope < slopeThreshold) {
+                        event.preventDefault();
+                        isDragging = true;
+                    }
+                }
+            }
+            if (isDragging) {
+                const currentPosX = getPositionX(event);
+                const direction = currentPosX - startX;
+                if (currentIndex === 0 && direction > 0) {
+                    currentTranslate = previousTranslate + (currentPosX - startX) / 3;
+                } else if (currentIndex === 2 && direction < 0) {
+                    currentTranslate = previousTranslate + (currentPosX - startX) / 3;
+                } else {
+                    currentTranslate = previousTranslate + (currentPosX - startX);
+                }
+                setTransform(currentTranslate);
+            }
+        }
+
+        function end() {
+            isDragging = false;
+            isMouseDown = false;
+            directionChecked = false;
+
+            const movedBy = currentTranslate - previousTranslate;
+            items.style.transition = 'transform 0.3s';
+
+            // If moved a significant amount
+            if (movedBy < -5 && currentIndex < 2) {
+                currentIndex += 1;
+            } else if (movedBy > 5 && currentIndex > 0) {
+                currentIndex -= 1;
+            }
+            setPositionByIndex(currentIndex);
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function getPositionY(event) {
+            return event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
+        }
+
+        function setPositionByIndex(index) {
+            dots.forEach(function (dot, i) {
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            if (index === 0) {
+                currentTranslate = 0.09 * container_width;
+            } else if (index === 1) {
+                currentTranslate = (0.09 * container_width) + index * -card_width;
+            } else {
+                currentTranslate = (0.09 * container_width) + index * -card_width;
+            }
+            setTransform(currentTranslate);
+        }
+
+        function setTransform(value) {
+            items.style.transform = `translateX(${value}px)`;
+        }
+    }
+
+    function showSecondPage(plan) {
+        last_page = second_page;
+        last_plan = plan;
+        subscription = plan;
+        first_page.style.display = "none";
+        second_page.style.display = "flex";
+        third_page.style.display = "none";
+        console.log(plan);
+        document.getElementById('second-p-title-text').innerHTML = plan.plan["text"];
+        document.getElementById('second-p-title-logo').innerHTML = plan.plan["logo"];
+        document.getElementById('second-p-price-monthly').innerHTML = plan.plan["price"];
+        document.getElementById('second-p-price-yearly').innerHTML = plan.plan["yearly_price"];
+
+
+        selectDefaultInterval();
+
+        function interval_1_func(e) {
+            selectDefaultInterval();
+        }
+
+        interval_1.addEventListener('click', interval_1_func);
+
+        function interval_2_func(e) {
+            interval_1.classList.remove('selected');
+            interval_2.classList.add('selected');
+            radio_btn_1.classList.remove('selected');
+            radio_btn_2.classList.add('selected');
+            interval = 'monthly';
+            mainBtnText = 'خرید اشتراک ماهانه';
+            document.getElementById('buy').innerHTML = mainBtnText;
+
+            // Telegram.WebApp.MainButton
+            //     .setText(mainBtnText)
+            //     .onClick(function () {
+            //         onClickMainButton(purchaseURL);
+            //     });
+            purchaseURL = '/pay/' + plan.plan["id"] + "/m/" + {{.UserHash}};
+            triangle_1.style.display = "none";
+        }
+
+        interval_2.addEventListener('click', interval_2_func);
+        //
+        // Telegram.WebApp.MainButton.show();
+        // Telegram.WebApp.BackButton.show();
+
+        function selectDefaultInterval() {
+            interval_1.classList.add('selected');
+            interval_2.classList.remove('selected');
+            radio_btn_1.classList.add('selected');
+            radio_btn_2.classList.remove('selected');
+            interval = 'yearly';
+            mainBtnText = 'خرید اشتراک سالانه';
+            document.getElementById('buy').innerHTML = mainBtnText;
+
+            // Telegram.WebApp.MainButton
+            //     .setText(mainBtnText)
+            //     .onClick(function () {
+            //         onClickMainButton(purchaseURL);
+            //     });
+            purchaseURL = '/pay/' + plan.plan["id"] + "/y/" + {{.UserHash}};
+            triangle_1.style.display = "block";
+        }
+    }
+
+    function onClickMainButton(url) {
+        if (!Telegram.WebApp.isActive) {
+            return;
+        }
+        // Telegram.WebApp.MainButton
+        //     .disable()
+        //     .showProgress();
+        currentActivePlan = subscription['index'];
+        Telegram.WebApp.openLink(url, {try_instant_view: true});
+    }
+
+    // Telegram.WebApp.MainButton
+    //     .setText(mainBtnText)
+    //     .onClick(function () {
+    //         onClickMainButton(purchaseURL);
+    //     });
+
+    Telegram.WebApp.BackButton
+        .onClick(function () {
+            showFirstPage(currentIndex);
+        });
+
+    function landscapeMode() {
+        first_page.style.display = "none";
+        second_page.style.display = "none";
+        third_page.style.display = "block";
+    }
+
+</script>
+</body>
+</html>

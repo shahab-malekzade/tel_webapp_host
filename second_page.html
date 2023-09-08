@@ -190,7 +190,7 @@
 </section>
 
 <section id="second_page">
-<!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
+  <a onclick="showFirstPage(currentIndex);">back</a>
 <!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
@@ -312,6 +312,9 @@
 	let subscription = null;
 	let interval = null;
 
+  let cardsListenerExists = false;
+  let buttonsListenerExists = false;
+
 	let mainBtnText = 'خرید اشتراک سالانه';
 	let purchaseURL = 'https://google.com';
 
@@ -377,8 +380,12 @@
 			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
 		}
 
-		professionalPlanBtn.addEventListener('click', handlePlanClick);
-		premiumPlanBtn.addEventListener('click', handlePlanClick);
+    if (!buttonsListenerExists) {
+      professionalPlanBtn.addEventListener('click', handlePlanClick);
+      premiumPlanBtn.addEventListener('click', handlePlanClick);
+      buttonsListenerExists = true;
+      console.log('buttonsListenerExists = true;');
+    }
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
@@ -413,13 +420,17 @@
 		currentIndex = lastIndex;
 		setPositionByIndex(currentIndex);
 
-		container.addEventListener('mousedown', start);
-		container.addEventListener('mouseup', end);
-		container.addEventListener('mousemove', move);
+    if (!cardsListenerExists) {
+      container.addEventListener('mousedown', start);
+      container.addEventListener('mouseup', end);
+      container.addEventListener('mousemove', move);
 
-		container.addEventListener('touchstart', start);
-		container.addEventListener('touchend', end);
-		container.addEventListener('touchmove', move);
+      container.addEventListener('touchstart', start);
+      container.addEventListener('touchend', end);
+      container.addEventListener('touchmove', move);
+      cardsListenerExists = true;
+      console.log('cardsListenerExists = true;');
+    }
 
 		function start(event) {
 			isDragging = false;
@@ -516,6 +527,9 @@
 		if (plan === null) {
 			plan = {'index': 0, 'plan': 'basic'};
 		}
+    cardsListenerExists = false;
+    buttonsListenerExists = false;
+      console.log('cards buttons = false;');
 		last_page = second_page;
 		last_plan = plan;
 		subscription = plan;
