@@ -216,6 +216,9 @@
     let subscription = null;
     let interval = null;
 
+    let cardsListenerExists = false;
+    let buttonsListenerExists = false;
+
     let mainBtnText = 'خرید اشتراک سالانه';
     let purchaseURL = "/"
     document.getElementById('buy').addEventListener('click', function () {
@@ -292,8 +295,11 @@
         }
 
 
-        for (let i = 0; i < PlanBtns.length; i++) {
-            PlanBtns[i].addEventListener('click', handlePlanClick);
+        if (!buttonsListenerExists) {
+          for (let i = 0; i < PlanBtns.length; i++) {
+              PlanBtns[i].addEventListener('click', handlePlanClick);
+          }
+          buttonsListenerExists = true;
         }
         let card_width = card.offsetWidth;
         let container_width = container.offsetWidth;
@@ -328,13 +334,16 @@
         currentIndex = lastIndex;
         setPositionByIndex(currentIndex);
 
-        container.addEventListener('mousedown', start);
-        container.addEventListener('mouseup', end);
-        container.addEventListener('mousemove', move);
+				if (!cardsListenerExists) {
+					container.addEventListener('mousedown', start);
+					container.addEventListener('mouseup', end);
+					container.addEventListener('mousemove', move);
 
-        container.addEventListener('touchstart', start);
-        container.addEventListener('touchend', end);
-        container.addEventListener('touchmove', move);
+					container.addEventListener('touchstart', start);
+					container.addEventListener('touchend', end);
+					container.addEventListener('touchmove', move);
+          cardsListenerExists = true;
+				}
 
         function start(event) {
             isDragging = false;
@@ -428,6 +437,8 @@
     }
 
     function showSecondPage(plan) {
+        cardsListenerExists = false;
+        buttonsListenerExists = false;
         last_page = second_page;
         last_plan = plan;
         subscription = plan;

@@ -27,7 +27,6 @@ body {
     overscroll-behavior: none;
     display: flex; /* Change this to flex */
     flex-direction: column; /* Enable vertical stacking */
-    justify-content: space-evenly;
     align-items: center;
     height: var(--tg-viewport-height, 100vh);
     transition: height 0.3s, padding 0.3s;
