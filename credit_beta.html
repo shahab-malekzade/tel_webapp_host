@@ -193,6 +193,7 @@
 <script type="application/javascript">
     Telegram.WebApp.ready();
 
+    const body = document.body;
     const first_page = document.getElementById("first_page");
     const second_page = document.getElementById("second_page");
     const third_page = document.getElementById("third_page");
@@ -370,6 +371,7 @@
                     const slope = Math.abs(yDiff / xDiff);
                     if (slope < slopeThreshold) {
                         event.preventDefault();
+                        body.style.overflow = 'hidden';
                         isDragging = true;
                     }
                 }
@@ -395,6 +397,7 @@
 
             const movedBy = currentTranslate - previousTranslate;
             items.style.transition = 'transform 0.3s';
+            body.style.overflow = 'scroll';
 
             // If moved a significant amount
             if (movedBy < -5 && currentIndex < 2) {

@@ -290,6 +290,7 @@
 <script type="application/javascript">
 	Telegram.WebApp.ready();
 
+	const body = document.body;
 	const first_page = document.getElementById("first_page");
 	const second_page = document.getElementById("second_page");
 	const third_page = document.getElementById("third_page");
@@ -384,7 +385,6 @@
       professionalPlanBtn.addEventListener('click', handlePlanClick);
       premiumPlanBtn.addEventListener('click', handlePlanClick);
       buttonsListenerExists = true;
-      console.log('buttonsListenerExists = true;');
     }
 
 		let card_width = card.offsetWidth;
@@ -429,7 +429,6 @@
       container.addEventListener('touchend', end);
       container.addEventListener('touchmove', move);
       cardsListenerExists = true;
-      console.log('cardsListenerExists = true;');
     }
 
 		function start(event) {
@@ -457,7 +456,9 @@
 					const slope = Math.abs(yDiff / xDiff);
 					if (slope < slopeThreshold) {
 						event.preventDefault();
+						body.style.overflow = 'hidden';
 						isDragging = true;
+						console.log('======> event.preventDefault()')
 					}
 				}
 			}
@@ -482,6 +483,7 @@
 
 			const movedBy = currentTranslate - previousTranslate;
 			items.style.transition = 'transform 0.3s';
+			body.style.overflow = 'scroll';
 
 			// If moved a significant amount
 			if (movedBy < -5 && currentIndex < 2) {
@@ -529,7 +531,6 @@
 		}
     cardsListenerExists = false;
     buttonsListenerExists = false;
-      console.log('cards buttons = false;');
 		last_page = second_page;
 		last_plan = plan;
 		subscription = plan;
