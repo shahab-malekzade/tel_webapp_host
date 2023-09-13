@@ -190,8 +190,8 @@
 </section>
 
 <section id="second_page">
-<!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
-<!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
+  <!--  <a onclick="showFirstPage(currentIndex);">back</a>-->
+  <!--  <a onclick="onClickMainButton('https://google.com');">ok</a>-->
   <p id="second-p-title" class="second-p-title">
     <span id="second-p-title-text">اشتراک پریمیوم</span>
     <span class="sticker-title">🎙️</span>
@@ -277,6 +277,17 @@
     </div>
   </div>
 
+  <div class="discount-card">
+    <div class="card-discount discount-card-second-page">
+      <button id="discountBtn" class="discount-btn" type="submit">
+        بررسی
+      </button>
+      <input type="text" id="discount-input"
+             class="discount-input" placeholder="کد تخفیف خود را وارد کنید">
+    </div>
+    <div id="result-discount"></div>
+  </div>
+
 </section>
 
 <section id="third_page">
@@ -313,8 +324,8 @@
 	let subscription = null;
 	let interval = null;
 
-  let cardsListenerExists = false;
-  let buttonsListenerExists = false;
+	let cardsListenerExists = false;
+	let buttonsListenerExists = false;
 
 	let mainBtnText = 'خرید اشتراک سالانه';
 	let purchaseURL = 'https://google.com';
@@ -381,11 +392,11 @@
 			showSecondPage({'index': currentIndex, 'plan': plans_list[currentIndex]});
 		}
 
-    if (!buttonsListenerExists) {
-      professionalPlanBtn.addEventListener('click', handlePlanClick);
-      premiumPlanBtn.addEventListener('click', handlePlanClick);
-      buttonsListenerExists = true;
-    }
+		if (!buttonsListenerExists) {
+			professionalPlanBtn.addEventListener('click', handlePlanClick);
+			premiumPlanBtn.addEventListener('click', handlePlanClick);
+			buttonsListenerExists = true;
+		}
 
 		let card_width = card.offsetWidth;
 		let container_width = container.offsetWidth;
@@ -420,16 +431,16 @@
 		currentIndex = lastIndex;
 		setPositionByIndex(currentIndex);
 
-    if (!cardsListenerExists) {
-      container.addEventListener('mousedown', start);
-      container.addEventListener('mouseup', end);
-      container.addEventListener('mousemove', move);
+		if (!cardsListenerExists) {
+			container.addEventListener('mousedown', start);
+			container.addEventListener('mouseup', end);
+			container.addEventListener('mousemove', move);
 
-      container.addEventListener('touchstart', start);
-      container.addEventListener('touchend', end);
-      container.addEventListener('touchmove', move);
-      cardsListenerExists = true;
-    }
+			container.addEventListener('touchstart', start);
+			container.addEventListener('touchend', end);
+			container.addEventListener('touchmove', move);
+			cardsListenerExists = true;
+		}
 
 		function start(event) {
 			isDragging = false;
@@ -529,8 +540,8 @@
 		if (plan === null) {
 			plan = {'index': 0, 'plan': 'basic'};
 		}
-    cardsListenerExists = false;
-    buttonsListenerExists = false;
+		cardsListenerExists = false;
+		buttonsListenerExists = false;
 		last_page = second_page;
 		last_plan = plan;
 		subscription = plan;
@@ -577,6 +588,39 @@
 			mainBtnText = 'خرید اشتراک سالانه';
 			purchaseURL = 'https://google.com';
 			triangle_1.style.display = "block";
+		}
+
+		// Check the discount
+		const discountCode = document.getElementById('discount-input');
+		const discountBtn = document.getElementById('discountBtn');
+
+		const resultDiscount = document.getElementById('result-discount');
+		const handleSubmit = async (e) => {
+			e.preventDefault();
+			const code = discountCode.value;
+			// Send code to server and check if valid
+			const isValid = await checkDiscountCode(code);
+			if (isValid) {
+				// Do the changes in the page here
+				discountBtn.removeEventListener('click', handleSubmit);
+				resultDiscount.textContent = "با موفقیت اعمال شد";
+				discountCode.disabled = true;
+				discountBtn.disabled = true;
+				discountBtn.textContent = 'حله';
+			} else {
+				resultDiscount.textContent = "کد تخفیف معتبر نمی باشد";
+			}
+
+		};
+		discountBtn.addEventListener('click', handleSubmit);
+
+		async function checkDiscountCode(code) {
+			// Fake request to server
+			return new Promise(resolve => {
+				setTimeout(() => {
+					resolve(code === 'DISCOUNT10');
+				}, 1000);
+			});
 		}
 	}
 

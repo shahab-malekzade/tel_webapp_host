@@ -180,6 +180,17 @@
         </div>
     </div>
 
+  <div class="discount-card">
+    <div class="card-discount discount-card-second-page">
+      <button id="discountBtn" class="discount-btn" type="submit">
+        بررسی
+      </button>
+      <input type="text" id="discount-input"
+             class="discount-input" placeholder="کد تخفیف خود را وارد کنید">
+    </div>
+    <div id="result-discount"></div>
+  </div>
+
 </section>
 
 <section id="third_page">
@@ -260,7 +271,7 @@
         first_page.style.display = "flex";
         second_page.style.display = "none";
         third_page.style.display = "none";
-        Telegram.WebApp.MainButton.hide();
+        // Telegram.WebApp.MainButton.hide();
         Telegram.WebApp.BackButton.hide();
         interval_1.classList.remove('selected');
         interval_2.classList.remove('selected');
@@ -503,6 +514,40 @@
             purchaseURL = '/pay/' + plan.plan["id"] + "/y/" + {{.UserHash}};
             triangle_1.style.display = "block";
         }
+
+		// Check the discount
+		const discountCode = document.getElementById('discount-input');
+		const discountBtn = document.getElementById('discountBtn');
+
+		const resultDiscount = document.getElementById('result-discount');
+		const handleSubmit = async (e) => {
+			e.preventDefault();
+			const code = discountCode.value;
+			// Send code to server and check if valid
+			const isValid = await checkDiscountCode(code);
+			if (isValid) {
+				// Do the changes in the page here
+				discountBtn.removeEventListener('click', handleSubmit);
+				resultDiscount.textContent = "با موفقیت اعمال شد";
+				discountCode.disabled = true;
+				discountBtn.disabled = true;
+				discountBtn.textContent = 'حله';
+			} else {
+				resultDiscount.textContent = "کد تخفیف معتبر نمی باشد";
+			}
+
+		};
+		discountBtn.addEventListener('click', handleSubmit);
+
+		async function checkDiscountCode(code) {
+			// Fake request to server
+			return new Promise(resolve => {
+				setTimeout(() => {
+					resolve(code === 'DISCOUNT10');
+				}, 1000);
+			});
+		}
+
     }
 
     function onClickMainButton(url) {
